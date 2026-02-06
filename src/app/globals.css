@@ -4,32 +4,32 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer theme {
+    :root {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --font-sans: var(--font-geist-sans);
+        --font-mono: var(--font-geist-mono);
+    }
 }
-
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root { 
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
 
-body {
+/* body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 /*
 * Theme Name: Sojilearn - Study Abroad Agency HTML Template
 * Author: Sojilearn
 * Version: 1.0
-* Last Change: 07 January 2025
+* Last Change: 07 February 2026
   Author URI    : https://sojilearn.com/
 -------------------------------------------------------------------*/
 /*------------- List Of Table -----------
