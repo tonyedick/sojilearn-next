@@ -1,72 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-@layer theme {
-    :root {
-        --color-background: var(--background);
-        --color-foreground: var(--foreground);
-        --font-sans: var(--font-geist-sans);
-        --font-mono: var(--font-geist-mono);
-    }
-}
-@media (prefers-color-scheme: dark) {
-  :root { 
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-/*
-* Theme Name: Sojilearn - Study Abroad Agency HTML Template
-* Author: Sojilearn
-* Version: 1.0
-* Last Change: 07 February 2026
-  Author URI    : https://sojilearn.com/
--------------------------------------------------------------------*/
-/*------------- List Of Table -----------
-# Fonts
-# Global Settings
-# Header Navigation Styles
-# Homes Banner
-# Education Elements
-# Inner page design
-# General Features
-# Blog Designs
-# Education Detail 
-# E-Commerce & Product Designs
-# Dashboard Design
-# Footer Start 
-# Responsiveness Start
-------------- List Of Table ----------*/
-
-/* CSS Document */
-@import url(/src/assets/css/plugins/animation.css);
-@import url(/src/assets/css/plugins/bootstrap.min.css);
-@import url(/src/assets/css/plugins/date-picker.css);
-@import url(/src/assets/css/plugins/select2.css);
-@import url(/src/assets/css/plugins/slick.css);
-@import url(/src/assets/css/plugins/slick-theme.css);
-@import url(/src/assets/css/plugins/themify.css);
-@import url(/src/assets/css/plugins/morris.css);
-@import url(/src/assets/css/plugins/font-awesome.css);
-@import url(/src/assets/css/plugins/flaticon.css);
-@import url(/src/assets/css/plugins/summernote.min.css);
-
-/*------------------------------------
-	Fonts
-------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;display=swap');
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700');
-
 /*------------------------------------------------------------
 	Global Settings
 -------------------------------------------------------------*/
@@ -8119,4 +8052,23 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 	}
 	
 	
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
