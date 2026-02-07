@@ -8,7 +8,6 @@ import CTA from "@/components/CTA";
 import FAQ from "@/components/FAQ";
 import SimplifyAdmit from "@/components/SimplifyAdmit";
 import AppLayout from "@/components/Layouts/AppLayout";
-import Reviews from "@/components/Reviews"; 
 import StudyInUkCom from "@/components/UK/StudyInUkCom";
 import StudyInCanada from "@/components/CA/StudyInCanada";
 
@@ -35,7 +34,6 @@ export default function Home() {
       <CTA />
       <FAQ />
       <SimplifyAdmit />
-      <Reviews />
       <StudyInUkCom />
       <StudyInCanada />
      </>

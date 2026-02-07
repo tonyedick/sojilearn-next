@@ -111,7 +111,6 @@ export default function News() {
                                                     className="img-fluid"
                                                     style={{height: "220px", width: "100%", objectFit: "cover"}}
                                                     loading="lazy"
-                                                    fill
                                                     width={100}
                                                     height={220}
                                                 />

@@ -3981,7 +3981,7 @@ ul.lt_cr_list li i{
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-image: url(../src/assets/img/rate.png);
+    background-image: url(/assets/img/rate.png);
     background-position: bottom;
     background-size: cover;
 }
