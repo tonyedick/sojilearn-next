@@ -4,20 +4,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import animate1 from '../assets/img/ic-1.png';
-import animate2 from '../assets/img/ic-3.png';
+import animate2 from '../assets/img/ic-2.png';
 import bakimageLarge from '../assets/img/banner_soji2.jpg';
 import bakimageSmall from '../assets/img/banner_soji.jpg'; 
 
 export default function Banner() {
 const [backgroundImage, setBackgroundImage] = useState(
     typeof window !== 'undefined' && window.innerWidth <= 768 
-        ? bakimageSmall 
-        : bakimageLarge
+        ? bakimageSmall.src
+        : bakimageLarge.src
 );
 
 useEffect(() => {
     const handleResize = () => {
-        setBackgroundImage(window.innerWidth <= 768 ? bakimageSmall : bakimageLarge);
+        setBackgroundImage(window.innerWidth <= 768 ? bakimageSmall.src : bakimageLarge.src);
     };
 
     window.addEventListener('resize', handleResize);
@@ -59,9 +59,9 @@ useEffect(() => {
                   <div className="col-lg-6 col-md-6 col-sm-12">
                       <div className="side_block extream_img">
                           <div className="list_crs_img">
-                              <Image src={animate1} className="img-fluid cirl animate-fl-y" alt="animation for hero banner" width={100} height={100} />
+                              <Image src={animate1} className="img-fluid cirl animate-fl-y" alt="animation for hero banner" />
                               {/* <Image src="/assets/img/ic-2.png" className="img-fluid arrow animate-fl-x" alt="" width={100} height={100} /> */}
-                              <Image src={animate2} className="img-fluid moon animate-fl-x" alt="animation for hero banner" width={100} height={100} />
+                              <Image src={animate2} className="img-fluid moon animate-fl-x" alt="animation for hero banner" />
                           </div>
                           {/* <img src="assets/img/st-3.png" className="img-fluid" alt="" /> */}
                       </div>
