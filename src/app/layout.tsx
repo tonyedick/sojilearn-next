@@ -4,17 +4,6 @@ import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 import "./plugins.css";
-// import "../assets/css/plugins/animation.css";
-// import "../assets/css/plugins/bootstrap.min.css";
-// import "../assets/css/plugins/date-picker.css";
-// import "../assets/css/plugins/select2.css";
-// import "../assets/css/plugins/slick.css";
-// import "../assets/css/plugins/slick-theme.css";
-// import "../assets/css/plugins/themify.css";
-// import "../assets/css/plugins/morris.css";
-// import "../assets/css/plugins/font-awesome.css";
-// import "../assets/css/plugins/flaticon.css";
-// import "../assets/css/plugins/summernote.min.css";
 
 const jost = Jost({
   subsets: ['latin'],
