@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import animate1 from '../assets/img/ic-1.png';
-import animate2 from '../assets/img/ic-2.png';
+import animate2 from '../assets/img/ic-3.png';
 import bakimageLarge from '../assets/img/banner_soji2.jpg';
 import bakimageSmall from '../assets/img/banner_soji.jpg'; 
 
