@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import colimg from "../../assets/img/uk_icon.webp";
+import colimg from "../../assets/img/uk.jpg";
 
 export default function StudyInUkCom() {
   return (
@@ -19,7 +19,7 @@ export default function StudyInUkCom() {
             <div className="row align-items-center justify-content-between mt-5">
                 <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12">
                     <div className="side_block extream_img">
-                        <Image src={colimg} className="img-fluid rounded" alt="Study in UK" loading="lazy" width={40} height={40} />
+                        <Image src={colimg} className="img-fluid rounded" alt="Study in UK" loading="lazy" />
                     </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mt-3">
@@ -30,7 +30,7 @@ export default function StudyInUkCom() {
                     </div>
 
                     <div className="inline_btn">
-                        <Link href="/study-in-uk" className="btn theme-bg text-white">View More</Link>
+                        <Link href="/study-in-uk" className="btn-apply btn theme-bg text-white">View More</Link>
                     </div>
                 </div>
             </div>

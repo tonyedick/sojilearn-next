@@ -135,7 +135,7 @@ h6 {
 	color:#333d46;
 	font-weight:600;
 	text-transform: capitalize;
-	font-family: 'Jost', sans-serif;
+	font-family: 'Jost', sans-serif !important;
 }
 
 h5,
@@ -3729,61 +3729,61 @@ ul.lt_cr_list li i{
 	background:rgba(0, 173, 182,0.1);
 }
 .edu_cat_2.cat-1 h4>a{
-	color:#00adb6;
+	color:#00adb6 !important;
 }
 .edu_cat_2.cat-2{
 	background:rgba(247, 179, 32,0.1);
 }
 .edu_cat_2.cat-2 h4>a{
-	color:#f7b320;
+	color:#f7b320 !important;
 }
 .edu_cat_2.cat-3{
 	background:rgba(241, 7, 80,0.1);
 }
 .edu_cat_2.cat-3 h4>a{
-	color:#f10750;
+	color:#f10750 !important;
 }
 .edu_cat_2.cat-4{
 	background:rgba(154, 222, 69,0.1);
 }
 .edu_cat_2.cat-4 h4>a{
-	color:#9ade45;
+	color:#9ade45 !important;
 }
 .edu_cat_2.cat-5{
 	background:rgba(247, 179, 32,0.1);
 }
 .edu_cat_2.cat-5 h4>a{
-	color:#f7b320;
+	color:#f7b320 !important;
 }
 .edu_cat_2.cat-6{
 	background:rgba(185, 95, 253,0.1);
 }
 .edu_cat_2.cat-6 h4>a{
-	color:#b95ffd;
+	color:#b95ffd !important;
 }
 .edu_cat_2.cat-7{
 	background:rgba(236, 80, 152,0.1);
 }
 .edu_cat_2.cat-7 h4>a{
-	color:#ec5098;
+	color:#ec5098 !important;
 }
 .edu_cat_2.cat-8{
 	background:rgba(37, 165, 95,0.1);
 }
 .edu_cat_2.cat-8 h4>a{
-	color:#25a55f;
+	color:#25a55f !important;
 }
 .edu_cat_2.cat-9{
 	background:rgba(234, 105, 13,0.1);
 }
 .edu_cat_2.cat-9 h4>a{
-	color:#ea690d;
+	color:#ea690d !important;
 }
 .edu_cat_2.cat-10{
 	background:rgba(13, 214, 234,0.1);
 }
 .edu_cat_2.cat-10 h4>a{
-	color:#0dd6ea;
+	color:#0dd6ea !important;
 }
 .edu_cat_data ul.meta {
     margin: 0;

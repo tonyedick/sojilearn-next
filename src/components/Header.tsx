@@ -119,6 +119,7 @@ const Header = () => {
               className="md:hidden"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card rounded-lg mt-2 mb-2 border border-border">
+                <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -144,6 +145,7 @@ const Header = () => {
                   >
                     Contact Us
                   </Link>
+                </div>
                 <div className="pt-3 flex flex-col gap-2">
                   <Link
                     href="/apply"
