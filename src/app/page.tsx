@@ -29,13 +29,13 @@ export default function Home() {
       <Hero />
       <Explore />
       <Steps />
+      <StudyInUkCom />
+      <SimplifyAdmit />
+      <StudyInCanada />
       <WhySoji />
       <News />
-      <CTA />
       <FAQ />
-      <SimplifyAdmit />
-      <StudyInUkCom />
-      <StudyInCanada />
+      <CTA />
      </>
     </AppLayout>
   );

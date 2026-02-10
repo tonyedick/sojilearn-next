@@ -33,7 +33,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/assets/img/favicon.png" />
       </head>
-      <body className={`${jost.variable} ${mulish.variable}`}>
+      <body className={mulish.className}>
         <Providers>
           <ScrollToTop />
           {children}

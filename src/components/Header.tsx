@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <nav
-      className={`text-dark font-medium bg-white sticky top-0 z-[9999] ${
+      className={`text-dark font-medium bg-white sticky top-0 z-9999 ${
         scrolled ? 'shadow-md' : ''
       }`}
     >
@@ -54,10 +54,10 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-2 py-2 text-md font-semibold transition-all duration-200 whitespace-nowrap ${
+                className={`px-2 py-2 text-md text-base transition-all duration-200 whitespace-nowrap ${
                   isActive(item.href)
                     ? 'active font-semibold'
-                    : 'text-gray-600 hover:theme-bg'
+                    : 'text-gray-700 hover:theme-bg'
                 }`}
               >
                 {item.name}
@@ -76,13 +76,11 @@ const Header = () => {
           <div className="hidden md:flex">
             <Link
               href="/apply"
-              onClick={(e) => {
-                if (isActive("/apply")) e.preventDefault(); 
-              }}
-              className={`inline-flex items-center justify-center px-6 py-2.5 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
+              onClick={(e) => { if (isActive("/apply")) e.preventDefault(); }}
+              className={`btn-apply inline-flex items-center justify-center px-6 py-2.5 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
                 isActive("/apply")
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "theme-bg text-white hover:bg-primary/100"
+                  : "theme-bg text-white"
               }`}
               aria-disabled={isActive("/apply")}
             >
@@ -120,7 +118,7 @@ const Header = () => {
               transition={{ duration: 0.25 }}
               className="md:hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card rounded-lg mt-2 border border-border">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card rounded-lg mt-2 mb-2 border border-border">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -153,7 +151,7 @@ const Header = () => {
                       if (isActive("/apply")) e.preventDefault(); 
                     }}
                     aria-disabled={isActive("/apply")}
-                    className={`w-full inline-flex items-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
+                    className={`btn-apply w-full inline-flex text-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
                       isActive("/apply")
                         ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                         : "theme-bg text-white hover:bg-primary/100"
@@ -163,7 +161,7 @@ const Header = () => {
                   </Link>
                   <Link
                     href="/blog"
-                    className="w-full inline-flex items-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl text-gray-700 hover:bg-primary/5 transition-colors"
+                    className="w-full inline-flex text-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl text-gray-700 hover:bg-primary/5 transition-colors"
                   >
                     Visit our Blog
                   </Link>
