@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "Sojilearn - Study Abroad Agency",
   description: "Sojilearn helps students navigate their education abroad journey",
   keywords: "study abroad, international education, student services, UK universities, Canada universities, Finnish universities, university applications, visa assistance, scholarship guidance, global learning, cultural exchange, education consultancy",
+  icons: {
+    icon: '/assets/img/favicon.png',
+  }
 };
 
 export default function RootLayout({
