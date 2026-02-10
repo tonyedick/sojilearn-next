@@ -4,7 +4,7 @@ import AppLayout from "@/components/Layouts/AppLayout";
 
 export const metadata: Metadata = {
   title: "Terms of Use - Sojilearn",
-  description: "Sojilearn helps students navigate their educational journey with expert guidance for studying in UK, USA, Canada, Germany, and Malta",
+  description: "Read the terms of use for Sojilearn's website. Understand your rights and responsibilities when using our services.",
   openGraph: {
     title: "Terms of Use - Sojilearn",
     description: "Expert guidance for studying abroad",

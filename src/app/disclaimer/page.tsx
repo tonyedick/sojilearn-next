@@ -4,7 +4,7 @@ import AppLayout from "@/components/Layouts/AppLayout";
 
 export const metadata: Metadata = {
   title: "Disclaimer - Sojilearn",
-  description: "Sojilearn helps students navigate their educational journey with expert guidance for studying in UK, USA, Canada, Germany, and Malta",
+  description: "Disclaimer for Sojilearn regarding the accuracy and use of information on the website.",
   openGraph: {
     title: "Disclaimer - Sojilearn",
     description: "Expert guidance for studying abroad",

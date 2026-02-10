@@ -4,7 +4,7 @@ import AppLayout from "@/components/Layouts/AppLayout";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Sojilearn",
-  description: "Sojilearn helps students navigate their educational journey with expert guidance for studying in UK, USA, Canada, Germany, and Malta",
+  description: "At Sojilearn, we are committed to protecting your privacy and personal information. This Privacy Policy outlines how we collect, use, and safeguard your data.",
   openGraph: {
     title: "Privacy Policy - Sojilearn",
     description: "Expert guidance for studying abroad",

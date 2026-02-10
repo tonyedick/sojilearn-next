@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 
-export default function TCContent() {
+export default function TCContent() {   
     return (
       <>
-        <section>
+        <section className="gray">
             <div className="container">
                 <div className="row align-items-center justify-content-between">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
