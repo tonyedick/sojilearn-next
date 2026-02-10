@@ -32,13 +32,13 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-1">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img1} className="img-fluid" alt="explore engineering courses" width={40} height={40} />
+                                    <Image src={img1} className="img-fluid" alt="explore engineering courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
                                 <h4 className="title"><Link href="/">Engineering</Link></h4>
                                 <ul className="meta">
-                                    <li className="video"><i className="ti-video-clapper"></i>250+ Universities</li>
+                                    <li className="video"><i className="ti-video-clapper"></i> 250+ Universities</li>
                                 </ul>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-2">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img2} className="img-fluid" alt="explore health science courses" width={40} height={40} />
+                                    <Image src={img2} className="img-fluid" alt="explore health science courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -64,7 +64,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-3">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img3} className="img-fluid" alt="explore accounting courses" width={40} height={40} />
+                                    <Image src={img3} className="img-fluid" alt="explore accounting courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -80,7 +80,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-4">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img4} className="img-fluid" alt="explore computer science and IT courses" width={40} height={40} />
+                                    <Image src={img4} className="img-fluid" alt="explore computer science and IT courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -96,7 +96,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-10">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img5} className="img-fluid" alt="explore arts and design courses" width={40} height={40} />
+                                    <Image src={img5} className="img-fluid" alt="explore arts and design courses"/>
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -112,7 +112,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-6">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img6} className="img-fluid" alt="explore business and marketing courses" width={40} height={40} />
+                                    <Image src={img6} className="img-fluid" alt="explore business and marketing courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -128,7 +128,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-7">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img7} className="img-fluid" alt="explore law courses" width={40} height={40} />
+                                    <Image src={img7} className="img-fluid" alt="explore law courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -144,7 +144,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-8">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img8} className="img-fluid" alt="explore psysiotherapy courses" width={40} height={40} />
+                                    <Image src={img8} className="img-fluid" alt="explore psysiotherapy courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">
@@ -160,7 +160,7 @@ export default function Explore() {
                         <div className="edu_cat_2 cat-9">
                             <div className="edu_cat_icons">
                                 <Link className="pic-main" href="/">
-                                    <Image src={img9} className="img-fluid" alt="explore counseling courses" width={40} height={40} />
+                                    <Image src={img9} className="img-fluid" alt="explore counseling courses" />
                                 </Link>
                             </div>
                             <div className="edu_cat_data">

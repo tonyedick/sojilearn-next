@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import animate1 from '../assets/img/ic-1.png';
-import animate2 from '../assets/img/ic-2.png';
+import animate2 from '../assets/img/ic-3.png';
 import bakimageLarge from '../assets/img/banner_soji2.jpg';
 import bakimageSmall from '../assets/img/banner_soji.jpg'; 
 
@@ -51,7 +51,7 @@ useEffect(() => {
                                 style={{textShadow: "8px 8px 8px gray"}}
                               >The Most Comprehensive & Personalised Study Abroad Plan. <br />Obsessed with Student Success.</p>
                               <div className="inline_btn">
-                                  <Link href="/apply" className="btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                                  <Link href="/apply" className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer">START NOW</Link>
                               </div>
                           </div>
                       </div>

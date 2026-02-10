@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from "next/image";
+import footerLogo from "../assets/img/logo-dark.png";
 
 export default function Footer() {
     return (
@@ -14,11 +15,9 @@ export default function Footer() {
                             <div className="footer_widget">
                                 <Image
                                     className="img-footer small mb-2"
-                                    src="/assets/img/logo-dark.png"
+                                    src={footerLogo}
                                     alt="Sojilearn logo"
                                     priority
-                                    width={140}
-                                    height={40}
                                 />
                                 <p className="mt-2">
                                     Sojilearn Optimum Solutions Limited is incorporated in Nigeria <strong>(Company Number 8093370)</strong> with its registered address at 21 Agbaje Akio Street, Okeafo GRA, Iwo, Osun State. and registered under MSMED (Micro, Small and Medium Enterprises Development Act, 2006) with number <strong>SUIN464189319643</strong>. 

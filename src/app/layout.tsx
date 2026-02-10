@@ -3,17 +3,7 @@ import { Jost, Mulish } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
-import "../assets/css/plugins/animation.css";
-import "../assets/css/plugins/bootstrap.min.css";
-import "../assets/css/plugins/date-picker.css";
-import "../assets/css/plugins/select2.css";
-import "../assets/css/plugins/slick.css";
-import "../assets/css/plugins/slick-theme.css";
-import "../assets/css/plugins/themify.css";
-import "../assets/css/plugins/morris.css";
-import "../assets/css/plugins/font-awesome.css";
-import "../assets/css/plugins/flaticon.css";
-import "../assets/css/plugins/summernote.min.css";
+import "./plugins.css";
 
 const jost = Jost({
   subsets: ['latin'],
@@ -21,16 +11,19 @@ const jost = Jost({
   variable: '--font-jost',
 });
 
-const muli = Mulish({ // Note: "Muli" was renamed to "Mulish" by Google Fonts
+const mulish = Mulish({ 
   subsets: ['latin'],
   weight: ['300', '400', '600', '700'],
-  variable: '--font-muli',
+  variable: '--font-mulish',
 });
 
 export const metadata: Metadata = {
   title: "Sojilearn - Study Abroad Agency",
   description: "Sojilearn helps students navigate their education abroad journey",
   keywords: "study abroad, international education, student services, UK universities, Canada universities, Finnish universities, university applications, visa assistance, scholarship guidance, global learning, cultural exchange, education consultancy",
+  icons: {
+    icon: '/assets/img/favicon.png',
+  }
 };
 
 export default function RootLayout({
@@ -43,7 +36,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/assets/img/favicon.png" />
       </head>
-      <body className={`${jost.variable} ${muli.variable}`}>
+      <body className={mulish.className}>
         <Providers>
           <ScrollToTop />
           {children}

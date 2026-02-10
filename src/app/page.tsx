@@ -3,13 +3,13 @@ import Hero from '@/components/Banner';
 import Explore from '@/components/Explore';
 import Steps from '@/components/Steps';
 import WhySoji from "@/components/WhySoji";
-import News from "@/components/News";
 import CTA from "@/components/CTA";
 import FAQ from "@/components/FAQ";
 import SimplifyAdmit from "@/components/SimplifyAdmit";
 import AppLayout from "@/components/Layouts/AppLayout";
 import StudyInUkCom from "@/components/UK/StudyInUkCom";
 import StudyInCanada from "@/components/CA/StudyInCanada";
+import NewsServer from '@/components/NewsServer';
 
 export const metadata: Metadata = {
   title: "Sojilearn - Study Abroad Agency | UK, USA, Canada, Germany, Malta",
@@ -29,13 +29,13 @@ export default function Home() {
       <Hero />
       <Explore />
       <Steps />
-      <WhySoji />
-      <News />
-      <CTA />
-      <FAQ />
-      <SimplifyAdmit />
       <StudyInUkCom />
+      <SimplifyAdmit />
       <StudyInCanada />
+      <WhySoji />
+      <NewsServer />
+      <FAQ />
+      <CTA />
      </>
     </AppLayout>
   );

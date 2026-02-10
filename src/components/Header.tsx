@@ -7,7 +7,6 @@ import imglogo from '../assets/img/logo-dark.png';
 import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import '../components/ExternalCSS/main.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -36,35 +35,35 @@ const Header = () => {
 
   return (
     <nav
-      className={`text-dark tw-font-medium tw-bg-white tw-sticky tw-top-0 tw-z-[9999] ${
-        scrolled ? 'tw-shadow-md' : ''
+      className={`text-dark font-medium bg-white sticky top-0 z-9999 ${
+        scrolled ? 'shadow-md' : ''
       }`}
     >
-      <div className="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
-        <div className="tw-flex tw-items-center tw-justify-between tw-h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <Link href="/" className="tw-flex tw-items-center tw-space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Image src={imglogo} alt="Sojilearn logo" className="tw-h-8 tw-w-auto" width={140} height={40} />
+              <Image src={imglogo} alt="Sojilearn logo" className="h-8 w-auto" width={140} height={60} />
             </motion.div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="tw-hidden md:tw-flex tw-items-center tw-space-x-6">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`tw-px-2 tw-py-2 tw-text-md tw-font-semibold tw-transition-all tw-duration-200 tw-whitespace-nowrap ${
+                className={`px-2 py-2 text-md text-base transition-all duration-200 whitespace-nowrap ${
                   isActive(item.href)
-                    ? 'active tw-font-semibold'
-                    : 'tw-text-gray-600 hover:theme-bg'
+                    ? 'active font-semibold'
+                    : 'text-gray-700 hover:theme-bg'
                 }`}
               >
                 {item.name}
                 {isActive(item.href) && (
                   <motion.div
-                    className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-h-0.5 theme-bg"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 theme-bg"
                     layoutId="activeNav"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -74,20 +73,14 @@ const Header = () => {
           </div>
 
           {/* Desktop Apply Button */}
-          <div className="tw-hidden md:tw-flex">
-            {/* <Link
-              to="/apply"
-              className="tw-inline-flex tw-items-center tw-justify-center tw-px-6 tw-py-2.5 tw-border-2 tw-border-gray-200 tw-text-base tw-font-medium tw-rounded-xl theme-bg tw-text-white hover:theme-bg/100 tw-transition-colors"
-            > */}
+          <div className="hidden md:flex">
             <Link
               href="/apply"
-              onClick={(e) => {
-                if (isActive("/apply")) e.preventDefault(); 
-              }}
-              className={`tw-inline-flex tw-items-center tw-justify-center tw-px-6 tw-py-2.5 tw-border-2 tw-border-gray-200 tw-text-base tw-font-medium tw-rounded-xl tw-transition-colors ${
+              onClick={(e) => { if (isActive("/apply")) e.preventDefault(); }}
+              className={`btn-apply inline-flex items-center justify-center px-6 py-2.5 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
                 isActive("/apply")
-                  ? "tw-bg-gray-200 tw-text-gray-500 tw-cursor-not-allowed"
-                  : "theme-bg tw-text-white hover:tw-bg-primary/100"
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "theme-bg text-white"
               }`}
               aria-disabled={isActive("/apply")}
             >
@@ -96,19 +89,19 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:tw-hidden">
+          <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="tw-p-2 tw-rounded-md tw-text-muted-foreground hover:tw-text-foreground tw-transition-colors"
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
             >
-            <span className="tw-sr-only">Open main menu</span>
+            <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
-                <div className="tw-px-2 tw-py-2 tw-border-4 tw-border-blue-200 tw-rounded-xl">
-                  <X className="tw-w-6 tw-h-6" />
+                <div className="px-2 py-2 border-4 border-blue-200 rounded-xl">
+                  <X className="w-6 h-6" />
                 </div>
               ) : (
-                <div className="tw-px-2 tw-py-2 tw-border-4 tw-border-blue-200 tw-rounded-xl">
-                  <Menu className="tw-w-6 tw-h-6" />
+                <div className="px-2 py-2 border-4 border-blue-200 rounded-xl">
+                  <Menu className="w-6 h-6" />
                 </div>
               )}
             </button>
@@ -123,18 +116,19 @@ const Header = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="md:tw-hidden"
+              className="md:hidden"
             >
-              <div className="tw-px-2 tw-pt-2 tw-pb-3 tw-space-y-1 sm:tw-px-3 tw-bg-card tw-rounded-lg tw-mt-2 tw-border tw-border-border">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card rounded-lg mt-2 mb-2 border border-border">
+                <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`tw-block tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-transition-colors ${
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive(item.href)
                         ? "theme-cl theme-bg-light"
-                        : "tw-text-muted-foreground hover:tw-text-foreground hover:tw-bg-muted"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
                     {item.name}
@@ -143,63 +137,64 @@ const Header = () => {
                   <Link
                     href="/contact"
                     onClick={() => setIsMenuOpen(false)}
-                    className={`tw-block tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-transition-colors ${
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive('/contact')
                         ? "theme-cl theme-bg-light"
-                        : "tw-text-muted-foreground hover:tw-text-foreground hover:tw-bg-muted"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
                     Contact Us
                   </Link>
-                <div className="tw-pt-3 tw-flex tw-flex-col tw-gap-2">
+                </div>
+                <div className="pt-3 flex flex-col gap-2">
                   <Link
                     href="/apply"
                     onClick={(e) => {
                       if (isActive("/apply")) e.preventDefault(); 
                     }}
                     aria-disabled={isActive("/apply")}
-                    className={`tw-w-full tw-inline-flex tw-items-center tw-justify-center tw-px-4 tw-py-3 tw-border-2 tw-border-gray-200 tw-text-base tw-font-medium tw-rounded-xl tw-transition-colors ${
+                    className={`btn-apply w-full inline-flex text-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl transition-colors ${
                       isActive("/apply")
-                        ? "tw-bg-gray-200 tw-text-gray-500 tw-cursor-not-allowed"
-                        : "theme-bg tw-text-white hover:tw-bg-primary/100"
+                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        : "theme-bg text-white hover:bg-primary/100"
                     }`}
                   >
                     Apply
                   </Link>
                   <Link
                     href="/blog"
-                    className="tw-w-full tw-inline-flex tw-items-center tw-justify-center tw-px-4 tw-py-3 tw-border-2 tw-border-gray-200 tw-text-base tw-font-medium tw-rounded-xl tw-text-gray-700 tw-hover:bg-primary/5 tw-transition-colors"
+                    className="w-full inline-flex text-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl text-gray-700 hover:bg-primary/5 transition-colors"
                   >
                     Visit our Blog
                   </Link>
                 </div>
 
                 {/* Footer Links on Mobile */}
-                <div className="tw-border-t tw-border-border tw-pt-3 tw-grid tw-grid-cols-3 tw-gap-2">
+                <div className="border-t border-border pt-3 grid grid-cols-3 gap-2">
                   <Link
                     href='/privacy-policy'
-                    className={`tw-block tw-text-center tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-transition-colors ${
+                    className={`block text-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive('/privacy-policy')
                         ? 'theme-cl theme-bg-light'
-                        : 'tw-text-muted-foreground hover:tw-text-foreground hover:tw-bg-muted'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     Privacy
                   </Link>
                   <Link href="/terms-of-use" 
-                     className={`tw-block tw-text-center tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-transition-colors ${
+                     className={`block text-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive('/terms-of-use')
                         ? 'theme-cl theme-bg-light'
-                        : 'tw-text-muted-foreground hover:tw-text-foreground hover:tw-bg-muted'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     Terms of Use
                   </Link>
                   <Link href="/disclaimer" 
-                    className={`tw-block tw-text-center tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium tw-transition-colors ${
+                    className={`block text-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive('/disclaimer')
                         ? 'theme-cl theme-bg-light'
-                        : 'tw-text-muted-foreground hover:tw-text-foreground hover:tw-bg-muted'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     Disclaimer

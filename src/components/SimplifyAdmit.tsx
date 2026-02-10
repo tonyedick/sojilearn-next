@@ -18,7 +18,7 @@ export default function SimplifyAdmit() {
                         <div className="foot-news-last mt-4">
                             <div className="inline_btn">
 								<Link href="/apply" 
-                                className="btn theme-bg text-white font-medium pulse-zoom" 
+                                className="btn-apply btn theme-bg text-white font-medium pulse-zoom" 
                                 rel="noopener noreferrer">START NOW</Link>
 							</div>
                         </div>
@@ -26,7 +26,7 @@ export default function SimplifyAdmit() {
                 </div>
                 <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12">
                     <div className="lmp_thumb">
-                        <Image src={canada} className="img-fluid" alt="canada simplify admission" loading="lazy" width={50} height={50} />
+                        <Image src={canada} className="img-fluid" alt="canada simplify admission" loading="lazy" />
                     </div>
                 </div>
             </div>
