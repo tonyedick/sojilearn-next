@@ -5,23 +5,24 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import animate1 from '../assets/img/ic-1.png';
 import animate2 from '../assets/img/ic-3.png';
-import bakimageLarge from '../assets/img/banner_soji2.jpg';
-import bakimageSmall from '../assets/img/banner_soji.jpg'; 
+import bakImageLarge from '../assets/img/banner_soji2.jpg';
+import bakImageSmall from '../assets/img/banner_soji.jpg'; 
 
 export default function Banner() {
-const [backgroundImage, setBackgroundImage] = useState(
-    typeof window !== 'undefined' && window.innerWidth <= 768 
-        ? bakimageSmall.src
-        : bakimageLarge.src
-);
+const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
+const [isMobile, setIsMobile] = useState(false);
 
 useEffect(() => {
-    const handleResize = () => {
-        setBackgroundImage(window.innerWidth <= 768 ? bakimageSmall.src : bakimageLarge.src);
+    const checkMobile = () => {
+        const mobile = window.innerWidth <= 768;
+        setIsMobile(mobile);
+        SetBackgroundImage(mobile ? bakImageSmall.src : bakImageLarge.src);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    checkMobile();
+
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
 }, []);
 
   return (
@@ -30,7 +31,7 @@ useEffect(() => {
             style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: "center center",
-            backgroundSize: window.innerWidth <= 768 ? "contain" : "cover",
+            backgroundSize: isMobile ? "contain" : "cover",
             // backgroundColor: "black",
             opacity: "unset",
             minHeight: "600px", 

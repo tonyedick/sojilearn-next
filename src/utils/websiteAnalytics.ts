@@ -16,6 +16,8 @@ type VisitorInfo = {
 type SupabaseInsertPayload = Record<string, unknown>;
 
 const getSessionId = (): string => {
+  if(typeof window === 'undefined') return '';
+  
   let sessionId = sessionStorage.getItem('analytics_session_id');
   if (!sessionId) {
     sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
