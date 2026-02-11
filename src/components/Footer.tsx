@@ -76,7 +76,7 @@ export default function Footer() {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-12 col-md-12 text-center">
-                            <p className="mb-0">© 2022 - 2025 Sojilearn. All Rights Reserved<Link href="https://sojilearn.com" rel="noopener noreferrer"> Sojilearn Optimum Solutions Ltd</Link>.</p>
+                            <p className="mb-0">© 2022 - 2026 Sojilearn. All Rights Reserved<Link href="https://sojilearn.com" rel="noopener noreferrer"> Sojilearn Optimum Solutions Ltd</Link>.</p>
                         </div>
                     </div>
                     <hr />

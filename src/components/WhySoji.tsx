@@ -1,5 +1,4 @@
 import { GraduationCap, Clock, Shield, CheckCircle } from 'lucide-react';
-import '../Components/ExternalCSS/main.css';
 
 export default function WhySoji() {
   return (
