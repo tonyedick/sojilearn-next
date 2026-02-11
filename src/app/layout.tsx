@@ -32,9 +32,9 @@ export default function RootLayout({
         <link rel="icon" href="/assets/img/favicon.png" />
       </head>
       <body className={mulish.className}>
+        <SkipToMain />
+        <ScrollToTop />
         <Providers>
-          <SkipToMain />
-          <ScrollToTop />
           {children}
         </Providers>
       </body>
