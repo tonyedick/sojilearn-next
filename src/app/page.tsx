@@ -14,6 +14,7 @@ import NewsServer from '@/components/NewsServer';
 export const metadata: Metadata = {
   title: "Sojilearn - Study Abroad Agency | UK, USA, Canada, Germany, Malta",
   description: "Sojilearn helps students navigate their educational journey with expert guidance for studying in UK, USA, Canada, Germany, and Malta",
+  keywords: 'study abroad, UK, USA, Canada, Germany, Malta, education, student services, student loan',
   openGraph: {
     title: "Sojilearn - Study Abroad Agency",
     description: "Expert guidance for studying abroad",

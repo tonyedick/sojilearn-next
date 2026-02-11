@@ -154,18 +154,18 @@ export default function MultiStepForm() {
 
   if (isSubmitted) {
     return (
-      <div className="tw-max-w-2xl tw-mx-auto tw-px-4 tw-py-16">
-        <div className="tw-bg-white tw-rounded-3xl tw-shadow-2xl tw-p-8 tw-text-center">
-          <div className="tw-w-20 tw-h-20 tw-bg-green-100 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mx-auto tw-mb-6">
-            <CheckCircle className="tw-w-10 tw-h-10 tw-text-green-600" />
+      <div className="max-w-2xl mx-auto px-4 py-16">
+        <div className="bg-white rounded-3xl shadow-2xl p-8 text-center">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="tw-text-3xl tw-font-bold tw-text-gray-900 tw-mb-4">Thank You!</h2>
-          <p className="tw-text-lg tw-text-gray-600 tw-mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h2>
+          <p className="text-lg text-gray-600 mb-6">
             Your application has been submitted successfully. Our team will review your information and contact you within 24 hours.
           </p>
-          <div className="tw-bg-blue-50 tw-rounded-xl tw-p-6">
-            <h3 className="tw-font-semibold tw-text-blue-900 tw-mb-2">What happens next?</h3>
-            <ul className="tw-text-sm tw-text-blue-800 tw-space-y-1 tw-text-left">
+          <div className="bg-blue-50 rounded-xl p-6">
+            <h3 className="font-semibold text-blue-900 mb-2">What happens next?</h3>
+            <ul className="text-sm text-blue-800 space-y-1 text-left">
               <li>• Our counselors will review your profile</li>
               <li>• We will schedule a consultation call</li>
             </ul>
@@ -176,43 +176,43 @@ export default function MultiStepForm() {
   }
 
   return (
-    <div className="tw-max-w-4xl tw-mx-auto tw-px-4 tw-py-16">
-      <div className="tw-bg-white tw-rounded-3xl tw-shadow-2xl tw-overflow-hidden">
+    <div className="max-w-4xl mx-auto px-4 py-16">
+      <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
         {/* Progress Header */}
-        <div className="tw-bg-gradient-to-r tw-from-blue-600 tw-to-blue-700 tw-px-8 tw-py-6">
-          <div className="tw-flex tw-items-center tw-justify-between tw-mb-4">
-            <h2 className="tw-text-2xl tw-font-bold tw-text-white">Get Started Today</h2>
-            <span className="tw-text-blue-100">Step {currentStep} of 4</span>
+        <div className="bg-linear-to-r from-blue-600 to-blue-700 px-8 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold text-white">Get Started Today</h2>
+            <span className="text-blue-100">Step {currentStep} of 4</span>
           </div>
-          <div className="tw-flex tw-items-center tw-space-x-4">
+          <div className="flex items-center space-x-4">
             {steps.map((step) => {
               const Icon = step.icon;
               const isActive = currentStep === step.number;
               const isCompleted = currentStep > step.number;
               
               return (
-                <div key={step.number} className="tw-flex tw-items-center">
-                  <div className={`tw-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-rounded-full tw-border-2 tw-transition-all ${
+                <div key={step.number} className="flex items-center">
+                  <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all ${
                     isCompleted 
-                      ? 'tw-bg-green-500 tw-border-green-500 tw-text-white' 
+                      ? 'bg-green-500 border-green-500 text-white' 
                       : isActive 
-                        ? 'tw-bg-white tw-border-white tw-text-blue-600' 
-                        : 'tw-border-blue-300 tw-text-blue-300'
+                        ? 'bg-white border-white text-blue-600' 
+                        : 'border-blue-300 text-blue-300'
                   }`}>
                     {isCompleted ? (
-                      <CheckCircle className="tw-w-5 tw-h-5" />
+                      <CheckCircle className="w-5 h-5" />
                     ) : (
-                      <Icon className="tw-w-5 tw-h-5" />
+                      <Icon className="w-5 h-5" />
                     )}
                   </div>
-                  <span className={`tw-ml-2 tw-text-sm tw-font-medium ${
-                    isActive ? 'tw-text-white' : 'tw-text-blue-200'
+                  <span className={`ml-2 text-sm font-medium ${
+                    isActive ? 'text-white' : 'text-blue-200'
                   }`}>
                     {step.title}
                   </span>
                   {step.number < 4 && (
-                    <div className={`tw-w-8 tw-h-0.5 tw-mx-4 ${
-                      isCompleted ? 'tw-bg-green-500' : 'tw-bg-blue-300'
+                    <div className={`w-8 h-0.5 mx-4 ${
+                      isCompleted ? 'bg-green-500' : 'bg-blue-300'
                     }`} />
                   )}
                 </div>
@@ -222,67 +222,67 @@ export default function MultiStepForm() {
         </div>
 
         {/* Form Content */}
-        <div className="tw-p-8">
+        <div className="p-8">
           {/* Step 1: Personal Information */}
           {currentStep === 1 && (
-            <div className="tw-space-y-6">
+            <div className="space-y-6">
               <div>
-                <h3 className="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-2">Contact</h3>
-                <p className="tw-text-gray-600">Let us start with your basic details</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Contact</h3>
+                <p className="text-gray-600">Let us start with your basic details</p>
               </div>
               
-              <div className="tw-grid md:tw-grid-cols-2 tw-gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     First Name *
                   </label>
                   <input
                     type="text"
                     value={formData.firstName}
                     onChange={(e) => handleInputChange('firstName', e.target.value)}
-                    className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                      errors.firstName ? 'tw-border-red-500' : 'tw-border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                      errors.firstName ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Enter your first name"
                   />
-                  {errors.firstName && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.firstName}</p>}
+                  {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
                 </div>
                 
                 <div>
-                  <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Last Name *
                   </label>
                   <input
                     type="text"
                     value={formData.lastName}
                     onChange={(e) => handleInputChange('lastName', e.target.value)}
-                    className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                      errors.lastName ? 'tw-border-red-500' : 'tw-border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                      errors.lastName ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Enter your last name"
                   />
-                  {errors.lastName && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.lastName}</p>}
+                  {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
                 </div>
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.email ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your email address"
                 />
-                {errors.email && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Phone Number *
                 </label>
                 <input
@@ -296,33 +296,33 @@ export default function MultiStepForm() {
                     handleInputChange('phone', input.value);
                   }}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.phone ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.phone ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="+2345551234567"
                 />
-                {errors.phone && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.phone}</p>}
+                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
               </div>
             </div>
           )}
 
           {/* Step 2: Education Background */}
           {currentStep === 2 && (
-            <div className="tw-space-y-6">
+            <div className="space-y-6">
               <div>
-                <h3 className="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-2">Education Background</h3>
-                <p className="tw-text-gray-600">Tell us about your current education status</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Education Background</h3>
+                <p className="text-gray-600">Tell us about your current education status</p>
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Current Education Level *
                 </label>
                 <select
                   value={formData.currentLevel}
                   onChange={(e) => handleInputChange('currentLevel', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.currentLevel ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.currentLevel ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select your current level</option>
@@ -332,31 +332,31 @@ export default function MultiStepForm() {
                   <option value="Postgraduate">Postgraduate</option>
                   <option value="Working_professional">Working Professional</option>
                 </select>
-                {errors.currentLevel && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.currentLevel}</p>}
+                {errors.currentLevel && <p className="text-red-500 text-sm mt-1">{errors.currentLevel}</p>}
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Current/Previous Institution
                 </label>
                 <input
                   type="text"
                   value={formData.institution}
                   onChange={(e) => handleInputChange('institution', e.target.value)}
-                  className="tw-w-full tw-px-4 tw-py-3 tw-border tw-border-gray-300 tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter your school/university name"
                 />
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Graduation Year *
                 </label>
                 <select
                   value={formData.graduationYear}
                   onChange={(e) => handleInputChange('graduationYear', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.graduationYear ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.graduationYear ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select graduation year</option>
@@ -369,19 +369,19 @@ export default function MultiStepForm() {
                   <option value="2020">2020</option>
                   <option value="Before_2020">Before 2020</option>
                 </select>
-                {errors.graduationYear && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.graduationYear}</p>}
+                {errors.graduationYear && <p className="text-red-500 text-sm mt-1">{errors.graduationYear}</p>}
               </div>
 
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Preferred Country *
                 </label>
                 <select
                   value={formData.preferredCountry}
                   onChange={(e) => handleInputChange('preferredCountry', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.preferredCountry ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.preferredCountry ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select your preferred country</option>
@@ -391,28 +391,28 @@ export default function MultiStepForm() {
                   <option value="Germany">Germany</option>
                   <option value="Malta">Malta</option>
                 </select>
-                {errors.preferredCountry && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.preferredCountry}</p>}
+                {errors.preferredCountry && <p className="text-red-500 text-sm mt-1">{errors.preferredCountry}</p>}
               </div>
             </div>
           )}
 
           {/* Step 3: Study Preferences */}
           {currentStep === 3 && (
-            <div className="tw-space-y-6">
+            <div className="space-y-6">
               <div>
-                <h3 className="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-2">Study Preferences</h3>
-                <p className="tw-text-gray-600">What would you like to study in the UK?</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Study Preferences</h3>
+                <p className="text-gray-600">What would you like to study in the UK?</p>
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Preferred Program Level *
                 </label>
                 <select
                   value={formData.preferredProgram}
                   onChange={(e) => handleInputChange('preferredProgram', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.preferredProgram ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.preferredProgram ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select program level</option>
@@ -424,47 +424,47 @@ export default function MultiStepForm() {
                   <option value="PHD">PhD</option>
                   <option value="Professional">Professional Course</option>
                 </select>
-                {errors.preferredProgram && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.preferredProgram}</p>}
+                {errors.preferredProgram && <p className="text-red-500 text-sm mt-1">{errors.preferredProgram}</p>}
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Field of Study *
                 </label>
                 <input
                   type="text"
                   value={formData.fieldOfStudy}
                   onChange={(e) => handleInputChange('fieldOfStudy', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.fieldOfStudy ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.fieldOfStudy ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="e.g., Computer Science, Business, Medicine"
                 />
-                {errors.fieldOfStudy && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.fieldOfStudy}</p>}
+                {errors.fieldOfStudy && <p className="text-red-500 text-sm mt-1">{errors.fieldOfStudy}</p>}
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Preferred Universities (Optional)
                 </label>
                 <textarea
                   value={formData.preferredUniversity}
                   onChange={(e) => handleInputChange('preferredUniversity', e.target.value)}
-                  className="tw-w-full tw-px-4 tw-py-3 tw-border tw-border-gray-300 tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   rows={3}
                   placeholder="List any specific universities you're interested in"
                 />
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Intended Start Date *
                 </label>
                 <select
                   value={formData.intendedStartDate}
                   onChange={(e) => handleInputChange('intendedStartDate', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.intendedStartDate ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.intendedStartDate ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select start date</option>
@@ -476,82 +476,82 @@ export default function MultiStepForm() {
                   <option value="November_2026">November 2026</option>
                   <option value="Flexible">Flexible</option>
                 </select>
-                {errors.intendedStartDate && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.intendedStartDate}</p>}
+                {errors.intendedStartDate && <p className="text-red-500 text-sm mt-1">{errors.intendedStartDate}</p>}
               </div>
             </div>
           )}
 
           {/* Step 4: Final Details */}
           {currentStep === 4 && (
-            <div className="tw-space-y-6">
+            <div className="space-y-6">
               <div>
-                <h3 className="tw-text-2xl tw-font-bold tw-text-gray-900 tw-mb-2">Final Details</h3>
-                <p className="tw-text-gray-600">Just a few more questions to help us serve you better</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Final Details</h3>
+                <p className="text-gray-600">Just a few more questions to help us serve you better</p>
               </div>
 
-              <div className="tw-space-y-4">
-                <div className="tw-flex tw-items-center tw-space-x-3">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
                   <input
                     type="checkbox"
                     id="hasPassport"
                     checked={formData.hasPassport}
                     onChange={(e) => handleInputChange('hasPassport', e.target.checked)}
-                    className="tw-w-5 tw-h-5 tw-text-blue-600 tw-border-gray-300 tw-rounded tw-focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="hasPassport" className="tw-text-sm tw-font-medium tw-text-gray-700">
+                  <label htmlFor="hasPassport" className="text-sm font-medium text-gray-700">
                     I have my International passport
                   </label>
                 </div>
 
-                <div className="tw-flex tw-items-center tw-space-x-3">
+                <div className="flex items-center space-x-3">
                   <input
                     type="checkbox"
                     id="hasDegree"
                     checked={formData.hasDegree}
                     onChange={(e) => handleInputChange('hasDegree', e.target.checked)}
-                    className="tw-w-5 tw-h-5 tw-text-blue-600 tw-border-gray-300 tw-rounded tw-focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="hasDegree" className="tw-text-sm tw-font-medium tw-text-gray-700">
+                  <label htmlFor="hasDegree" className="text-sm font-medium text-gray-700">
                     I have my official degree certificate
                   </label>
                 </div>
 
-                <div className="tw-flex tw-items-center tw-space-x-3">
+                <div className="flex items-center space-x-3">
                   <input
                     type="checkbox"
                     id="hasTranscript"
                     checked={formData.hasTranscript}
                     onChange={(e) => handleInputChange('hasTranscript', e.target.checked)}
-                    className="tw-w-5 tw-h-5 tw-text-blue-600 tw-border-gray-300 tw-rounded tw-focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="hasTranscript" className="tw-text-sm tw-font-medium tw-text-gray-700">
+                  <label htmlFor="hasTranscript" className="text-sm font-medium text-gray-700">
                     I have my transcript (study copy)
                   </label>
                 </div>
 
-                <div className="tw-flex tw-items-center tw-space-x-3">
+                <div className="flex items-center space-x-3">
                   <input
                     type="checkbox"
                     id="previousApplication"
                     checked={formData.previousApplication}
                     onChange={(e) => handleInputChange('previousApplication', e.target.checked)}
-                    className="tw-w-5 tw-h-5 tw-text-blue-600 tw-border-gray-300 tw-rounded tw-focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="previousApplication" className="tw-text-sm tw-font-medium tw-text-gray-700">
+                  <label htmlFor="previousApplication" className="text-sm font-medium text-gray-700">
                     I have previously applied to a university abroad
                   </label>
                 </div>
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Budget Range (Annual Tuition + Living) *
                 </label>
                 <select
                   value={formData.budgetRange}
                   onChange={(e) => handleInputChange('budgetRange', e.target.value)}
-                  className={`tw-w-full tw-px-4 tw-py-3 tw-border tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all ${
-                    errors.budgetRange ? 'tw-border-red-500' : 'tw-border-gray-300'
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    errors.budgetRange ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
                   <option value="">Select budget range</option>
@@ -562,17 +562,17 @@ export default function MultiStepForm() {
                   <option value="Over_$50k">Over $50,000</option>
                   <option value="Need_guidance">Need guidance on budgeting</option>
                 </select>
-                {errors.budgetRange && <p className="tw-text-red-500 tw-text-sm tw-mt-1">{errors.budgetRange}</p>}
+                {errors.budgetRange && <p className="text-red-500 text-sm mt-1">{errors.budgetRange}</p>}
               </div>
 
               <div>
-                <label className="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Additional Questions or Comments
                 </label>
                 <textarea
                   value={formData.additionalQuestions}
                   onChange={(e) => handleInputChange('additionalQuestions', e.target.value)}
-                  className="tw-w-full tw-px-4 tw-py-3 tw-border tw-border-gray-300 tw-rounded-xl tw-focus:ring-2 tw-focus:ring-blue-500 tw-focus:border-transparent tw-transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   rows={4}
                   placeholder="Any specific questions or additional information you'd like to share?"
                 />
@@ -581,49 +581,49 @@ export default function MultiStepForm() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="tw-flex tw-justify-between tw-items-center tw-pt-8 tw-border-t tw-border-gray-200">
+          <div className="flex justify-between items-center pt-8 border-t border-gray-200">
             {/* Submit Error Display */}
             {submitError && (
-              <div className="tw-w-full tw-mb-4 tw-p-4 tw-bg-red-50 tw-border tw-border-red-200 tw-rounded-xl">
-                <p className="tw-text-red-700 tw-text-sm">{submitError}</p>
+              <div className="w-full mb-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-red-700 text-sm">{submitError}</p>
               </div>
             )}
             
             <button
               onClick={handlePrev}
               disabled={currentStep === 1}
-              className={`tw-flex tw-items-center tw-space-x-2 tw-px-6 tw-py-3 tw-rounded-xl tw-font-medium tw-transition-all ${
+              className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all ${
                 currentStep === 1
-                  ? 'tw-text-gray-400 tw-cursor-not-allowed'
-                  : 'tw-text-gray-600 tw-hover:text-gray-800 tw-hover:bg-gray-100'
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
               }`}
             >
-              <ChevronLeft className="tw-w-5 tw-h-5" />
+              <ChevronLeft className="w-5 h-5" />
               <span>Previous</span>
             </button>
 
             {currentStep < 4 ? (
               <button
                 onClick={handleNext}
-                className="tw-flex tw-items-center tw-space-x-2 theme-bg tw-hover:bg-blue-700 tw-text-white tw-px-6 tw-py-3 tw-rounded-xl tw-font-medium tw-transition-all"
+                className="flex items-center space-x-2 theme-bg hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all"
               >
                 <span>Next</span>
-                <ChevronRight className="tw-w-5 tw-h-5" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             ) : (
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="tw-flex tw-items-center tw-space-x-2 tw-bg-orange-500 tw-hover:bg-orange-600 tw-disabled:bg-orange-300 tw-disabled:cursor-not-allowed tw-text-white tw-px-8 tw-py-3 tw-rounded-xl tw-font-medium tw-transition-all"
+                className="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-medium transition-all"
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="tw-w-5 tw-h-5 tw-animate-spin" />
+                    <Loader2 className="w-5 h-5 animate-spin" />
                     <span>Submitting...</span>
                   </>
                 ) : (
                   <>
-                    <CheckCircle className="tw-w-5 tw-h-5" />
+                    <CheckCircle className="w-5 h-5" />
                     <span>Submit</span>
                   </>
                 )}
