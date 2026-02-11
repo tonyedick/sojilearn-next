@@ -14,13 +14,12 @@ const Header = () => {
   const location = usePathname()
 
   const navItems = [
-    { name: 'About', href: '/about' },
     { name: 'Study in UK', href: '/study-in-uk' },
     { name: 'Study in Canada', href: '/study-in-canada' },
     { name: 'Study in USA', href: '/study-in-usa' },
     { name: 'Study in Germany', href: '/study-in-germany' },
     { name: 'Study in Malta', href: '/study-in-malta' },
-    { name: 'Visit our Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' }
   ]
 
   const isActive = (path: string) => location === path
@@ -56,8 +55,8 @@ const Header = () => {
                 href={item.href}
                 className={`px-2 py-2 text-md text-base transition-all duration-200 whitespace-nowrap ${
                   isActive(item.href)
-                    ? 'active font-semibold'
-                    : 'text-gray-700 hover:theme-bg'
+                    ? 'active text-emerald-950'
+                    : 'text-gray-700 font-semibold hover:theme-bg'
                 }`}
               >
                 {item.name}
@@ -92,7 +91,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 rounded-md text-muted-foreground hover:theme-bg transition-colors"
             >
             <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
@@ -134,6 +133,18 @@ const Header = () => {
                     {item.name}
                   </Link>
                 ))}
+
+                  <Link
+                    href="/about"
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                      isActive('/about')
+                        ? "theme-cl theme-bg-light"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    About Us
+                  </Link>
                   <Link
                     href="/contact"
                     onClick={() => setIsMenuOpen(false)}
@@ -160,12 +171,6 @@ const Header = () => {
                     }`}
                   >
                     Apply
-                  </Link>
-                  <Link
-                    href="/blog"
-                    className="w-full inline-flex text-center justify-center px-4 py-3 border-2 border-gray-200 text-base font-medium rounded-xl text-gray-700 hover:bg-primary/5 transition-colors"
-                  >
-                    Visit our Blog
                   </Link>
                 </div>
 
