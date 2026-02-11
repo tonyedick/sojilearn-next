@@ -33,7 +33,6 @@ const Header = () => {
   }, [])
 
   return (
-    <header role="banner">
       <nav 
         className={`text-dark font-medium bg-white sticky top-0 z-9999 ${
           scrolled ? 'shadow-md' : ''
@@ -213,7 +212,6 @@ const Header = () => {
           </AnimatePresence>
         </div>
       </nav>
-    </header>
   )
 }
 

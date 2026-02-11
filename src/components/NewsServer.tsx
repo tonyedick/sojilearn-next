@@ -105,14 +105,14 @@ export default async function NewsServer() {
                             </Link>
                         </div>
                     )}
-                    <div className="blg_grid_caption"
+                    <div className="blg_grid_caption mb-4"
                         style={{height: "220px", width: "100%"}}
                     >
                         <div className="row">
-                            <div className="col-6">
-                                <div className="blg_tag dark"><span>{post.category?.substring(0, 8)}</span> </div>
+                            <div className="col-8">
+                                <div className="blg_tag dark"><span>{post.category}</span> </div>
                             </div>
-                            <div className="col-6" style={{ fontWeight: 'medium', textAlign: 'end' }}>
+                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px', textAlign: 'end' }}>
                                 {formatDate(post.published_date)}
                             </div>
                         </div>
