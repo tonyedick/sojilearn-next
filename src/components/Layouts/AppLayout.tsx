@@ -1,3 +1,5 @@
+'use client';
+
 import Footer from "../Footer";
 import { Toaster } from "react-hot-toast";
 import Header from "../Header";
