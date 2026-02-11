@@ -6,7 +6,7 @@ import footerLogo from "../assets/img/logo-dark.png";
 
 export default function Footer() {
     return (
-        <footer className="light-footer skin-light-footer style-2">
+        <footer role="contentinfo" className="light-footer skin-light-footer style-2">
             <div className="footer-middle">
                 <div className="container">
                     <div className="row">

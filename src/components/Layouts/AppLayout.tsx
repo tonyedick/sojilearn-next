@@ -12,9 +12,11 @@ type PageProps = {
 const AppLayout = ({ children }: PageProps) => {
   return (
     <>  
-    <Toaster/>
+      <Toaster/>
       <Header />
-      {children}
+        <main id="main-content" role="main">
+          {children}
+        </main>
       <Footer />
     </>
   );

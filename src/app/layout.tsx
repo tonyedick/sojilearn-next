@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Jost, Mulish } from "next/font/google";
+import { Mulish } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 import "./plugins.css";
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-jost',
-});
+import SkipToMain from '@/components/SkipToMain';
 
 const mulish = Mulish({ 
   subsets: ['latin'],
@@ -38,6 +33,7 @@ export default function RootLayout({
       </head>
       <body className={mulish.className}>
         <Providers>
+          <SkipToMain />
           <ScrollToTop />
           {children}
         </Providers>

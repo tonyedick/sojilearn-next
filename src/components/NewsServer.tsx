@@ -110,9 +110,9 @@ export default async function NewsServer() {
                     >
                         <div className="row">
                             <div className="col-6">
-                                <div className="blg_tag dark"><span>{post.category}</span> </div>
+                                <div className="blg_tag dark"><span>{post.category?.substring(0, 8)}</span> </div>
                             </div>
-                            <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'end' }}>
+                            <div className="col-6" style={{ fontWeight: 'medium', textAlign: 'end' }}>
                                 {formatDate(post.published_date)}
                             </div>
                         </div>
