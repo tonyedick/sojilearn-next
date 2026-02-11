@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Disclaimer - Sojilearn",
     description: "Expert guidance for studying abroad",
     url: "https://www.sojilearn.com/disclaimer",
-    images: [{ url: "https://www.sojilearn.com/logo.png" }],
+    images: [{ url: "https://www.sojilearn.com/social-media.jpg" }],
   },
 };
 

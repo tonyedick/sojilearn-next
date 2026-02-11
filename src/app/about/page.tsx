@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Content from '@/components/AboutContent';
 import AppLayout from "@/components/Layouts/AppLayout";
-import ogImage from '../../assets/img/social-media.jpg';
 
 export const metadata: Metadata = {
     title: "About Us - Study Abroad Consultants | UK, Finland, USA, Canada, Germany & Malta Universities",
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
       url: "https://www.sojilearn.com/about",
       images: [
         {
-          url: ogImage.src,
+          url: "https://www.sojilearn.com/social-media.jpg",
           width: 1200,
           height: 630,
           alt: "Sojilearn Study Abroad Consultancy - Helping Students Study in UK, Finland, Canada, Germany and Malta",

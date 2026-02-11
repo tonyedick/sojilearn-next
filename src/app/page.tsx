@@ -10,7 +10,6 @@ import AppLayout from "@/components/Layouts/AppLayout";
 import StudyInUkCom from "@/components/UK/StudyInUkCom";
 import StudyInCanada from "@/components/CA/StudyInCanada";
 import NewsServer from '@/components/NewsServer';
-import ogImage from '../../public/social-media.jpg';
 
 export const metadata: Metadata = {
   title: "Sojilearn - Study Abroad Consultants | UK, Finland, USA, Canada, Germany & Malta Universities",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
     url: "https://www.sojilearn.com",
     images: [
       {
-        url: ogImage.src,
+        url: "https://www.sojilearn.com/social-media.jpg",
         width: 1200,
         height: 630,
         alt: "Sojilearn Study Abroad Consultancy - Helping Students Study in UK, Finland, Canada, Germany and Malta",
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
       card: "summary_large_image",
       title: "Sojilearn - Study Abroad Made Simple",
       description: "Fast university admissions | Expert visa support | 98% success rate | UK, Finland, USA, Canada, Germany & Malta",
-      images: [ogImage.src],
+      images: ["https://www.sojilearn.com/social-media.jpg"],
       creator: "@sojilearn",
     },
 

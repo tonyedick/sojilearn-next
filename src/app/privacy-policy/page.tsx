@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy - Sojilearn",
     description: "Expert guidance for studying abroad",
     url: "https://www.sojilearn.com/privacy-policy",
-    images: [{ url: "https://www.sojilearn.com/logo.png" }],
+    images: [{ url: "https://www.sojilearn.com/social-media.jpg" }],
   },
 };
 
