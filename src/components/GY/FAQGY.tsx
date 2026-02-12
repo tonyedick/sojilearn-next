@@ -1,128 +1,123 @@
-import React from 'react'
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { ChevronDownIcon } from 'lucide-react';
+import faq from "../../assets/img/side-1.png";
 
 export default function FAQGY() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "How much does it cost to study in Germany?",
+      answer: "Most public universities in Germany offer tuition-free education for both domestic and international students. However, students are required to pay a semester contribution fee ranging from €150-€350, which covers administrative costs and student services. Private universities charge tuition fees ranging from €10,000-€20,000 per year."
+    },
+    {
+      question: "Is it possible to study in Germany without IELTS?",
+      answer: "Yes, it is possible to study in Germany without IELTS! Many universities accept alternative English proficiency tests like TOEFL, PTE, or Duolingo. Some universities also waive the English test requirement if you completed your previous education in English medium. Additionally, for German-taught programs, you'll need to provide proof of German language proficiency (TestDaF or DSH)."
+    },
+    {
+      question: "Can I work part-time while studying in Germany?",
+      answer: "Yes, international students in Germany are allowed to work for 120 full days or 240 half days per year. Students can work without restrictions during semester breaks. Working part-time is a great way to gain experience and support yourself financially while studying."
+    },
+    {
+      question: "What is the minimum percentage required to study in Germany?",
+      answer: "The minimum academic requirement varies by university and program. Generally, most universities prefer candidates with at least 60-70% in their previous degree for undergraduate programs and 70-75% for postgraduate programs. Some competitive programs, especially at top universities, may require higher grades."
+    },
+    {
+      question: "What are the best courses to study in Germany?",
+      answer: (
+        <>
+          <p>Germany is renowned for its excellence in various fields. The most popular courses for international students include:</p>
+          <ol>
+            <li>Engineering (Mechanical, Automotive, Electrical)</li>
+            <li>Computer Science and IT</li>
+            <li>Business Administration (MBA)</li>
+            <li>Medicine</li>
+            <li>Natural Sciences</li>
+            <li>Economics</li>
+            <li>Architecture</li>
+            <li>Applied Sciences</li>
+          </ol>
+        </>
+      )
+    },
+    {
+      question: "Which are the top universities in Germany?",
+      answer: (
+        <>
+          <p>Germany is home to many world-class universities. Here are some of the top institutions:</p>
+          <ul>
+            <li>Technical University of Munich (TUM)</li>
+            <li>Ludwig Maximilian University of Munich</li>
+            <li>Heidelberg University</li>
+            <li>Humboldt University of Berlin</li>
+            <li>RWTH Aachen University</li>
+            <li>University of Freiburg</li>
+            <li>Free University of Berlin</li>
+            <li>Karlsruhe Institute of Technology</li>
+            <li>University of Mannheim</li>
+            <li>University of Bonn</li>
+          </ul>
+        </>
+      )
+    },
+    {
+      question: "Can I stay in Germany after completing my studies?",
+      answer: "Yes! Germany offers excellent post-study work opportunities. After graduation, international students can apply for an 18-month residence permit (Job Seeker Visa) to find employment related to their field of study. Once you secure a job, you can transition to a work visa and eventually apply for permanent residency after meeting the requirements. Germany has a strong economy with high demand for skilled professionals, especially in engineering, IT, and healthcare sectors."
+    }
+  ];
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    
-    <section className="whte">
-        <div className="container">
-            <div className="row justify-content-left">
-                <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div className="sec-heading center">
-                        <h2>Frequently Asked <span className="theme-cl">Questions</span></h2>
-                    </div>
-                    <div id="accordionExample" className="accordion">
-
-                        <div className="card">
-                            <div id="headingOne" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" className="d-block position-relative text-dark collapsible-link py-2 collapsed">Is it difficult to get a German student visa?</a></h6>
-                            </div>
-                            <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>Obtaining a student visa in Germany is not particularly challenging. Applicants must simply ensure they possess the requisite documents and meet the specified requirements for the visa application. It is crucial to verify that all eligibility criteria are satisfied and that all necessary documentation is in order.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div id="headingTwo" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" className="d-block position-relative text-dark collapsible-link py-2 collapsed">How much bank balance is required for a German student visa?</a></h6>
-                            </div>
-                            <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>Applicants for a student visa must demonstrate to the German Embassy that they possess a minimum of EUR 11,208 per annum. Generally, it is required to open a blocked account in a German bank and deposit the aforementioned amount into this account.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div id="headingThree" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" className="d-block position-relative collapsed text-dark collapsible-link py-2">Is IELTS mandatory for a German study visa?</a></h6>
-                            </div>
-                            <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>Yes, one of the prerequisites for obtaining a student visa for Germany is to demonstrate proficiency in English. The minimum International English Language Testing System (IELTS) score required for a Germany Student Visa is a band score of 6.0</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div id="headingFive" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" className="d-block position-relative collapsed text-dark collapsible-link py-2">Which is the list of best universities in Germany?</a></h6>
-                            </div>
-                            <div id="collapseFive" aria-labelledby="headingFive" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>The following are the top universities in the Germany ranked based on the academic standards and research impact.</p>
-                                <ol>
-                                    <li>Technical University Munich</li>
-                                    <li>IU International University of Applied Sciences</li>
-                                    <li>University of Europe for Applied Sciences</li>
-                                    <li>EU Business School</li>
-                                    <li>SRH Hochschulen</li>
-                                    <li>GISMA University of Applied Sciences</li>
-                                    <li>Steinbeis University</li>
-                                    <li>BSBI - Berlin School of Business & Innovation</li>
-                                </ol>
-                            </div>
-                            </div>
-                        </div>
-
-                        {/* Six */}
-                        <div className="card">
-                            <div id="headingSix" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" className="d-block position-relative collapsed text-dark collapsible-link py-2">Can I get PR in Germany after study?</a></h6>
-                            </div>
-                            <div id="collapseSix" aria-labelledby="headingSix" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>International students who have completed their studies at a German university may be eligible for permanent residency after two years of holding a work-related permit. Additionally, the EU Blue Card serves as a residence permit, which may be valid for up to four years.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        {/* Seven */}
-                        <div className="card">
-                            <div id="headingSeven" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" className="d-block position-relative collapsed text-dark collapsible-link py-2">Is studying in Germany free?</a></h6>
-                            </div>
-                            <div id="collapseSeven" aria-labelledby="headingSeven" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>In Germany, the opportunity to study without the burden of tuition fees is available to all individuals, irrespective of their nationality. This privilege is extended to German citizens, individuals from other European nations, and those from non-European countries alike. Nearly all study programs offered at public universities fall under this tuition-free policy.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        {/* Eight */}
-                        <div className="card">
-                            <div id="headingEight" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight" className="d-block position-relative collapsed text-dark collapsible-link py-2">Can I work in Germany with a student visa?</a></h6>
-                            </div>
-                            <div id="collapseEight" aria-labelledby="headingEight" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>During your tenure at a university, you are permitted to work up to 120 full days or 240 half-days of paid work per annum, or alternatively, up to 20 hours per week. In exceptional circumstances, your local Foreign Office may impose further restrictions.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                        {/* Nine */}
-                        <div className="card">
-                            <div id="headingNine" className="card-header bg-white shadow-sm border-0">
-                            <h6 className="mb-0 accordion_title"><a href="/" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine" className="d-block position-relative collapsed text-dark collapsible-link py-2">Is it required to communicate in German in order to study in Germany?</a></h6>
-                            </div>
-                            <div id="collapseNine" aria-labelledby="headingNine" data-parent="#accordionExample" className="collapse">
-                            <div className="card-body pl-3 pr-3 pt-0">
-                                <p>No, however, the requirements vary depending on the specific university and program of interest. The necessity for German proficiency is not universal because many programs are offered in English. Nonetheless, proficiency in German may be requisite for certain courses. While it is feasible to complete some programs without knowledge of German, acquiring proficiency in the language can significantly enhance both the educational experience and everyday life.</p>
-                            </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div className="lmp_thumb">
-                        <img src="../assets/img/side-1.png" className="img-fluid"  alt="Germany faq" loading='lazy'/>
-                    </div>
-                </div>
+    <section className="gray">
+      <div className="container">
+        <div className="row justify-content-left">
+          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div className="sec-heading center">
+              <h2>Frequently Asked <span className="theme-cl">Questions</span></h2>
             </div>
+            <div className="accordion">
+              {faqs.map((faq, index) => (
+                <div key={index} className="card mb-2">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="card-header bg-white shadow-sm border-0 w-full text-left"
+                    aria-expanded={openIndex === index}
+                  >
+                    <h6 className="mb-0 accordion_title d-flex justify-content-between align-items-center">
+                      <span className="text-dark py-2">{faq.question}</span>
+                      <ChevronDownIcon
+                        className={`w-5 h-5 transition-transform ${
+                          openIndex === index ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </h6>
+                  </button>
+                  {openIndex === index && (
+                    <div className="card-body pl-3 pr-3 pt-3">
+                      {typeof faq.answer === 'string' ? (
+                        <p>{faq.answer}</p>
+                      ) : (
+                        faq.answer
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div className="lmp_thumb">
+              <Image src={faq} className="img-fluid" alt="Germany FAQ" loading="lazy" />
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-  )
+  );
 }

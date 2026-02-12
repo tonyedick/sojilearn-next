@@ -1,6 +1,6 @@
 
 import { supabase } from '../../integrations/supabase/client';
-import { BlogPost } from '../../types/blog';
+import { BlogPost } from '../../integrations/types/blog';
 import Link from 'next/link';
 
 async function getUSAPosts() {
@@ -124,7 +124,7 @@ export default async function USANews() {
                                              <p>{post?.excerpt?.substring(0, 100) || 'No excerpt available'}...</p>
                                         </div>
                                         <div className="blg_more">
-                                            <Link to={`/blog/${post.slug}`} target="_blank">Read More</Link>
+                                            <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>
                                         </div>
                                     </div>
                                 </div>

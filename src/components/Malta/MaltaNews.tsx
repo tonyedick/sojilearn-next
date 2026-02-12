@@ -1,6 +1,6 @@
 
 import { supabase } from '../../integrations/supabase/client';
-import { BlogPost } from '../../types/blog';
+import { BlogPost } from '../../integrations/types/blog';
 import Link from 'next/link';
 
 async function getMaltaPosts() {
