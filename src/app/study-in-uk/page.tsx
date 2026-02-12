@@ -45,8 +45,8 @@ export default function StudyInUK() {
         <PostUniUK />
         <PartTimeCareersUK />
         <UKNews />
-        <CTAUK />
         <FAQUK />
+        <CTAUK />
      </>
     </AppLayout>
   );

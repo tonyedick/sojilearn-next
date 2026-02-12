@@ -25,7 +25,12 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: false,
   },
-  experimental: { scrollRestoration: true },
+  experimental: { 
+    scrollRestoration: true,
+    turbopack: {
+      root: process.cwd(),
+    },
+  },
 };
 
 export default nextConfig;

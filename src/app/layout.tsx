@@ -5,9 +5,9 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 import "./plugins.css";
 
-const jost = Mulish({
+const jost = Jost({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-jost',
 });
 
