@@ -1,0 +1,10 @@
+export { default as UKNews } from './UKNews';
+export { default as BannerStudyInUk } from './BannerStudyInUk';
+export { default as CTAUK } from './CTAUK';
+export { default as ExploreUK } from './ExploreUK';
+export { default as FAQUK } from './FAQUK';
+export { default as PostUniUK } from './PostUniUK';
+export { default as PartTimeCareersUK } from './PartTimeCareersUK';
+export { default as RequirementsUK } from './RequirementsUK';
+export { default as StudyInUkCom } from './StudyInUkCom';
+export { default as StudyInUkFull } from './StudyInUkFull';

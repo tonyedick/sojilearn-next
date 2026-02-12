@@ -1,25 +1,25 @@
+
 import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../integrations/types/blog';
 import Link from 'next/link';
-import Image from 'next/image';
 
-async function getCanadaPosts() {
-    const { data, error } = await supabase
+async function getUKPosts() {
+      const { data, error } = await supabase
             .from('blog_posts' as unknown as string)
             .select('*')
             .eq('is_published', true)
-            .contains('tags', ['Canada']) 
+            .contains('tags', ['UK']) 
             .order('published_date', { ascending: false })
             .limit(3);
 
         if (error) return [];
         return (data as BlogPost[]) || [];
-    };
+};
 
-    export const revalidate = 3600; 
+export const revalidate = 3600;
 
-export default async function CANews() {
-    const canadaPosts = await getCanadaPosts();
+export default async function UKNews() {
+    const ukPosts = await getUKPosts();
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -29,14 +29,14 @@ export default async function CANews() {
         });
     };
 
-     if (canadaPosts.length === 0) {
+     if (ukPosts.length === 0) {
         return (
             <section className="min gray" style={{backgroundColor: '#DFFFFF'}}>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest <span className="theme-cl">Canada</span> News</h2>
+                                <h2>Latest <span className="theme-cl">UK</span> News</h2>
                                 <h4>No Posts at this time</h4>
                             </div>
                         </div>
@@ -82,19 +82,19 @@ export default async function CANews() {
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest News &amp; <span className="theme-cl">Articles</span></h2>
+                                <h2>Latest <span className="theme-cl">UK</span> News</h2>
                             </div>
                         </div>
                     </div>
 
                     <div className="row justify-content-center">
-                        {canadaPosts.map(post => (
+                        {ukPosts.map(post => (
                             <div className="col-lg-4 col-md-6" key={post.id}>
                                 <div className="blg_grid_box">
                                     {post.featured_image_url && (
                                         <div className="blg_grid_thumb">
                                             <Link href={`/blog/${post.slug}`}>
-                                                <Image    
+                                                <img    
                                                     src={post.featured_image_url}
                                                     alt={post.title} 
                                                     className="img-fluid"

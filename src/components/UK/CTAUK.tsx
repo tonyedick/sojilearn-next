@@ -1,11 +1,11 @@
-'use client';
-
-import Link from 'next/link'
+import React from 'react';
+import Link  from 'next/link';
 
 export default function CTA() {
   return (
     <div>
         <div className="clearfix"></div>
+
         <section className="theme-bg call_action_wrap-wrap">
             <div className="container">
                 <div className="row">
@@ -13,10 +13,10 @@ export default function CTA() {
 
                         <div className="call_action_wrap">
                             <div className="call_action_wrap-head">
-                                <h2 className="text-white">Make Your Dream To Study in The Canada</h2>
+                                <h2 className="text-white">Make Your Dream To Study in UK</h2>
                                 <h3 style={{textShadow: "8px 8px 8px gray"}}>A Reality With Our Experts!</h3>
                             </div>
-                            <Link href="/apply" className="btn-apply btn-applbtn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                            <Link href="/apply" className="btn-apply btn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
                         </div>
                     </div>
                 </div>
