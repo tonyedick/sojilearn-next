@@ -7,7 +7,6 @@ import {
   ExploreCanada,
   PartTimeCareersCA,
   RequirementsCA,
-  StudyInCanada,
   StudyInCAFull,
   PostUniCA
 } from '@/components/CA';
@@ -43,7 +42,6 @@ export default function StudyInCA() {
         <StudyInCAFull />
         <RequirementsCA />
         <PartTimeCareersCA />
-        <StudyInCanada />
         <PostUniCA />
         <CANews />
         <CTACA />

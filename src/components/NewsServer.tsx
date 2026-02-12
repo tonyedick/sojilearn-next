@@ -99,8 +99,8 @@ export default async function NewsServer() {
                                     className="img-fluid"
                                     style={{height: "220px", width: "100%", objectFit: "cover"}}
                                     loading="lazy"
-                                    width={100}
                                     height={220}
+                                    width={100}
                                 />
                             </Link>
                         </div>
@@ -123,7 +123,7 @@ export default async function NewsServer() {
                             <p>{post.excerpt}...</p>
                         </div>
                         <div className="blg_more">
-                            <Link href={`/blog/${post.slug}`}>Read More</Link>
+                            <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>
                         </div>
                     </div>
                 </div>

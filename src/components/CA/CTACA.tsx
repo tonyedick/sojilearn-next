@@ -16,7 +16,7 @@ export default function CTA() {
                                 <h2 className="text-white">Make Your Dream To Study in The Canada</h2>
                                 <h3 style={{textShadow: "8px 8px 8px gray"}}>A Reality With Our Experts!</h3>
                             </div>
-                            <Link href="/apply" className="btn-apply btn-applbtn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                            <Link href="/apply" className="btn-apply btn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
                         </div>
                     </div>
                 </div>

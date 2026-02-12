@@ -98,8 +98,10 @@ export default async function CANews() {
                                                     src={post.featured_image_url}
                                                     alt={post.title} 
                                                     className="img-fluid"
-                                                    style={{height: "220px", width: "100%", objectFit: "cover"}}
+                                                    style={{height: "240px", width: "100%", objectFit: "cover"}}
                                                     loading="lazy"
+                                                    height={240}
+                                                    width={100}
                                                 />
                                             </Link>
                                         </div>
@@ -108,10 +110,10 @@ export default async function CANews() {
                                         style={{height: "220px", width: "100%"}}
                                     >
                                         <div className="row">
-                                            <div className="col-6">
+                                            <div className="col-8">
                                                 <div className="blg_tag dark"><span>{post.category}</span> </div>
                                             </div>
-                                            <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'end' }}>
+                                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px', textAlign: 'end' }}>
                                                 {formatDate(post.published_date)}
                                             </div>
                                         </div>
@@ -119,7 +121,7 @@ export default async function CANews() {
                                             <h4> {post.title}</h4>
                                         </div>
                                         <div className="blg_desc">
-                                            <p>{post.excerpt}...</p>
+                                            <p>{post.excerpt.substring(0, 100)}...</p>
                                         </div>
                                         <div className="blg_more">
                                             <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>

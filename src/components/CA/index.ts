@@ -6,3 +6,4 @@ export { default as PostUniCA } from './PostUniCA';
 export { default as PartTimeCareersCA } from './PartTimeCareersCA';
 export { default as RequirementsCA } from './RequirementsCA';
 export { default as StudyInCAFull } from './StudyInCAFull';
+export { default as StudyInCanada } from './StudyInCanada';
