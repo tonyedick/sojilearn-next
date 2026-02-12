@@ -88,7 +88,7 @@ export default async function CANews() {
                     </div>
 
                     <div className="row justify-content-center">
-                        {canadaPosts.map(post => (
+                        {canadaPosts && canadaPosts.map(post => (
                             <div className="col-lg-4 col-md-6" key={post.id}>
                                 <div className="blg_grid_box">
                                     {post.featured_image_url && (
@@ -121,7 +121,7 @@ export default async function CANews() {
                                             <h4> {post.title}</h4>
                                         </div>
                                         <div className="blg_desc">
-                                            <p>{post?.excerpt.substring(0, 100)}...</p>
+                                            <p>{post?.excerpt?.substring(0, 100) || 'No excerpt available'}...</p>
                                         </div>
                                         <div className="blg_more">
                                             <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>

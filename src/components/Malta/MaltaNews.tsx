@@ -121,7 +121,7 @@ export default async function MaltaNews() {
                                             <h4> {post.title}</h4>
                                         </div>
                                         <div className="blg_desc">
-                                            <p>{post?.excerpt.substring(0, 100)}...</p>
+                                             <p>{post?.excerpt?.substring(0, 100) || 'No excerpt available'}...</p>
                                         </div>
                                         <div className="blg_more">
                                             <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>
