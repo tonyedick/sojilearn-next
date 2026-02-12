@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import faq from "../assets/img/side-1.png";
+import faq from "../../assets/img/side-1.png";
 
 export default function FAQUK() {
   return (
