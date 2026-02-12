@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import bakImageLarge from "../../assets/img/usa_banner.png";
 import bakImageSmall from "../../assets/img/usa-banner-small.png"; 
 import flag from "../../assets/img/usa-flag.webp";

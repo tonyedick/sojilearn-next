@@ -42,7 +42,7 @@ making it a prime study destination.</p>
                     </div>
 
                     <div className="inline_btn">
-                        <button onClick={toggleReadMore} className="btn theme-bg text-white">
+                        <button onClick={toggleReadMore} className="btn-apply btn theme-bg text-white">
                             {showFullText ? 'Read Less' : 'Read More'}
                         </button>
                     </div>

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import Image from 'next/image';
 import arts from "../../assets/img/arts.png";
 import architecture from "../../assets/img/architecture.png";
 import socialsciences from "../../assets/img/socialsciences.png";
@@ -30,7 +32,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={arts} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={arts} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Arts and Humanities</strong></p>
                                 </div>
@@ -38,7 +40,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6 mt-1">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={socialsciences} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={socialsciences} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Social Sciences</strong></p>
                                 </div>
@@ -48,7 +50,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={law} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={law} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Law and Legal Studies</strong></p>
                                 </div>
@@ -56,7 +58,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6 mt-1">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={engineering} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={engineering} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Engineering and Technology</strong></p>
                                 </div>
@@ -66,7 +68,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={architecture} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={architecture} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Architecture</strong></p>
                                 </div>
@@ -74,7 +76,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6 mt-1">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={design} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={design} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Design</strong></p>
                                 </div>
@@ -84,7 +86,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={medicine} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={medicine} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Medicine and Life Sciences</strong></p>
                                 </div>
@@ -92,7 +94,7 @@ and strong job prospects in sectors like tourism, finance, and tech:</p>
                             <div className="col-lg-6 col-mg-6 col-sm-6 mt-1">
                                 <div className="d-flex align-items-center">
                                     <div className="list_crs_img">
-                                        <img src={naturalsciences} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
+                                        <Image src={naturalsciences} height="50" width="50" className="img-fluid" alt="part time career opportunities in Malta" />
                                     </div>
                                     <p className="mt-3 ml-4"><strong>Natural Sciences</strong></p>
                                 </div>

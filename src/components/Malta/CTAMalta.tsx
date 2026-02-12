@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export default function CTAMalta() {
   return (
@@ -16,7 +18,7 @@ export default function CTAMalta() {
                                 <h2 className="text-white">Make Your Dream To Study in Malta</h2>
                                 <h3 style={{textShadow: "8px 8px 8px gray"}}>A Reality With Our Experts!</h3>
                             </div>
-                            <Link to="/apply" className="btn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                            <Link href="/apply" className="btn-apply btn btn-call_action_wrap pulse-zoom" rel="noopener noreferrer">START NOW</Link>
                         </div>
                     </div>
                 </div>

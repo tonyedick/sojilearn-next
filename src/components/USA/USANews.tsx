@@ -113,7 +113,7 @@ export default async function USANews() {
                                             <div className="col-8">
                                                 <div className="blg_tag dark"><span>{post.category}</span> </div>
                                             </div>
-                                            <div className="col-4" style={{ fontWeight: 'bold', textAlign: 'end' }}>
+                                            <div className="col-4" style={{ fontWeight: 'light', fontSize:'12px', textAlign: 'end' }}>
                                                 {formatDate(post.published_date)}
                                             </div>
                                         </div>

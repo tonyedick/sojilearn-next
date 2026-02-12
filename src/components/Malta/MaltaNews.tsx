@@ -1,33 +1,25 @@
-import { useState, useEffect } from 'react';
+
 import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../types/blog';
 import { Link } from 'react-router-dom';
 
+async function getMaltaPosts() {
+     const { data, error } = await supabase
+        .from('blog_posts' as unknown as string)
+        .select('*')
+        .eq('is_published', true)
+        .contains('tags', ['Malta']) 
+        .order('published_date', { ascending: false })
+        .limit(3);
+
+        if (error) return [];
+        return (data  as BlogPost[]) || [];
+}
+
+export const revalidate = 3600;
+
 export default function MaltaNews() {
-    const [maltaPosts, setMaltaPosts] = useState<BlogPost[]>([]);
-
-    useEffect(() => {
-        fetchMaltaPosts();
-    }, []);
-
-    const fetchMaltaPosts = async () => {
-        try {
-        const { data, error } = await supabase
-            .from('blog_posts' as any)
-            .select('*')
-            .eq('is_published', true)
-            .contains('tags', ['Malta']) 
-            .order('published_date', { ascending: false })
-            .limit(3);
-
-        if (error) throw error;
-        setMaltaPosts((data as any[]) || []);
-        } catch (error) {
-        console.error('Error fetching featured posts:', error);
-        } finally {
-        console.log('Finished fetching Malta posts');
-        }
-    };
+    const maltaPosts = await getMaltaPosts();
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -101,13 +93,15 @@ export default function MaltaNews() {
                                 <div className="blg_grid_box">
                                     {post.featured_image_url && (
                                         <div className="blg_grid_thumb">
-                                            <Link to={`/blog/${post.slug}`}>
+                                            <Link href={`/blog/${post.slug}`}>
                                                 <img    
                                                     src={post.featured_image_url}
                                                     alt={post.title} 
                                                     className="img-fluid"
                                                     style={{height: "220px", width: "100%", objectFit: "cover"}}
                                                     loading="lazy"
+                                                    height={240}
+                                                    width={100}
                                                 />
                                             </Link>
                                         </div>
@@ -116,10 +110,10 @@ export default function MaltaNews() {
                                         style={{height: "220px", width: "100%"}}
                                     >
                                         <div className="row">
-                                            <div className="col-6">
+                                            <div className="col-8">
                                                 <div className="blg_tag dark"><span>{post.category}</span> </div>
                                             </div>
-                                            <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'end' }}>
+                                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px' ,textAlign: 'end' }}>
                                                 {formatDate(post.published_date)}
                                             </div>
                                         </div>
@@ -127,10 +121,10 @@ export default function MaltaNews() {
                                             <h4> {post.title}</h4>
                                         </div>
                                         <div className="blg_desc">
-                                            <p>{post.excerpt}...</p>
+                                            <p>{post?.excerpt.substring(0, 100)}...</p>
                                         </div>
                                         <div className="blg_more">
-                                            <Link to={`/blog/${post.slug}`} target="_blank">Read More</Link>
+                                            <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>
                                         </div>
                                     </div>
                                 </div>

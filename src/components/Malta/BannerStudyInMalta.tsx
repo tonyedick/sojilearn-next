@@ -1,22 +1,27 @@
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import bakimageLarge from "../../assets/img/malta_banner.png";
-import bakimageSmall from "../../assets/img/malta_banner_small.png"; 
+import bakImageLarge from "../../assets/img/malta_banner.png";
+import bakImageSmall from "../../assets/img/malta_banner_small.png"; 
 import flag from "../../assets/img/uk_icon.webp";
 
 export default function BannerStudyInMalta() {
-    const [backgroundImage, setBackgroundImage] = useState(bakimageLarge);
+    const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-      const handleResize = () => {
-        setBackgroundImage(window.innerWidth <= 768 ? bakimageSmall : bakimageLarge);
-      };
-  
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+        const checkMobile = () => {
+            const mobile = window.innerWidth <= 768;
+            setIsMobile(mobile);
+            SetBackgroundImage(mobile ? bakImageSmall.src : bakImageLarge.src);
+        };
+    
+        checkMobile();
+    
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
   
   return (
@@ -26,7 +31,7 @@ export default function BannerStudyInMalta() {
             style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: "center center",
-            backgroundSize: window.innerWidth <= 768 ? "contain" : "cover",
+            backgroundSize: isMobile ? "contain" : "cover",
             backgroundColor: "black",
             minHeight: "600px", // Set a minimum height
             height: "400px",    // Set a fixed or max height as needed
@@ -39,9 +44,9 @@ export default function BannerStudyInMalta() {
                     <div className="simple-search-wrap">
                         <div className="hero_search-2">
                             <h1 className="banner_title mb-4 text-white" style={{textShadow: "8px 8px 8px black"}} 
-                            ><span><img src={flag} alt="study in malta banner" height="45" width="60" /></span> Study in Malta<br />Hidden Gem of Europe</h1>
+                            ><span><Image src={flag} alt="study in malta banner" height="45" width="60" /></span> Study in Malta<br />Hidden Gem of Europe</h1>
                             <div className="inline_btn">
-                                <Link to="/apply" className="btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                                <Link href="/apply" className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer">START NOW</Link>
                             </div>
                         </div>
                     </div>
