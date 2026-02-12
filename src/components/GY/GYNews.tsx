@@ -1,7 +1,7 @@
 
 import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../types/blog';
-import Link from 'rnext/link';
+import Link from 'next/link';
 
 async function getGYPosts() {
     const { data, error } = await supabase
