@@ -1,7 +1,7 @@
 
 import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../types/blog';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 async function getMaltaPosts() {
      const { data, error } = await supabase

@@ -1,7 +1,7 @@
 
 import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../types/blog';
-import { Link } from 'react-router-dom';
+import Link from 'rnext/link';
 
 async function getGYPosts() {
     const { data, error } = await supabase
