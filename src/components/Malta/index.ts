@@ -1,0 +1,9 @@
+export { default as BannerStudyInMalta } from './BannerStudyInMalta';
+export { default as CTAMalta } from './CTAMalta';
+export { default as ExploreMalta } from './ExploreMalta';
+export { default as FAQMalta } from './FAQMalta';
+export { default as MaltaNews } from './MaltaNews';
+export { default as PartTimeCareersMalta } from './PartTimeCareersMalta';
+export { default as PostUniMalta } from './PostUniMalta';
+export { default as RequirementsMalta } from './RequirementsMalta';
+export { default as StudyInMaltaFull } from './StudyInMaltaFull';

@@ -1,25 +1,33 @@
+import { useState, useEffect } from 'react';
 import { supabase } from '../../integrations/supabase/client';
-import { BlogPost } from '../../integrations/types/blog';
-import Link from 'next/link';
-import Image from 'next/image';
+import { BlogPost } from '../../types/blog';
+import { Link } from 'react-router-dom';
 
-async function getCanadaPosts() {
-    const { data, error } = await supabase
-            .from('blog_posts' as unknown as string)
+export default function MaltaNews() {
+    const [maltaPosts, setMaltaPosts] = useState<BlogPost[]>([]);
+
+    useEffect(() => {
+        fetchMaltaPosts();
+    }, []);
+
+    const fetchMaltaPosts = async () => {
+        try {
+        const { data, error } = await supabase
+            .from('blog_posts' as any)
             .select('*')
             .eq('is_published', true)
-            .contains('tags', ['Canada']) 
+            .contains('tags', ['Malta']) 
             .order('published_date', { ascending: false })
             .limit(3);
 
-        if (error) return [];
-        return (data as BlogPost[]) || [];
+        if (error) throw error;
+        setMaltaPosts((data as any[]) || []);
+        } catch (error) {
+        console.error('Error fetching featured posts:', error);
+        } finally {
+        console.log('Finished fetching Malta posts');
+        }
     };
-
-    export const revalidate = 3600; 
-
-export default async function CANews() {
-    const canadaPosts = await getCanadaPosts();
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -29,14 +37,14 @@ export default async function CANews() {
         });
     };
 
-     if (canadaPosts.length === 0) {
+     if (maltaPosts.length === 0) {
         return (
             <section className="min gray" style={{backgroundColor: '#DFFFFF'}}>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest <span className="theme-cl">Canada</span> News</h2>
+                                <h2>Latest <span className="theme-cl">Malta</span> News</h2>
                                 <h4>No Posts at this time</h4>
                             </div>
                         </div>
@@ -82,26 +90,24 @@ export default async function CANews() {
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest News &amp; <span className="theme-cl">Articles</span></h2>
+                                <h2>Latest <span className="theme-cl">Malta</span> News</h2>
                             </div>
                         </div>
                     </div>
 
                     <div className="row justify-content-center">
-                        {canadaPosts.map(post => (
+                        {maltaPosts.map(post => (
                             <div className="col-lg-4 col-md-6" key={post.id}>
                                 <div className="blg_grid_box">
                                     {post.featured_image_url && (
                                         <div className="blg_grid_thumb">
-                                            <Link href={`/blog/${post.slug}`}>
-                                                <Image    
+                                            <Link to={`/blog/${post.slug}`}>
+                                                <img    
                                                     src={post.featured_image_url}
                                                     alt={post.title} 
                                                     className="img-fluid"
-                                                    style={{height: "240px", width: "100%", objectFit: "cover"}}
+                                                    style={{height: "220px", width: "100%", objectFit: "cover"}}
                                                     loading="lazy"
-                                                    height={240}
-                                                    width={100}
                                                 />
                                             </Link>
                                         </div>
@@ -110,10 +116,10 @@ export default async function CANews() {
                                         style={{height: "220px", width: "100%"}}
                                     >
                                         <div className="row">
-                                            <div className="col-8">
+                                            <div className="col-6">
                                                 <div className="blg_tag dark"><span>{post.category}</span> </div>
                                             </div>
-                                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px', textAlign: 'end' }}>
+                                            <div className="col-6" style={{ fontWeight: 'bold', textAlign: 'end' }}>
                                                 {formatDate(post.published_date)}
                                             </div>
                                         </div>
@@ -121,10 +127,10 @@ export default async function CANews() {
                                             <h4> {post.title}</h4>
                                         </div>
                                         <div className="blg_desc">
-                                            <p>{post?.excerpt.substring(0, 100)}...</p>
+                                            <p>{post.excerpt}...</p>
                                         </div>
                                         <div className="blg_more">
-                                            <Link href={`/blog/${post.slug}`} target="_blank">Read More</Link>
+                                            <Link to={`/blog/${post.slug}`} target="_blank">Read More</Link>
                                         </div>
                                     </div>
                                 </div>
