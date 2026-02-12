@@ -7,7 +7,6 @@ import {
   ExploreUK,
   PartTimeCareersUK,
   RequirementsUK,
-  StudyInUkCom,
   StudyInUkFull,
   PostUniUK,
   FAQUK
@@ -43,9 +42,8 @@ export default function StudyInUK() {
         <ExploreUK />
         <StudyInUkFull />
         <RequirementsUK />
-        <PartTimeCareersUK />
-        <StudyInUkCom />
         <PostUniUK />
+        <PartTimeCareersUK />
         <UKNews />
         <CTAUK />
         <FAQUK />

@@ -12,7 +12,7 @@ import naturalsciences from "../../assets/img/naturalsciences.png";
 
 export default function PartTimeCareersUK() {
   return (
-    <section className="white">
+    <section className="gray">
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-10 col-md-8">
