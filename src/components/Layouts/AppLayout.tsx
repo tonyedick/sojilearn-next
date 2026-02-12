@@ -1,7 +1,7 @@
 'use client';
 
-import Footer from "../Footer";
-import Header from "../Header";
+import Footer from "./Footer";
+import Header from "./Header";
 import { JSX } from "react";
 
 type PageProps = {

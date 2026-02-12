@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from "next/image";
-import footerLogo from "../assets/img/logo-dark.png";
+import footerLogo from "../../assets/img/logo-dark.png";
 
 export default function Footer() {
     return (

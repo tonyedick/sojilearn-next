@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
-import imglogo from '../assets/img/logo-dark.png';
+import imglogo from '../../assets/img/logo-dark.png';
 import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
