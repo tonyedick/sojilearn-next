@@ -3,23 +3,25 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import bakimageLarge from "../../assets/img/uk_banner.jpg";
-import bakimageSmall from "../../assets/img/uk-banner-small.jpeg"; 
+import bakImageLarge from "../../assets/img/uk_banner.jpg";
+import bakImageSmall from "../../assets/img/uk-banner-small.jpeg"; 
 import flag from "../../assets/img/uk_icon.webp";
 
 export default function BannerStudyInUk() {
-    const [backgroundImage, setBackgroundImage] = useState(bakimageLarge);
-
+    const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
+    const [isMobile, setIsMobile] = useState(false);
+    
     useEffect(() => {
-      const handleResize = () => {
-        setBackgroundImage(window.innerWidth <= 768 ? bakimageSmall : bakimageLarge);
-      };
-  
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+        const checkMobile = () => {
+            const mobile = window.innerWidth <= 768;
+            setIsMobile(mobile);
+            SetBackgroundImage(mobile ? bakImageSmall.src : bakImageLarge.src);
+        };
+    
+        checkMobile();
+    
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
   
   return (
@@ -28,7 +30,7 @@ export default function BannerStudyInUk() {
              style={{
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundPosition: "center center",
-                backgroundSize: window.innerWidth <= 768 ? "contain" : "cover",
+                backgroundSize: isMobile ? "contain" : "cover",
                 backgroundColor: "black",
                 minHeight: "600px", 
                 height: "400px",    
