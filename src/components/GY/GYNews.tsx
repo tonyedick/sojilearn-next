@@ -3,23 +3,23 @@ import { supabase } from '../../integrations/supabase/client';
 import { BlogPost } from '../../types/blog';
 import { Link } from 'react-router-dom';
 
-async function getMaltaPosts() {
-     const { data, error } = await supabase
+async function getGYPosts() {
+    const { data, error } = await supabase
         .from('blog_posts' as unknown as string)
         .select('*')
         .eq('is_published', true)
-        .contains('tags', ['Malta']) 
+        .contains('tags', ['Germany']) 
         .order('published_date', { ascending: false })
         .limit(3);
 
         if (error) return [];
-        return (data  as BlogPost[]) || [];
-}
+        return (data as BlogPost[]) || [];
+} 
 
 export const revalidate = 3600;
 
-export default async function MaltaNews() {
-    const maltaPosts = await getMaltaPosts();
+export default async function GYNews() {
+    const germanyPosts = await getGYPosts();
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -29,14 +29,14 @@ export default async function MaltaNews() {
         });
     };
 
-     if (maltaPosts.length === 0) {
+     if (germanyPosts.length === 0) {
         return (
             <section className="min gray" style={{backgroundColor: '#DFFFFF'}}>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest <span className="theme-cl">Malta</span> News</h2>
+                                <h2>Latest <span className="theme-cl">Germany</span> News</h2>
                                 <h4>No Posts at this time</h4>
                             </div>
                         </div>
@@ -82,13 +82,13 @@ export default async function MaltaNews() {
                     <div className="row justify-content-center">
                         <div className="col-lg-7 col-md-8">
                             <div className="sec-heading center">
-                                <h2>Latest <span className="theme-cl">Malta</span> News</h2>
+                                <h2>Latest <span className="theme-cl">Germany</span> News</h2>
                             </div>
                         </div>
                     </div>
 
                     <div className="row justify-content-center">
-                        {maltaPosts.map(post => (
+                        {germanyPosts.map(post => (
                             <div className="col-lg-4 col-md-6" key={post.id}>
                                 <div className="blg_grid_box">
                                     {post.featured_image_url && (
@@ -113,7 +113,7 @@ export default async function MaltaNews() {
                                             <div className="col-8">
                                                 <div className="blg_tag dark"><span>{post.category}</span> </div>
                                             </div>
-                                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px' ,textAlign: 'end' }}>
+                                            <div className="col-4" style={{ fontWeight: 'light', fontSize: '12px', textAlign: 'end' }}>
                                                 {formatDate(post.published_date)}
                                             </div>
                                         </div>

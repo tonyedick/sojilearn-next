@@ -1,0 +1,9 @@
+    export { default as GYNews  } from './GYNews';
+    export { default as BannerStudyInGermany  } from './BannerStudyInGermany';
+    export { default as CTAGY  } from './CTAGY';
+    export { default as ExploreGermany  } from './ExploreGermany';
+    export { default as PartTimeCareersGY  } from './PartTimeCareersGY';
+    export { default as RequirementsGY  } from './RequirementsGY';
+    export { default as StudyInGYFull  } from './StudyInGYFull';
+    export { default as PostUniGY  } from './PostUniGY';
+    export { default as FAQGY  } from './FAQGY';
