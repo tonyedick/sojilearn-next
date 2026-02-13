@@ -9,7 +9,7 @@ import gdp from "../../assets/img/gdp.webp";
 import currency from "../../assets/img/currency.webp";
 import dialing from "../../assets/img/dialing.webp";
 
-export default function StudyInGermany() {
+export default function ExploreGermany () {
   return (
     <div>
         <section className="min">
