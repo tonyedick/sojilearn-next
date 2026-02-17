@@ -2,11 +2,20 @@
   "name": "sojilearn-next",
   "version": "0.1.0",
   "private": true,
+  "description": "Sojilearn study abroad consultancy platform - Secure and optimized",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "test": "echo \"Tests will be added in next iteration\"",
+    "clean": "rm -rf .next",
+    "analyze": "ANALYZE=true next build",
+    "security:audit": "npm audit --production"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

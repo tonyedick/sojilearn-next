@@ -1,23 +1,16 @@
-import { supabase } from '../integrations/supabase/client';
-import { BlogPost } from '../integrations/types/blog';
+import { getFeaturedPosts } from '@/lib/blog/api';
 import Link from 'next/link';
 import Image from 'next/image';
 
-async function getFeaturedPosts() {
-  const { data, error } = await supabase
-    .from('blog_posts')
-    .select('*')
-    .eq('is_published', true)
-    .eq('featured', true)
-    .order('published_date', { ascending: false })
-    .limit(3);
-
-    if (error) return [];
-  return (data as BlogPost[]) || [];
-}
-
 export const revalidate = 3600; // Revalidate every hour
 
+const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleString('en-US',{
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+};
 export default async function NewsServer() {
   const featuredPosts = await getFeaturedPosts();
 

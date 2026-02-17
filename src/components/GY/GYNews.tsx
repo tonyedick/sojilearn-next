@@ -1,33 +1,20 @@
 
-import { supabase } from '../../integrations/supabase/client';
-import { BlogPost } from '../../integrations/types/blog';
+import { getBlogPostsByCountry } from '@/lib/blog/api';
 import Link from 'next/link';
-
-async function getGYPosts() {
-    const { data, error } = await supabase
-        .from('blog_posts' as unknown as string)
-        .select('*')
-        .eq('is_published', true)
-        .contains('tags', ['Germany']) 
-        .order('published_date', { ascending: false })
-        .limit(3);
-
-        if (error) return [];
-        return (data as BlogPost[]) || [];
-} 
+import Image from 'next/image';
 
 export const revalidate = 3600;
 
-export default async function GYNews() {
-    const germanyPosts = await getGYPosts();
-
-    const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
+const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
-        });
-    };
+    });
+}
+
+export default async function GYNews() {
+    const germanyPosts = await getBlogPostsByCountry('Germany');
 
      if (germanyPosts.length === 0) {
         return (
@@ -94,7 +81,7 @@ export default async function GYNews() {
                                     {post.featured_image_url && (
                                         <div className="blg_grid_thumb">
                                             <Link href={`/blog/${post.slug}`}>
-                                                <img    
+                                                <Image    
                                                     src={post.featured_image_url}
                                                     alt={post.title} 
                                                     className="img-fluid"
@@ -136,3 +123,25 @@ export default async function GYNews() {
         </div>
     );
 }
+
+/**
+ * Germany News Component
+ * Uses the shared CountryNews component for consistency
+ */
+
+// import { getBlogPostsByCountryServer } from '@/lib/blog/api';
+// import CountryNews from '@/components/shared/CountryNews';
+
+// export const revalidate = 3600;
+
+// export default async function GYNews() {
+//   const germanyPosts = await getBlogPostsByCountryServer('Germany');
+
+//   return (
+//     <CountryNews 
+//       country="Germany" 
+//       posts={germanyPosts}
+//       backgroundColor="#FFFACD"
+//     />
+//   );
+// }

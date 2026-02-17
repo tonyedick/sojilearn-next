@@ -1,33 +1,19 @@
-import { supabase } from '../../integrations/supabase/client';
-import { BlogPost } from '../../integrations/types/blog';
+import { getBlogPostsByCountry } from '@/lib/blog/api';
 import Link from 'next/link';
 import Image from 'next/image';
 
-async function getCanadaPosts() {
-    const { data, error } = await supabase
-            .from('blog_posts' as unknown as string)
-            .select('*')
-            .eq('is_published', true)
-            .contains('tags', ['Canada']) 
-            .order('published_date', { ascending: false })
-            .limit(3);
+export const revalidate = 3600; 
 
-        if (error) return [];
-        return (data as BlogPost[]) || [];
-    };
-
-    export const revalidate = 3600; 
+const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+    });
+};
 
 export default async function CANews() {
-    const canadaPosts = await getCanadaPosts();
-
-    const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-        });
-    };
+    const canadaPosts = await getBlogPostsByCountry('Canada');
 
      if (canadaPosts.length === 0) {
         return (
