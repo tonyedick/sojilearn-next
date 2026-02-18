@@ -55,20 +55,19 @@ export const getBlogPostsByCountry = cache(
  * @param limit - Maximum number of posts to return
  * @returns Promise<BlogPost[]>
  */
-
 export const getAllBlogPosts = cache(
   async (limit: number = 50): Promise<BlogPost[]> => {
     try {
       const supabase = getSupabaseServer();
 
       const { data, error } = await supabase
-      .from('blog_posts')
-      .select('*')
-      .eq('is_published', true)
-      .order('published_date', { ascending:false })
-      .limit(limit);
+        .from('blog_posts')
+        .select('*')
+        .eq('is_published', true)
+        .order('published_date', { ascending: false })
+        .limit(limit);
 
-      if (error){
+      if (error) {
         console.error('[Blog] Error fetching all posts:', error);
         return [];
       }
@@ -80,6 +79,39 @@ export const getAllBlogPosts = cache(
     }
   }
 );
+
+/**
+ * Fetch a single blog post by slug
+ * Cached per request for optimal performance
+ * 
+ * @param slug - URL slug of the post
+ * @returns Promise<BlogPost | null>
+ */
+export const getBlogPostBySlug = cache(
+  async (slug: string): Promise<BlogPost | null> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', slug)
+        .eq('is_published', true)
+        .single();
+
+      if (error) {
+        console.error(`[Blog] Error fetching post ${slug}:`, error);
+        return null;
+      }
+
+      return data as BlogPost;
+    } catch (err) {
+      console.error(`[Blog] Unexpected error fetching post ${slug}:`, err);
+      return null;
+    }
+  }
+);
+
 /**
  * Fetch all featured blog posts
  * 
@@ -113,32 +145,214 @@ export const getFeaturedPosts = cache(
 );
 
 /**
- * Fetch a single blog post by slug
+ * Fetch related blog posts based on tags and category
  * 
- * @param slug - URL slug of the post
- * @returns Promise<BlogPost | null>
+ * @param currentPostId - ID of current post to exclude
+ * @param category - Category to filter by
+ * @param tags - Tags to match against
+ * @param limit - Maximum number of posts to return
+ * @returns Promise<BlogPost[]>
  */
-export const getBlogPostBySlug = cache(
-  async (slug: string): Promise<BlogPost | null> => {
+export const getRelatedPosts = cache(
+  async (
+    currentPostId: string,
+    category: string,
+    tags: string[] = [],
+    limit = 3
+  ): Promise<BlogPost[]> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      // First try to get posts with matching tags
+      if (tags.length > 0) {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .eq('is_published', true)
+          .neq('id', currentPostId)
+          .overlaps('tags', tags)
+          .order('published_date', { ascending: false })
+          .limit(limit);
+
+        if (!error && data && data.length > 0) {
+          return data as BlogPost[];
+        }
+      }
+
+      // Fallback to category-based related posts
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('is_published', true)
+        .eq('category', category)
+        .neq('id', currentPostId)
+        .order('published_date', { ascending: false })
+        .limit(limit);
+
+      if (error) {
+        console.error('[Blog] Error fetching related posts:', error);
+        return [];
+      }
+
+      return (data as BlogPost[]) || [];
+    } catch (err) {
+      console.error('[Blog] Unexpected error fetching related posts:', err);
+      return [];
+    }
+  }
+);
+
+/**
+ * Fetch blog posts by category
+ * 
+ * @param category - Category to filter by
+ * @returns Promise<BlogPost[]>
+ */
+export const getPostsByCategory = cache(
+  async (category: string): Promise<BlogPost[]> => {
     try {
       const supabase = getSupabaseServer();
 
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('slug', slug)
         .eq('is_published', true)
-        .single();
+        .eq('category', category)
+        .order('published_date', { ascending: false });
 
       if (error) {
-        console.error(`[Blog] Error fetching post ${slug}:`, error);
-        return null;
+        console.error('[Blog] Error fetching posts by category:', error);
+        return [];
       }
 
-      return data as BlogPost;
+      return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error(`[Blog] Unexpected error fetching post ${slug}:`, err);
-      return null;
+      console.error('[Blog] Unexpected error fetching posts by category:', err);
+      return [];
+    }
+  }
+);
+
+/**
+ * Search blog posts by search term
+ * 
+ * @param searchTerm - Search query
+ * @returns Promise<BlogPost[]>
+ */
+export const searchPosts = cache(
+  async (searchTerm: string): Promise<BlogPost[]> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('is_published', true)
+        .or(`title.ilike.%${searchTerm}%,excerpt.ilike.%${searchTerm}%`)
+        .order('published_date', { ascending: false });
+
+      if (error) {
+        console.error('[Blog] Error searching posts:', error);
+        return [];
+      }
+
+      return (data as BlogPost[]) || [];
+    } catch (err) {
+      console.error('[Blog] Unexpected error searching posts:', err);
+      return [];
+    }
+  }
+);
+
+/**
+ * Fetch recent blog posts
+ * 
+ * @param limit - Maximum number of posts to return
+ * @returns Promise<BlogPost[]>
+ */
+export const getRecentPosts = cache(
+  async (limit: number = 5): Promise<BlogPost[]> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('is_published', true)
+        .order('published_date', { ascending: false })
+        .limit(limit);
+
+      if (error) {
+        console.error('[Blog] Error fetching recent posts:', error);
+        return [];
+      }
+
+      return (data as BlogPost[]) || [];
+    } catch (err) {
+      console.error('[Blog] Unexpected error fetching recent posts:', err);
+      return [];
+    }
+  }
+);
+
+/**
+ * Fetch all unique categories
+ * 
+ * @returns Promise<string[]>
+ */
+export const getAllCategories = cache(
+  async (): Promise<string[]> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('category')
+        .eq('is_published', true);
+
+      if (error) {
+        console.error('[Blog] Error fetching categories:', error);
+        return [];
+      }
+
+      const uniqueCategories = [...new Set(data.map(post => post.category))];
+      return uniqueCategories.filter(Boolean) as string[];
+    } catch (err) {
+      console.error('[Blog] Unexpected error fetching categories:', err);
+      return [];
+    }
+  }
+);
+
+/**
+ * Fetch all unique tags
+ * 
+ * @returns Promise<string[]>
+ */
+export const getAllTags = cache(
+  async (): Promise<string[]> => {
+    try {
+      const supabase = getSupabaseServer();
+
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('tags')
+        .eq('is_published', true);
+
+      if (error) {
+        console.error('[Blog] Error fetching tags:', error);
+        return [];
+      }
+
+      const allTags = data
+        .filter(post => post.tags && Array.isArray(post.tags))
+        .flatMap(post => post.tags as string[]);
+
+      const uniqueTags = [...new Set(allTags)];
+      return uniqueTags.filter(Boolean);
+    } catch (err) {
+      console.error('[Blog] Unexpected error fetching tags:', err);
+      return [];
     }
   }
 );
