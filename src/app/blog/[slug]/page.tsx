@@ -8,12 +8,13 @@ import { notFound } from 'next/navigation';
 export const revalidate = 3600;
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate dynamic metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return {
@@ -57,8 +58,9 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
+  const { slug } = await params;
   const [post, allPosts] = await Promise.all([
-    getBlogPostBySlug(params.slug),
+    getBlogPostBySlug(slug),
     getAllBlogPosts(),
   ]);
 
