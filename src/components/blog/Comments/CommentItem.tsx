@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { Comment, CommentFormData } from '@/types/comment';
+import { Comment, CommentFormData } from '@/integrations/types/comment';
 import { CommentForm } from './CommentForm';
-import avatar from '@/assets/img/architecture.png';
 
 interface CommentItemProps {
   comment: Comment;
@@ -29,6 +27,15 @@ export const CommentItem: React.FC<CommentItemProps> = ({
     });
   };
 
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   const handleReplySubmit = async (data: CommentFormData) => {
     const success = await onReply({ ...data, parent_id: comment.id });
     if (success) {
@@ -38,62 +45,59 @@ export const CommentItem: React.FC<CommentItemProps> = ({
   };
 
   return (
-    <div className={`${isReply ? 'article_detail_wrapss single_article_wrap format-standard' : ''}`}>
+    <div className={`comment-item ${isReply ? 'comment-reply' : ''}`} style={{ marginLeft: isReply ? '40px' : '0', paddingBottom: '1.5rem', borderBottom: isReply ? 'none' : '1px solid #e7ecf5' }}>
       <div className="article_posts_thumb">
         <div className="row">
           <div className="col-12">
-            <div className="d-flex align-items-start mb-2">
-              <Image
-                src={avatar}
-                alt="avatar"
-                width={40}
-                height={40}
+            <div className="d-flex align-items-start mb-3">
+              <div 
+                className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
                 style={{
-                  borderRadius: '50%',
-                  objectFit: 'cover',
+                  width: '50px',
+                  height: '50px',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
                   marginRight: 12,
+                  flexShrink: 0
                 }}
-              />
+              >
+                {getInitials(comment.author_name)}
+              </div>
               <div className="d-flex flex-column">
-                <span className="font-medium">
+                <span className="font-weight-bold" style={{ fontSize: '1.1rem', color: '#334e6f' }}>
                   {comment.author_name}
                 </span>
-                <span className="text-muted">
-                  <i className="fa fa-calendar text-primary" style={{ marginRight: 4 }}></i>
+                <span className="text-muted" style={{ fontSize: '0.875rem' }}>
+                  <i className="ti-calendar" style={{ marginRight: 4 }}></i>
                   {formatDate(comment.created_at)}
                 </span>
               </div>
             </div>
           </div>
           <div className="col-12">
-            <div className="form-group">
-              <input
-                type="text"
-                value={comment.content}
-                className="form-control"
-                readOnly
-                disabled
-              />
-            </div>
-            <div className="d-flex align-items-start mb-2">
+            <div className="comment-content mb-3" style={{ paddingLeft: '62px' }}>
+              <p style={{ color: '#5a6c7d', lineHeight: '1.7', marginBottom: '1rem' }}>
+                {comment.content}
+              </p>
               {!isReply && (
-                <a
-                  href="#"
+                <button
                   onClick={e => {
                     e.preventDefault();
                     setShowReplyForm(!showReplyForm);
                   }}
-                  style={{ color: '#007bff', textDecoration: 'none', fontSize: 14, display: 'inline-flex', alignItems: 'center' }}
+                  className="btn btn-sm btn-outline-primary"
+                  style={{ fontSize: '0.875rem' }}
                 >
-                  Reply
-                </a>
+                  <i className="ti-back-right" style={{ marginRight: 4 }}></i>
+                  {showReplyForm ? 'Cancel' : 'Reply'}
+                </button>
               )}
             </div>
           </div>
         </div>
 
         {showReplyForm && !isReply && (
-          <div className="mt-4">
+          <div className="reply-form mt-3 p-3 bg-light rounded" style={{ marginLeft: '62px' }}>
             <CommentForm
               onSubmit={handleReplySubmit}
               parentId={comment.id}
@@ -104,7 +108,7 @@ export const CommentItem: React.FC<CommentItemProps> = ({
         )}
 
         {comment.replies && comment.replies.length > 0 && (
-          <div className="mt-4">
+          <div className="comment-replies mt-3">
             {comment.replies.map((reply) => (
               <CommentItem
                 key={reply.id}
@@ -115,8 +119,6 @@ export const CommentItem: React.FC<CommentItemProps> = ({
             ))}
           </div>
         )}
-
-        <hr />
       </div>
     </div>
   );

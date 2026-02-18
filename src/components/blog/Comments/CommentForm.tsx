@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { CommentFormData } from '@/types/comment';
-import { useAuth } from '@/hooks/useAuth';
+import React, { useState } from 'react';
+import { CommentFormData } from '@/integrations/types/comment';
 import toast from 'react-hot-toast';
 
 interface CommentFormProps {
@@ -18,22 +17,9 @@ export const CommentForm: React.FC<CommentFormProps> = ({
   onCancel,
   compact = false
 }) => {
-  const { user, profile } = useAuth();
-
-  // Compute default values based on user/profile
-  const defaultAuthorName = useMemo(() => 
-    user && profile ? (profile.full_name || '') : '', 
-    [user, profile]
-  );
-  
-  const defaultAuthorEmail = useMemo(() => 
-    user && profile ? (profile.email || '') : '', 
-    [user, profile]
-  );
-
   const [formData, setFormData] = useState<CommentFormData>({
-    author_name: defaultAuthorName,
-    author_email: defaultAuthorEmail,
+    author_name: '',
+    author_email: '',
     content: '',
     parent_id: parentId,
   });
@@ -62,8 +48,8 @@ export const CommentForm: React.FC<CommentFormProps> = ({
         duration: 5000,
       });
       setFormData({
-        author_name: defaultAuthorName,
-        author_email: defaultAuthorEmail,
+        author_name: '',
+        author_email: '',
         content: '',
         parent_id: parentId,
       });
@@ -97,24 +83,24 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 id="author_name"
                 type="text"
                 className="form-control"
-                value={user && profile ? defaultAuthorName : formData.author_name}
+                value={formData.author_name}
                 onChange={(e) => handleChange('author_name', e.target.value)}
+                placeholder="Your name"
                 required
-                disabled={!!user}
               />
             </div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="form-group">
-              <label htmlFor="author_email">Email *</label>
+              <label htmlFor="author_email">Email * (will not be published)</label>
               <input
                 id="author_email"
                 type="email"
                 className="form-control"
-                value={user && profile ? defaultAuthorEmail : formData.author_email}
+                value={formData.author_email}
                 onChange={(e) => handleChange('author_email', e.target.value)}
+                placeholder="your@email.com"
                 required
-                disabled={!!user}
               />
             </div>
           </div>
