@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { BlogPost } from '@/integrations/types/blog';
 import BlogGrid from './BlogGrid';
 import BlogSidebar from './BlogSidebar';
@@ -13,9 +13,9 @@ interface BlogPageContentProps {
 
 export default function BlogPageContent({ initialPosts }: BlogPageContentProps) {
   const [posts] = useState<BlogPost[]>(initialPosts);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('all');
-  const [selectedCountry, setSelectedCountry] = useState('all');
+  const [searchTerm, setSearchTermRaw] = useState('');
+  const [selectedFilter, setSelectedFilterRaw] = useState('all');
+  const [selectedCountry, setSelectedCountryRaw] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const searchParams = useSearchParams();
   const postsPerPage = 9;
@@ -23,11 +23,28 @@ export default function BlogPageContent({ initialPosts }: BlogPageContentProps) 
   const countries = ['Canada', 'UK', 'USA', 'France', 'Germany', 'Ireland', 'Malta', 'Japan'];
   const filters = ['Undergraduate', 'Postgraduate', 'Visa', 'SOPs', 'Scholarships', 'Work'];
 
+  const categoryParam = searchParams?.get('category');
+
+  // Wrapper functions that reset page when filters change
+  const setSearchTerm = (term: string) => {
+    setSearchTermRaw(term);
+    setCurrentPage(1);
+  };
+
+  const setSelectedFilter = (filter: string) => {
+    setSelectedFilterRaw(filter);
+    setCurrentPage(1);
+  };
+
+  const setSelectedCountry = (country: string) => {
+    setSelectedCountryRaw(country);
+    setCurrentPage(1);
+  };
+
   const filteredPosts = useMemo(() => {
     let filtered = posts;
 
     // Filter by category from URL params
-    const categoryParam = searchParams.get('category');
     if (categoryParam && categoryParam !== 'all') {
       filtered = filtered.filter(post => post.category === categoryParam);
     }
@@ -54,19 +71,17 @@ export default function BlogPageContent({ initialPosts }: BlogPageContentProps) 
     }
 
     return filtered;
-  }, [posts, searchTerm, selectedCountry, selectedFilter, searchParams]);
-
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filteredPosts]);
-
-  const paginatedPosts = filteredPosts.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
-  );
+  }, [posts, searchTerm, selectedCountry, selectedFilter, categoryParam]);
 
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  
+  // Ensure currentPage is valid - clamp to available pages
+  const safePage = Math.min(currentPage, Math.max(1, totalPages));
+
+  const paginatedPosts = filteredPosts.slice(
+    (safePage - 1) * postsPerPage,
+    safePage * postsPerPage
+  );
 
   return (
     <>
@@ -82,11 +97,11 @@ export default function BlogPageContent({ initialPosts }: BlogPageContentProps) 
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <nav aria-label="Page navigation">
                       <ul className="pagination justify-content-center">
-                        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                        <li className={`page-item ${safePage === 1 ? 'disabled' : ''}`}>
                           <button
                             className="page-link"
                             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                            disabled={currentPage === 1}
+                            disabled={safePage === 1}
                           >
                             Previous
                           </button>
@@ -94,7 +109,7 @@ export default function BlogPageContent({ initialPosts }: BlogPageContentProps) 
                         {[...Array(totalPages)].map((_, index) => (
                           <li
                             key={index + 1}
-                            className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+                            className={`page-item ${safePage === index + 1 ? 'active' : ''}`}
                           >
                             <button
                               className="page-link"
@@ -104,11 +119,11 @@ export default function BlogPageContent({ initialPosts }: BlogPageContentProps) 
                             </button>
                           </li>
                         ))}
-                        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <li className={`page-item ${safePage === totalPages ? 'disabled' : ''}`}>
                           <button
                             className="page-link"
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                            disabled={currentPage === totalPages}
+                            disabled={safePage === totalPages}
                           >
                             Next
                           </button>

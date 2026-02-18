@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         hostname: "blogassets.leverageedu.com",
         port: "",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "gbs.edu.mt",
+        port: "",
+        pathname: "/**",
       }
     ],
     unoptimized: false,

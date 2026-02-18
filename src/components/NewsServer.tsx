@@ -14,14 +14,6 @@ const formatDate = (dateString: string) => {
 export default async function NewsServer() {
   const featuredPosts = await getFeaturedPosts();
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-
   if (featuredPosts.length === 0) {
     return (
       <section className="min gray" style={{backgroundColor: '#DFFFFF'}}>

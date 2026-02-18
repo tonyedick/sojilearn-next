@@ -38,10 +38,10 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                     src={post.featured_image_url}
                     alt={post.title}
                     className="img-fluid"
-                    loading="lazy"
                     style={{height: "220px", width: "100%", objectFit: "cover"}}
-                    width={400}
+                    loading="lazy"
                     height={220}
+                    width={400}
                   />
                 </Link>
               )}
@@ -73,6 +73,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                             className="img-fluid circle" 
                             src={post.author_avatar_url}
                             alt={post.author_name}
+                            style={{height: "40px", width: "40px", objectFit: "cover"}}
                             loading="lazy"
                             width={40}
                             height={40}
