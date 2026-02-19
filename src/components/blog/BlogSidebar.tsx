@@ -4,6 +4,7 @@ import { BlogPost } from '@/integrations/types/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'moment';
+import { WebsiteAnalytics } from '@/utils/websiteAnalytics';
 
 interface BlogSidebarProps {
   posts: BlogPost[];

@@ -3,6 +3,7 @@ import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/blog/api';
 import BlogDetailContent from '@/components/blog/SingleBlog/BlogDetailContent';
 import BlogLayout from "@/components/Layouts/BlogLayout";
 import Link from "next/link";
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { notFound } from 'next/navigation';
 
 export const revalidate = 3600;
@@ -58,6 +59,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
+  useAnalytics();
   const { slug } = await params;
   const [post, allPosts] = await Promise.all([
     getBlogPostBySlug(slug),

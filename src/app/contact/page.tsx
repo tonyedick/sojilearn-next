@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Content from '@/components/ContactContent';
 import AppLayout from "@/components/Layouts/AppLayout";
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Contact Us - Sojilearn",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function Contact() {
+    useAnalytics();
   return (
     <AppLayout>
      <>

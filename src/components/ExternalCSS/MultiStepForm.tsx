@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, Fi
 import { FormData, FormErrors } from '../../integrations/types/form';
 import { supabase } from '../../integrations/supabase/client';
 import './main.css';
+import { WebsiteAnalytics } from '@/utils/websiteAnalytics';
 
 const initialFormData: FormData = {
   firstName: '',
@@ -84,6 +85,11 @@ export default function MultiStepForm() {
   };
 
   const handleNext = () => {
+    WebsiteAnalytics.trackButtonClick(
+      'application_next_step',
+      'multi-step-form',
+      `Step ${currentStep} to ${currentStep + 1}`
+    );
     if (validateStep(currentStep)) {
       setCurrentStep(prev => Math.min(prev + 1, 4));
     }
@@ -100,18 +106,17 @@ export default function MultiStepForm() {
     }
   };
 
-  // const fillTestData = (profile?: 'waec_graduate' | 'undergraduate' | 'graduate' | 'working_professional') => {
-  //   const testData = profile ? getTestDataByProfile(profile) : generateTestData();
-  //   setFormData(testData);
-  //   setErrors({});
-  //   setSubmitError('');
-  // };
-
   const handleSubmit = async () => {
     if (!validateStep(4)) return;
 
     setIsSubmitting(true);
     setSubmitError('');
+
+    WebsiteAnalytics.trackFormSubmission(
+      'student_application',
+      data,
+      1000 // Potential value in dollars
+    );
     
     try {
       const { error } = await supabase

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Content from '@/components/DisclaimerContent';
 import AppLayout from "@/components/Layouts/AppLayout";
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Disclaimer - Sojilearn",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function Disclaimer() {
+  useAnalytics();
   return (
     <AppLayout>
      <>

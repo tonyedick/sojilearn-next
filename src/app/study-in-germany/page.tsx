@@ -11,6 +11,7 @@ import {
   PostUniGY,
   FAQGY
 } from '@/components/GY';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Study in Germany - Top Germany Universities | Sojilearn Study Abroad Consultants",
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default function StudyInGermany() {
+  useAnalytics();
   return (
     <AppLayout>
      <>

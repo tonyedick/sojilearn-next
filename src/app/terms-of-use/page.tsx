@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Content from '@/components/TCContent';
 import AppLayout from "@/components/Layouts/AppLayout";
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Terms of Use - Sojilearn",
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function TermsOfUse() {
+  useAnalytics();
+  
   return (
     <AppLayout>
      <>

@@ -4,6 +4,7 @@ import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 import "./plugins.css";
+import { WebsiteAnalytics } from '@/lib/analytics/websiteAnalytics';
 
 const jost = Jost({
   subsets: ['latin'],
@@ -31,6 +32,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  if (typeof window !== 'undefined') {
+    WebsiteAnalytics.initialize();
+  }
+
   return (
     <html lang="en">
       <head>

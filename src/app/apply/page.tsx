@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Content from '@/components/ApplyContent';
 import AppLayout from "@/components/Layouts/AppLayout";
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Online application - Sojilearn",
@@ -25,6 +26,8 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+
+  useAnalytics();
   return (
     <AppLayout>
      <>

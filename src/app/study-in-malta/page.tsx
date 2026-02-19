@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import AppLayout from "@/components/Layouts/AppLayout";
+import { useAnalytics } from '@/hooks/useAnalytics';
 import {
   MaltaNews,
   BannerStudyInMalta,
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default function StudyInMalta() {
+  useAnalytics();
   return (
     <AppLayout>
      <>

@@ -6,7 +6,7 @@
  *
  * @see {@link @/lib/blog/api} for data fetching logic
  */
-
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { Metadata } from "next";
 import { getAllBlogPosts } from '@/lib/blog/api';
 import BlogPageContent from '@/components/blog/BlogPageContent';
@@ -27,7 +27,8 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getAllBlogPosts();
+    const posts = await getAllBlogPosts();
+    useAnalytics();
 
   return (
     <BlogLayout>
