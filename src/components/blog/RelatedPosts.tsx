@@ -71,7 +71,7 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
                   </Link>
                   <span className="post-date">
                     <i className="ti-calendar"></i>
-                    {moment(post.created_at).format(dateFormat)}
+                    {moment(post.published_date).format(dateFormat)}
                   </span>
                 </span>
               </>

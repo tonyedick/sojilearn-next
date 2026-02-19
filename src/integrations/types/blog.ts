@@ -19,3 +19,22 @@ export interface BlogPost {
   seo_description?: string;
   created_at: string;
 }
+
+/**
+ * Blog post list response type
+ */
+export interface BlogPostListResponse {
+  posts: BlogPost[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
+/**
+ * API error response type
+ */
+export interface BlogAPIErrorResponse {
+  error: string;
+  statusCode?: number;
+  details?: unknown;
+}

@@ -20,7 +20,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServer } from '@/lib/supabase/server';
-import { BlogPost } from '@/types';
+import { BlogPost } from '@/integrations/types/blog';
 
 /**
  * Allowed country values for blog post filtering
@@ -78,7 +78,7 @@ export async function GET(
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
-      .eq('is_published', true as boolean)
+      .eq('is_published', true)
       .contains('tags', [country])
       .order('published_date', { ascending: false })
       .limit(3);
@@ -92,7 +92,7 @@ export async function GET(
     }
 
     // Return successful response with cache headers
-    return NextResponse.json(data as BlogPost[], {
+    return NextResponse.json(data as unknown as BlogPost[], {
       status: 200,
       headers: {
         'Cache-Control': `public, s-maxage=${CACHE_CONFIG.revalidate}, stale-while-revalidate=${CACHE_CONFIG.swr}`,
