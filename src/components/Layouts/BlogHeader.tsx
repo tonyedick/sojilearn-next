@@ -113,7 +113,7 @@ export default function BlogHeader() {
               transition={{ duration: 0.25 }}
               className="md:hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-card rounded-lg mt-2 border border-border">
+              <div className="px-2 pt-2 pb-3 space-y-1 bg-card rounded-lg mt-2 mb-2 border border-border">
                 <div className="flex flex-col gap-1">
                 {categories.map((category) => {
                   const href =

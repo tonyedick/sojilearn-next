@@ -48,10 +48,10 @@ const CACHE_CONFIG = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { country: string } }
+  context: { params: Promise<{ country: string }> }
 ) {
   try {
-    const country = params.country;
+    const { country } = await context.params;
 
     // Input validation
     if (!country) {
