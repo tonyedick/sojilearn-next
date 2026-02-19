@@ -36,13 +36,13 @@ export const getBlogPostsByCountry = cache(
         .limit(3);
 
       if (error) {
-        console.error(`[Blog] Error fetching ${country} posts:`, error);
+        console.log(`[Blog] Error fetching ${country} posts:`, error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error(`[Blog] Unexpected error fetching ${country} posts:`, err);
+      console.log(`[Blog] Unexpected error fetching ${country} posts:`, err);
       return [];
     }
   }
@@ -68,13 +68,13 @@ export const getAllBlogPosts = cache(
         .limit(limit);
 
       if (error) {
-        console.error('[Blog] Error fetching all posts:', error);
+        console.log('[Blog] Error fetching all posts:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching all posts:', err);
+      console.log('[Blog] Unexpected error fetching all posts:', err);
       return [];
     }
   }
@@ -100,13 +100,13 @@ export const getBlogPostBySlug = cache(
         .single();
 
       if (error) {
-        console.error(`[Blog] Error fetching post ${slug}:`, error);
+        console.log(`[Blog] Error fetching post ${slug}:`, error);
         return null;
       }
 
       return data as BlogPost;
     } catch (err) {
-      console.error(`[Blog] Unexpected error fetching post ${slug}:`, err);
+      console.log(`[Blog] Unexpected error fetching post ${slug}:`, err);
       return null;
     }
   }
@@ -132,13 +132,13 @@ export const getFeaturedPosts = cache(
         .limit(limit);
 
       if (error) {
-        console.error('[Blog] Error fetching featured posts:', error);
+        console.log('[Blog] Error fetching featured posts:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching featured posts:', err);
+      console.log('[Blog] Unexpected error fetching featured posts:', err);
       return [];
     }
   }
@@ -190,13 +190,13 @@ export const getRelatedPosts = cache(
         .limit(limit);
 
       if (error) {
-        console.error('[Blog] Error fetching related posts:', error);
+        console.log('[Blog] Error fetching related posts:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching related posts:', err);
+      console.log('[Blog] Unexpected error fetching related posts:', err);
       return [];
     }
   }
@@ -221,13 +221,13 @@ export const getPostsByCategory = cache(
         .order('published_date', { ascending: false });
 
       if (error) {
-        console.error('[Blog] Error fetching posts by category:', error);
+        console.log('[Blog] Error fetching posts by category:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching posts by category:', err);
+      console.log('[Blog] Unexpected error fetching posts by category:', err);
       return [];
     }
   }
@@ -252,13 +252,13 @@ export const searchPosts = cache(
         .order('published_date', { ascending: false });
 
       if (error) {
-        console.error('[Blog] Error searching posts:', error);
+        console.log('[Blog] Error searching posts:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error searching posts:', err);
+      console.log('[Blog] Unexpected error searching posts:', err);
       return [];
     }
   }
@@ -283,13 +283,13 @@ export const getRecentPosts = cache(
         .limit(limit);
 
       if (error) {
-        console.error('[Blog] Error fetching recent posts:', error);
+        console.log('[Blog] Error fetching recent posts:', error);
         return [];
       }
 
       return (data as BlogPost[]) || [];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching recent posts:', err);
+      console.log('[Blog] Unexpected error fetching recent posts:', err);
       return [];
     }
   }
@@ -311,14 +311,14 @@ export const getAllCategories = cache(
         .eq('is_published', true);
 
       if (error) {
-        console.error('[Blog] Error fetching categories:', error);
+        console.log('[Blog] Error fetching categories:', error);
         return [];
       }
 
       const uniqueCategories = [...new Set(data.map(post => post.category))];
       return uniqueCategories.filter(Boolean) as string[];
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching categories:', err);
+      console.log('[Blog] Unexpected error fetching categories:', err);
       return [];
     }
   }
@@ -340,7 +340,7 @@ export const getAllTags = cache(
         .eq('is_published', true);
 
       if (error) {
-        console.error('[Blog] Error fetching tags:', error);
+        console.log('[Blog] Error fetching tags:', error);
         return [];
       }
 
@@ -351,7 +351,7 @@ export const getAllTags = cache(
       const uniqueTags = [...new Set(allTags)];
       return uniqueTags.filter(Boolean);
     } catch (err) {
-      console.error('[Blog] Unexpected error fetching tags:', err);
+      console.log('[Blog] Unexpected error fetching tags:', err);
       return [];
     }
   }

@@ -16,6 +16,29 @@ interface BlogSidebarProps {
 
 const dateFormat = 'MMM DD, YYYY';
 
+/**
+ * BlogSidebar component that displays a sidebar with related posts, search functionality, and recent posts.
+ * 
+ * @component
+ * @param {BlogSidebarProps} props - The component props
+ * @param {Post} props.currentPost - The currently displayed blog post
+ * @param {Post[]} props.allPosts - Array of all available blog posts
+ * @param {(searchTerm: string) => void} props.onSearch - Callback function triggered when user searches for posts
+ * @param {(tag: string) => void} props.onFilterByTag - Callback function triggered when user filters posts by tag
+ * 
+ * @returns {JSX.Element} A sidebar containing:
+ *   - RelatedPosts component showing posts related to the current post
+ *   - Search input field for filtering blog posts by search term
+ *   - Widget displaying the 5 most recent posts with thumbnail images, titles, and publication dates
+ * 
+ * @example
+ * <BlogSidebar 
+ *   currentPost={post} 
+ *   allPosts={allBlogPosts}
+ *   onSearch={handleSearch}
+ *   onFilterByTag={handleFilterByTag}
+ * />
+ */
 export default function BlogSidebar({ 
   currentPost, 
   allPosts,
@@ -46,10 +69,10 @@ export default function BlogSidebar({
       </div>
 
       <div className="single_widgets widget_thumb_post">
-        <h4 className="title">Recent Posts</h4>
+        <h4 className="title">All Posts</h4>
         <ul>
           {allPosts.length > 0 ? (
-            allPosts.slice(0, 5).map(post => (
+            allPosts.map(post => (
               <li key={post.id}>
                 <span className="left">
                   <Image

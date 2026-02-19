@@ -9,7 +9,12 @@ import { Menu, X } from "lucide-react";
 import logo from "../../assets/img/logo-dark.png";
 import "../ExternalCSS/main.css";
 
-const categories = [
+export default function BlogHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const searchParams = useSearchParams();
+
+  const categories = [
   { name: "All Posts", slug: "all" },
   { name: "Study Abroad", slug: "Study Abroad" },
   { name: "Scholarships", slug: "Scholarships" },
@@ -18,11 +23,6 @@ const categories = [
   { name: "Scholarships and Grants", slug: "Scholarships and Grants" },
   { name: "SOP", slug: "SOP" },
 ];
-
-export default function BlogHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const searchParams = useSearchParams();
 
   const currentCategory = searchParams?.get("category") || "all";
   const isActive = (slug: string) => currentCategory === slug;
@@ -35,7 +35,7 @@ export default function BlogHeader() {
 
   return (
     <nav
-      className={`text-dark bg-white text-gray-900 sticky top-0 z-9999 ${
+      className={`text-dark font-medium bg-white text-gray-900 sticky top-0 z-9999 ${
         scrolled ? "shadow-md" : ""
       }`}
     >
