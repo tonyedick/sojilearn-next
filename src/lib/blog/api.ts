@@ -30,7 +30,7 @@ export const getBlogPostsByCountry = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .contains('tags', [country])
         .order('published_date', { ascending: false })
         .limit(3);
@@ -63,7 +63,7 @@ export const getAllBlogPosts = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .order('published_date', { ascending: false })
         .limit(limit);
 
@@ -126,8 +126,8 @@ export const getFeaturedPosts = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
-        .eq('featured', true)
+        .is('is_published', true)
+        .is('featured', true)
         .order('published_date', { ascending: false })
         .limit(limit);
 
@@ -168,7 +168,7 @@ export const getRelatedPosts = cache(
         const { data, error } = await supabase
           .from('blog_posts')
           .select('*')
-          .eq('is_published', true)
+          .is('is_published', true)
           .neq('id', currentPostId)
           .overlaps('tags', tags)
           .order('published_date', { ascending: false })
@@ -183,7 +183,7 @@ export const getRelatedPosts = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .eq('category', category)
         .neq('id', currentPostId)
         .order('published_date', { ascending: false })
@@ -216,7 +216,7 @@ export const getPostsByCategory = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .eq('category', category)
         .order('published_date', { ascending: false });
 
@@ -247,7 +247,7 @@ export const searchPosts = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .or(`title.ilike.%${searchTerm}%,excerpt.ilike.%${searchTerm}%`)
         .order('published_date', { ascending: false });
 
@@ -278,7 +278,7 @@ export const getRecentPosts = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('is_published', true)
+        .is('is_published', true)
         .order('published_date', { ascending: false })
         .limit(limit);
 
@@ -308,7 +308,7 @@ export const getAllCategories = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('category')
-        .eq('is_published', true);
+        .is('is_published', true);
 
       if (error) {
         console.log('[Blog] Error fetching categories:', error);
@@ -337,7 +337,7 @@ export const getAllTags = cache(
       const { data, error } = await supabase
         .from('blog_posts')
         .select('tags')
-        .eq('is_published', true);
+        .is('is_published', true);
 
       if (error) {
         console.log('[Blog] Error fetching tags:', error);
