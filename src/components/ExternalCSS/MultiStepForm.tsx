@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, FileText, Loader2 } from 'lucide-react';
 import { FormData, FormErrors } from '../../integrations/types/form';
-import { supabase } from '../../integrations/supabase/client';
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { submitApplication } from '@/lib/applications/api';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import './main.css';
 
 const initialFormData: FormData = {
@@ -85,9 +85,10 @@ export default function MultiStepForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, 4));
+      const nextStep = Math.min(currentStep + 1, 4);
+      setCurrentStep(nextStep);
 
       // Track step progression
       await trackButtonClick(
@@ -123,61 +124,51 @@ export default function MultiStepForm() {
         'application_form',
         'Final validation failed'
       );
-      return
-    };
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitError('');
 
-    
     try {
-      const { error } = await supabase
-        .from('study_abroad_applications')
-        .insert([{
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          current_level: formData.currentLevel,
-          institution: formData.institution || null,
-          graduation_year: formData.graduationYear,
-          preferred_country: formData.preferredCountry,
-          preferred_program: formData.preferredProgram,
-          field_of_study: formData.fieldOfStudy,
-          preferred_university: formData.preferredUniversity || null,
-          intended_start_date: formData.intendedStartDate,
-          has_passport: formData.hasPassport,
-          has_degree: formData.hasDegree,
-          has_transcript: formData.hasTranscript,
-          previous_application: formData.previousApplication,
-          budget_range: formData.budgetRange,
-          additional_questions: formData.additionalQuestions || null,
-        }]);
+      // Call secure Server Action instead of direct database access
+      const response = await submitApplication(formData);
 
-      if (error) {
-        console.log('Supabase error:', error);
+      if (!response.success) {
+        // Handle validation or submission errors
+        if (response.errors) {
+          setErrors(response.errors);
+        }
+        setSubmitError(response.message);
 
-         // Track submission error
+        // Track submission error
         await trackButtonClick(
           'form_submission_error',
           'application_form',
-          `Database error: ${error.message}`
+          response.message
         );
-        console.log(`Database error: ${error.message}`);
+        return;
       }
 
-       // Track successful form submission
+      // Track successful form submission
       await trackConversion(
         'application_form_submission',
         null,
         formData.email
       );
-      
+
+      // Track country-specific conversion
+      await trackButtonClick(
+        `application_submitted_${formData.preferredCountry}`,
+        'application_form',
+        `Application submitted for ${formData.preferredCountry}`
+      );
+
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      setSubmitError(`Failed to submit form: ${errorMessage}. Please try again or contact support.`);
+      setSubmitError('An unexpected error occurred. Please try again later.');
 
       // Track general submission error
       await trackButtonClick(
