@@ -4,7 +4,7 @@ import { BlogPost } from '@/integrations/types/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'moment';
-import { WebsiteAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface BlogSidebarProps {
   posts: BlogPost[];
@@ -28,8 +28,40 @@ export default function BlogSidebar({
   setSelectedCountry,
   countries,
 }: BlogSidebarProps) {
-  
+  const { trackSearch, trackButtonClick, trackLinkClick } = useAnalytics();
   const recentPosts = posts.slice(0, 5);
+
+  // Handle search with analytics tracking
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    if (value.length >= 3) {
+      // Track search once user has typed at least 3 characters
+      const resultsCount = posts.filter(post => 
+        post.title.toLowerCase().includes(value.toLowerCase()) ||
+        post.excerpt?.toLowerCase().includes(value.toLowerCase())
+      ).length;
+      trackSearch(value, resultsCount);
+    }
+  };
+
+  // Handle country filter with analytics tracking
+  const handleCountryChange = (country: string) => {
+    setSelectedCountry(country);
+    trackButtonClick(
+      `filter_${country}`,
+      'blog_filters',
+      `Blog filtered by ${country}`
+    );
+  };
+
+  // Handle recent post click with analytics tracking
+  const handleRecentPostClick = (post: BlogPost) => {
+    trackLinkClick(
+      `/blog/${post.slug}`,
+      post.title,
+      false
+    );
+  };
 
   return (
     <>
@@ -44,7 +76,7 @@ export default function BlogSidebar({
             name="search" 
             placeholder="Search blog posts..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="pl-10"
           />
           <button type="submit"><i className="ti-search"></i></button>
@@ -57,7 +89,7 @@ export default function BlogSidebar({
           <li>
             <button
               className="category-btn"
-              onClick={() => setSelectedCountry('all')}
+              onClick={() => handleCountryChange('all')}
               style={{ 
                 background: 'none', 
                 border: 'none', 
@@ -74,7 +106,7 @@ export default function BlogSidebar({
             <li key={country}>
               <button
                 className={`category-btn ${selectedCountry === country ? 'active' : ''}`}
-                onClick={() => setSelectedCountry(country)}
+                onClick={() => handleCountryChange(country)}
                 style={{ 
                   background: 'none', 
                   border: 'none', 
@@ -109,7 +141,11 @@ export default function BlogSidebar({
                   )}
                 </span>
                 <span className="right">
-                  <Link className="feed-title" href={`/blog/${item.slug}`}>
+                  <Link 
+                    className="feed-title" 
+                    href={`/blog/${item.slug}`}
+                    onClick={() => handleRecentPostClick(item)}
+                  >
                     {item.title.slice(0, 40)}...
                   </Link> 
                   <span className="post-date">

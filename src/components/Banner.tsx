@@ -7,23 +7,30 @@ import animate1 from '../assets/img/ic-1.png';
 import animate2 from '../assets/img/ic-3.png';
 import bakImageLarge from '../assets/img/banner_soji2.jpg';
 import bakImageSmall from '../assets/img/banner_soji.jpg'; 
+import { useAnalytics } from '@/utils/websiteAnalytics';
 
 export default function Banner() {
-const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
-const [isMobile, setIsMobile] = useState(false);
+    const { trackButtonClick, trackConversion } = useAnalytics();
+    const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
+    const [isMobile, setIsMobile] = useState(false);
 
-useEffect(() => {
-    const checkMobile = () => {
-        const mobile = window.innerWidth <= 768;
-        setIsMobile(mobile);
-        SetBackgroundImage(mobile ? bakImageSmall.src : bakImageLarge.src);
-    };
+    useEffect(() => {
+        const checkMobile = () => {
+            const mobile = window.innerWidth <= 768;
+            setIsMobile(mobile);
+            SetBackgroundImage(mobile ? bakImageSmall.src : bakImageLarge.src);
+        };
 
-    checkMobile();
+        checkMobile();
 
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-}, []);
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+  const handleCTAClick = async () => {
+    await trackButtonClick('cta_section');
+    await trackConversion('cta_click', null);
+  };
 
   return (
     <>
@@ -52,7 +59,13 @@ useEffect(() => {
                                 style={{textShadow: "8px 8px 8px gray"}}
                               >The Most Comprehensive & Personalised Study Abroad Plan. <br />Obsessed with Student Success.</p>
                               <div className="inline_btn">
-                                  <Link href="/apply" className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer">START NOW</Link>
+                                  <Link 
+                                        href="/apply" 
+                                        className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer"
+                                      onClick={handleCTAClick}
+                                  >
+                                    START NOW
+                                </Link>
                               </div>
                           </div>
                       </div>

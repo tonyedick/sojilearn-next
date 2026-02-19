@@ -1,12 +1,14 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useAnalytics } from '@/utils/websiteAnalytics';
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
+  const { trackConversion } = useAnalytics();
 
   const phoneNumber = '+2348137806643'; 
   const accountName = 'Sojilearn - Study in Malta | UK | USA | Canada | Germany | Ireland';
@@ -21,6 +23,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         accountName={accountName}
         avatar={avatar}
         statusMessage={statusMessage}
+        onClick={() => trackConversion('whatsapp_click', 'floating_whatsapp', 'WhatsApp button clicked')}
       />
       {children}
     </QueryClientProvider>

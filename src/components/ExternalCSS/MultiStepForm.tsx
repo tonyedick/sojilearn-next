@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, FileText, Loader2 } from 'lucide-react';
 import { FormData, FormErrors } from '../../integrations/types/form';
 import { supabase } from '../../integrations/supabase/client';
+import { useAnalytics } from '@/utils/websiteAnalytics';
 import './main.css';
-import { WebsiteAnalytics } from '@/utils/websiteAnalytics';
 
 const initialFormData: FormData = {
   firstName: '',
@@ -29,6 +29,7 @@ const initialFormData: FormData = {
 };
 
 export default function MultiStepForm() {
+  const { trackButtonClick, trackConversion } = useAnalytics();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -85,13 +86,22 @@ export default function MultiStepForm() {
   };
 
   const handleNext = () => {
-    WebsiteAnalytics.trackButtonClick(
-      'application_next_step',
-      'multi-step-form',
-      `Step ${currentStep} to ${currentStep + 1}`
-    );
     if (validateStep(currentStep)) {
       setCurrentStep(prev => Math.min(prev + 1, 4));
+
+      // Track step progression
+      await trackButtonClick(
+        `form_step_${nextStep}`,
+        'application_form',
+        `Advanced to step ${nextStep}`
+      );
+    } else {
+      // Track validation errors
+      await trackButtonClick(
+        `form_step_${currentStep}_error`,
+        'application_form',
+        `Validation failed on step ${currentStep}`
+      );
     }
   };
 
@@ -107,16 +117,18 @@ export default function MultiStepForm() {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep(4)) return;
+    if (!validateStep(4)) {
+      await trackButtonClick(
+        'form_submission_failed',
+        'application_form',
+        'Final validation failed'
+      );
+      return
+    };
 
     setIsSubmitting(true);
     setSubmitError('');
 
-    WebsiteAnalytics.trackFormSubmission(
-      'student_application',
-      data,
-      1000 // Potential value in dollars
-    );
     
     try {
       const { error } = await supabase
@@ -143,15 +155,36 @@ export default function MultiStepForm() {
         }]);
 
       if (error) {
-        console.error('Supabase error:', error);
-        throw new Error(`Database error: ${error.message}`);
+        console.log('Supabase error:', error);
+
+         // Track submission error
+        await trackButtonClick(
+          'form_submission_error',
+          'application_form',
+          `Database error: ${error.message}`
+        );
+        console.log(`Database error: ${error.message}`);
       }
+
+       // Track successful form submission
+      await trackConversion(
+        'application_form_submission',
+        null,
+        formData.email
+      );
       
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       setSubmitError(`Failed to submit form: ${errorMessage}. Please try again or contact support.`);
+
+      // Track general submission error
+      await trackButtonClick(
+        'form_submission_failed',
+        'application_form',
+        errorMessage
+      );
     } finally {
       setIsSubmitting(false);
     }

@@ -2,8 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link'
+import { useAnalytics } from '@/utils/websiteAnalytics';
 
 export default function CTA() {
+    const { trackButtonClick, trackConversion } = useAnalytics();
+
+    const handleCTAClick = async () => {
+        await trackButtonClick('contact_cta', 'cta_section', 'Contact us CTA clicked');
+        await trackConversion('cta_click', null);
+    };
+
   return (
     <div>
         <div className="clearfix"></div>
@@ -18,7 +26,9 @@ export default function CTA() {
                                 <h3>Do You Have Questions ?</h3>
                                 <span>We help you to grow your career and empower your dreams.</span>
                             </div>
-                            <Link href="mailto:sojilearn@gmail.com" className="btn btn-call_action_wrap" rel="noopener noreferrer">Contact Us Today</Link>
+                            <Link href="mailto:sojilearn@gmail.com" className="btn btn-call_action_wrap" rel="noopener noreferrer"
+                                onClick={handleCTAClick}
+                            >Contact Us Today</Link>
                         </div>
                     </div>
                 </div>

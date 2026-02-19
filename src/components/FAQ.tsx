@@ -2,8 +2,11 @@
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { ChevronDownIcon } from 'lucide-react';
+import { useAnalytics } from '@/utils/websiteAnalytics';
 
 export default function FAQ() {
+  const { trackButtonClick } = useAnalytics();
+
   const faqs = [
     {
       question: "How much does it cost to process admission for a student?",
@@ -27,6 +30,14 @@ export default function FAQ() {
     }
   ];
 
+  const handleFAQClick = (question: string) => {
+    trackButtonClick(
+      'faq_expand',
+      'faq_section',
+      `FAQ clicked: ${question.substring(0, 50)}`
+    );
+  };
+
   return (
     <section>
       <div className="container">
@@ -44,7 +55,7 @@ export default function FAQ() {
                 <Disclosure key={index}>
                   {({ open }) => (
                     <div className="card mb-2">
-                      <DisclosureButton className="card-header bg-white shadow-sm border-0 w-full">
+                      <DisclosureButton className="card-header bg-white shadow-sm border-0 w-full" onClick={() => handleFAQClick(faq.question)}>
                         <h6 className="mb-0 accordion_title d-flex justify-content-between align-items-center">
                           <span className="text-dark py-2">{faq.question}</span>
                           <ChevronDownIcon

@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import toast from 'react-hot-toast';
+import { useAnalytics } from '@/utils/websiteAnalytics';
 
 export default function NewsletterSection() {
+  const { trackConversion } = useAnalytics();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,6 +34,7 @@ export default function NewsletterSection() {
       } else {
         toast.success("Thank you for subscribing to our newsletter!");
         setEmail('');
+        trackConversion('newsletter_signup', 'blog_newsletter_section', 'Newsletter signup completed');
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);

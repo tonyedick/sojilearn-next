@@ -89,7 +89,7 @@ export default function BlogSidebar({
                   </Link>
                   <span className="post-date">
                     <i className="ti-calendar"></i>
-                    {Moment(post.created_at).format(dateFormat)}
+                    {Moment(post.published_date).format(dateFormat)}
                   </span>
                 </span>
               </li>

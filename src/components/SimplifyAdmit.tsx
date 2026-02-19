@@ -1,8 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import canada from "../assets/img/news.png";
+import { useAnalytics } from '@/utils/websiteAnalytics';
 
 export default function SimplifyAdmit() {
+    const { trackButtonClick } = useAnalytics();
+
+    const handleApplyClick = () => {
+        trackButtonClick('start_application', 'simplify_admit_section', 'Start application clicked');
+    };
+
   return (
     <div>
         <section style={{backgroundColor: '#DFFFFF'}}>
@@ -17,9 +26,12 @@ export default function SimplifyAdmit() {
                         <p>We help students navigate & assess their journey thus far, matching them to personalised mentors, counsels them towards their higher education dream with an employability lens, and makes sure that everyone punched way above their weight to make dreams come alive and truly be able to level up.</p>
                         <div className="foot-news-last mt-4">
                             <div className="inline_btn">
-								<Link href="/apply" 
-                                className="btn-apply btn theme-bg text-white font-medium pulse-zoom" 
-                                rel="noopener noreferrer">START NOW</Link>
+								<Link 
+                                    href="/apply" 
+                                    className="btn-apply btn theme-bg text-white font-medium pulse-zoom" 
+                                    rel="noopener noreferrer"
+                                    onClick={handleApplyClick}
+                                >START NOW</Link>
 							</div>
                         </div>
                     </div>
