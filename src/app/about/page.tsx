@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Content from '@/components/AboutContent';
 import AppLayout from "@/components/Layouts/AppLayout";
-import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
     title: "About Us - Study Abroad Consultants | UK, Finland, USA, Canada, Germany & Malta Universities",
@@ -26,8 +25,6 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  useAnalytics();
-
   return (
     <AppLayout>
      <>

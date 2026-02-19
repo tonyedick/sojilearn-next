@@ -18,7 +18,7 @@ export function CommentSection({ blogPostId }: CommentSectionProps) {
     try {
       setIsLoading(true);
       const { data, error } = await supabase
-        .from('blog_comments')
+        .from('comments')
         .select('*')
         .eq('blog_post_id', blogPostId)
         .eq('is_approved', true)
@@ -64,7 +64,7 @@ export function CommentSection({ blogPostId }: CommentSectionProps) {
   const handleCommentSubmit = async (data: CommentFormData): Promise<boolean> => {
     try {
       const { error } = await supabase
-        .from('blog_comments')
+        .from('comments')
         .insert({
           blog_post_id: blogPostId,
           author_name: data.author_name,

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Content from '@/components/PrivacyContent';
 import AppLayout from "@/components/Layouts/AppLayout";
-import { useAnalytics } from '@/hooks/useAnalytics';
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Sojilearn",
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicy() {
-  useAnalytics();
   return (
     <AppLayout>
      <>

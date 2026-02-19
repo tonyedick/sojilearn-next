@@ -42,7 +42,7 @@ export default function BlogDetailContent({ post, allPosts }: BlogDetailContentP
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-12 col-sm-12 col-12">
-            <BlogArticle post={post} trackConversion={trackConversion} />
+            <BlogArticle post={post} />
           </div>
 
           <div className="col-lg-4 col-md-12 col-sm-12 col-12">

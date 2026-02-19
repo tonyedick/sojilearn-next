@@ -87,15 +87,15 @@ export default function BlogHeader() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 rounded-md text-muted-foreground hover:theme-bg transition-colors"
             >
               <span className="sr-only">Toggle menu</span>
               {isMenuOpen ? (
-                <div className="px-2 py-2 border-4 border-primary/10 rounded-xl">
+                <div className="px-2 py-2 border-4 border-blue-200 rounded-xl">
                   <X className="w-6 h-6" />
                 </div>
               ) : (
-                <div className="px-2 py-2 border-4 border-primary/10 rounded-xl">
+                <div className="px-2 py-2 border-4 border-blue-200 rounded-xl">
                   <Menu className="w-6 h-6" />
                 </div>
               )}
@@ -114,6 +114,7 @@ export default function BlogHeader() {
               className="md:hidden"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 bg-card rounded-lg mt-2 border border-border">
+                <div className="flex flex-col gap-1">
                 {categories.map((category) => {
                   const href =
                     category.slug === "all"
@@ -134,6 +135,7 @@ export default function BlogHeader() {
                     </Link>
                   );
                 })}
+                </div>
               </div>
             </motion.div>
           )}
