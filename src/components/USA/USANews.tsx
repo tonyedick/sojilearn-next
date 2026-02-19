@@ -1,4 +1,4 @@
-import { getBlogPostsByCountry } from '@lib/blog/api';
+import { getBlogPostsByCountry } from '@/lib/blog/api';
 import Link from 'next/link';
 import Image from 'next/image';
 
