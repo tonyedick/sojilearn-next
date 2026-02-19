@@ -2,7 +2,7 @@
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { ChevronDownIcon } from 'lucide-react';
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function FAQ() {
   const { trackButtonClick } = useAnalytics();

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link'
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function CTA() {
     const { trackButtonClick, trackConversion } = useAnalytics();

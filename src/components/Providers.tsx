@@ -1,7 +1,7 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { FloatingWhatsApp } from 'react-floating-whatsapp';

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { CommentFormData } from '@/integrations/types/comment';
 import toast from 'react-hot-toast';
-import { WebsiteAnalytics } from '@/utils/websiteAnalytics';
+import { WebsiteAnalytics } from '@/lib/analytics/websiteAnalytics';
 
 interface CommentFormProps {
   onSubmit: (data: CommentFormData) => Promise<boolean>;

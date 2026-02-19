@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import canada from "../assets/img/news.png";
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function SimplifyAdmit() {
     const { trackButtonClick } = useAnalytics();

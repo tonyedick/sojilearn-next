@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from "next/image";
 import footerLogo from "../../assets/img/logo-dark.png";
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function Footer() {
     const { trackLinkClick } = useAnalytics();

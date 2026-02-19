@@ -7,7 +7,7 @@ import animate1 from '../assets/img/ic-1.png';
 import animate2 from '../assets/img/ic-3.png';
 import bakImageLarge from '../assets/img/banner_soji2.jpg';
 import bakImageSmall from '../assets/img/banner_soji.jpg'; 
-import { useAnalytics } from '@/utils/websiteAnalytics';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function Banner() {
     const { trackButtonClick, trackConversion } = useAnalytics();
