@@ -78,7 +78,7 @@ export async function GET(
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
-      .eq('is_published')
+      .eq('is_published', true)
       .contains('tags', [country])
       .order('published_date', { ascending: false })
       .limit(3);
