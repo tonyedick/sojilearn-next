@@ -1,6 +1,6 @@
 'use client';
 
-import { BlogPost } from '@/integrations/types/blog';
+import { BlogPost } from '@/lib/types/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 

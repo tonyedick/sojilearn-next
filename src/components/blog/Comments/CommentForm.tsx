@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CommentFormData } from '@/integrations/types/comment';
+import { CommentFormData } from '@/lib/types/comment';
 import toast from 'react-hot-toast';
 import { WebsiteAnalytics } from '@/lib/analytics/websiteAnalytics';
 
@@ -43,7 +43,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
     }
 
     // Track before submission
-    WebsiteAnalytics.trackFormSubmission('blog_comment', formData);
+    WebsiteAnalytics.trackFormSubmission('blog_comment', formData as unknown as Record<string, unknown>);
     const success = await onSubmit(formData);
 
     if (success) {

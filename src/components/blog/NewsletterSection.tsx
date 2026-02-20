@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabaseClient } from '@/lib/supabase/client';
 import toast from 'react-hot-toast';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -16,7 +16,7 @@ export default function NewsletterSection() {
 
     setIsLoading(true);
     try {
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from('newsletter_subscribers')
         .insert([
           {
@@ -34,7 +34,10 @@ export default function NewsletterSection() {
       } else {
         toast.success("Thank you for subscribing to our newsletter!");
         setEmail('');
-        trackConversion('newsletter_signup', 'blog_newsletter_section', 'Newsletter signup completed');
+        await trackConversion({
+          conversion_type: 'newsletter_signup',
+          conversion_goal: 'newsletter_section',
+        });
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);

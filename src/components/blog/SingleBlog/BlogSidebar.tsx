@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'moment';
-import { BlogPost } from '@/types/blog';
+import { BlogPost } from '@/lib/types/blog';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 
 interface BlogSidebarProps {

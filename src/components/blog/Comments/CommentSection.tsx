@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-import { Comment, CommentFormData } from '@/types/comment';
+import { supabaseClient } from '@/lib/supabase/client';
+import { Comment, CommentFormData } from '@/lib/types/comment';
 import { CommentForm } from './CommentForm';
 import { CommentItem } from './CommentItem';
 
@@ -17,7 +17,7 @@ export function CommentSection({ blogPostId }: CommentSectionProps) {
   const fetchComments = async () => {
     try {
       setIsLoading(true);
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('comments')
         .select('*')
         .eq('blog_post_id', blogPostId)
@@ -63,7 +63,7 @@ export function CommentSection({ blogPostId }: CommentSectionProps) {
 
   const handleCommentSubmit = async (data: CommentFormData): Promise<boolean> => {
     try {
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from('comments')
         .insert({
           blog_post_id: blogPostId,

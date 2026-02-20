@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Comment, CommentFormData } from '@/integrations/types/comment';
+import { Comment, CommentFormData } from '@/lib/types/comment';
 import { CommentForm } from './CommentForm';
 
 interface CommentItemProps {

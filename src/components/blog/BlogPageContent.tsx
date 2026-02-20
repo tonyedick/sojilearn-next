@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { BlogPost } from '@/integrations/types/blog';
+import { BlogPost } from '@/lib/types/blog';
 import BlogGrid from './BlogGrid';
 import BlogSidebar from './BlogSidebar';
 import NewsletterSection from './NewsletterSection';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { BlogPost as BlogPostType } from '@/types/blog';
+import { BlogPost as BlogPostType } from '@/lib/types/blog';
 import BlogArticle from './BlogArticle';
 import BlogSidebar from './BlogSidebar';
 

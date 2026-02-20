@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { BlogPost } from '@/types/blog';
+import { BlogPost } from '@/lib/types/blog';
 import { BlogContentRenderer, TableOfContents } from '@/components/blog';
 import { CommentSection } from '@/components/blog/Comments/CommentSection';
 import BlogPostMeta from './BlogPostMeta';

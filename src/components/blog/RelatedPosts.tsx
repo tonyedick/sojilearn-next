@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
-import { supabase } from '@/integrations/supabase/client';
-import { BlogPost } from '@/types/blog';
+import { supabaseClient } from '@/lib/supabase/client';
+import { BlogPost } from '@/lib/types/blog';
 
 interface RelatedPostsProps {
   currentPost: BlogPost | null;
@@ -21,7 +21,7 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
 
       try {
         // Fetch posts with same category or filter_type, excluding current post
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
           .from('blog_posts')
           .select('*')
           .eq('is_published', true)

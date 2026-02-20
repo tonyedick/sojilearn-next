@@ -8,8 +8,11 @@ export default function CTA() {
     const { trackButtonClick, trackConversion } = useAnalytics();
 
     const handleCTAClick = async () => {
-        await trackButtonClick('contact_cta', 'cta_section', 'Contact us CTA clicked');
-        await trackConversion('cta_click', null);
+        trackButtonClick('contact_cta', 'cta_section', 'Contact us CTA clicked');
+        await trackConversion({
+            conversion_type: 'cta_click',
+            conversion_goal: 'contact_us_cta',
+        });
     };
 
   return (

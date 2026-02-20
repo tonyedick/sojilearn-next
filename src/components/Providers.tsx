@@ -23,7 +23,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         accountName={accountName}
         avatar={avatar}
         statusMessage={statusMessage}
-        onClick={() => trackConversion('whatsapp_click', 'floating_whatsapp', 'WhatsApp button clicked')}
+        onClick={() => trackConversion({ conversion_type: 'whatsapp_click' })}
       />
       {children}
     </QueryClientProvider>

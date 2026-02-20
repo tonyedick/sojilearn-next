@@ -28,8 +28,11 @@ export default function Banner() {
     }, []);
 
   const handleCTAClick = async () => {
-    await trackButtonClick('cta_section');
-    await trackConversion('cta_click', null);
+    trackButtonClick('cta_section');
+    await trackConversion({
+      conversion_type: 'cta_click',
+      conversion_goal: 'hero_banner_cta',
+    });
   };
 
   return (
