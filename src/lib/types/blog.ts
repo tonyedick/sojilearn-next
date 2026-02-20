@@ -23,7 +23,7 @@ export interface BlogPost {
   category: 'Study Abroad' | 'Scholarships' | 'Success Stories' | 'Visa and Immigration' | 'Scholarships and Grants' | 'SOP';
   tags?: string[];
   filter_type?: 'Undergraduate' | 'Postgraduate' | 'Visa' | 'SOPs' | 'Scholarships';
-  is_published: boolean;
+  is_published: boolean | null;
   featured: boolean;
   reading_time_minutes?: number;
   seo_title?: string;

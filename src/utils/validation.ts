@@ -6,7 +6,7 @@
  * @module lib/utils/validation
  */
 
-import { COUNTRIES, type Country } from '@/types';
+import { COUNTRIES, type Country } from '@/lib/types/common';
 
 /**
  * Validates if a string is a valid email address

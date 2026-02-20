@@ -6,6 +6,8 @@
  * @module types
  */
 
-export * from './blog';
-export * from './common';
 export * from './api';
+export * from './blog';
+export * from './comment';
+export * from './common';
+export * from './form';

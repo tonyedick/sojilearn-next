@@ -1,6 +1,6 @@
 'use client';
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabaseClient } from '../supabase/client';
 
 /**
  * Enterprise-grade Website Analytics Utility
@@ -43,14 +43,14 @@ interface EventData {
   event_value?: number;
   page_path: string;
   session_id: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 interface ConversionData {
   conversion_type: string;
   conversion_value?: number;
   conversion_goal?: string;
-  form_data?: Record<string, any>;
+  form_data?: Record<string, unknown>;
   session_id: string;
 }
 
@@ -88,7 +88,7 @@ class SessionManager {
 
     const stored = this.getStoredSession();
     
-    if (this.isSessionValid(stored)) {
+    if (stored && this.isSessionValid(stored)) {
       this.updateLastActivity();
       return stored.sessionId;
     }
@@ -333,8 +333,8 @@ export class WebsiteAnalytics {
         ...deviceInfo,
         ...utmParams,
       };
-
-      const { data, error } = await supabase
+        
+      const { data, error } = await supabaseClient
         .from('website_visits')
         .insert(pageViewData)
         .select('id')
@@ -371,7 +371,7 @@ export class WebsiteAnalytics {
         page_path: window.location.pathname,
       };
 
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from('user_events')
         .insert(fullEventData);
 
@@ -397,7 +397,7 @@ export class WebsiteAnalytics {
         session_id: sessionId,
       };
 
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from('conversions')
         .insert(fullConversionData);
 
@@ -414,7 +414,7 @@ export class WebsiteAnalytics {
    */
   static trackFormSubmission(
     formName: string,
-    formData: Record<string, any>,
+    formData: Record<string, unknown>,
     value?: number
   ): void {
     // Track as event
@@ -578,7 +578,7 @@ export class WebsiteAnalytics {
               ttfb: Math.round(perfData.responseStart - perfData.requestStart),
             };
 
-            await supabase.from('performance_metrics').insert(metrics);
+            await supabaseClient.from('performance_metrics').insert(metrics);
           }
         } catch (error) {
           console.warn('Failed to track performance metrics:', error);

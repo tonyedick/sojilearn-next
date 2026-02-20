@@ -6,8 +6,8 @@
  */
 
 import { getSupabaseServer } from '@/lib/supabase/server';
-import { BlogPost } from '@/integrations/types/blog';
-// import { cache } from 'react';
+import { BlogPost } from '@/lib/types/blog';
+import { cache } from 'react';
 
 /**
  * Valid country tags for filtering blog posts

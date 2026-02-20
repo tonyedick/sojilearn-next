@@ -8,7 +8,7 @@
 'use server';
 
 import { getSupabaseServer } from '@/lib/supabase/server';
-import { FormData } from '@/integrations/types/form';
+import { FormData } from '@/lib/types/form';
 
 /**
  * Validation response type
@@ -112,24 +112,24 @@ export async function submitApplication(
 
     // 2. Sanitize inputs
     const sanitizedData = {
-      first_name: sanitizeString(formData.firstName),
-      last_name: sanitizeString(formData.lastName),
-      email: sanitizeString(formData.email)?.toLowerCase(),
-      phone: sanitizeString(formData.phone),
-      current_level: sanitizeString(formData.currentLevel),
-      institution: sanitizeString(formData.institution),
-      graduation_year: sanitizeString(formData.graduationYear),
-      preferred_country: sanitizeString(formData.preferredCountry),
-      preferred_program: sanitizeString(formData.preferredProgram),
-      field_of_study: sanitizeString(formData.fieldOfStudy),
-      preferred_university: sanitizeString(formData.preferredUniversity),
-      intended_start_date: sanitizeString(formData.intendedStartDate),
+      first_name: sanitizeString(formData.firstName) || '',
+      last_name: sanitizeString(formData.lastName) || '',
+      email: (sanitizeString(formData.email) || '').toLowerCase(),
+      phone: sanitizeString(formData.phone) || '',
+      current_level: sanitizeString(formData.currentLevel) || '',
+      institution: sanitizeString(formData.institution) || '',
+      graduation_year: sanitizeString(formData.graduationYear) || '',
+      preferred_country: sanitizeString(formData.preferredCountry) || '',
+      preferred_program: sanitizeString(formData.preferredProgram) || '',
+      field_of_study: sanitizeString(formData.fieldOfStudy) || '',
+      preferred_university: sanitizeString(formData.preferredUniversity) || '',
+      intended_start_date: sanitizeString(formData.intendedStartDate) || '',
       has_passport: Boolean(formData.hasPassport),
       has_degree: Boolean(formData.hasDegree),
       has_transcript: Boolean(formData.hasTranscript),
       previous_application: Boolean(formData.previousApplication),
-      budget_range: sanitizeString(formData.budgetRange),
-      additional_questions: sanitizeString(formData.additionalQuestions),
+      budget_range: sanitizeString(formData.budgetRange) || '',
+      additional_questions: sanitizeString(formData.additionalQuestions) || '',
     };
 
     // 3. Check for duplicate submission (rate limiting)
@@ -140,7 +140,7 @@ export async function submitApplication(
     const { data: recentSubmission } = await supabase
       .from('study_abroad_applications')
       .select('id, created_at')
-      .eq('email', sanitizedData.email)
+      .eq('email', sanitizedData.email || '')
       .gte('created_at', oneDayAgo)
       .single();
 
