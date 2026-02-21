@@ -1,5 +1,5 @@
 import FAQSection from '@/components/shared/FAQSection';
-import { FAQItem } from '@/lib/types';
+import { FAQItem } from '@/lib/types/common';
 
 const maltaFAQs: FAQItem[] = [
   {
