@@ -20,7 +20,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronDownIcon } from 'lucide-react';
-import { FAQItem } from '@/types';
+import { FAQItem } from '@/lib/types';
 import faqImage from '@/assets/img/side-1.png';
 
 interface FAQSectionProps {
