@@ -3,6 +3,7 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import { JSX } from "react";
+import { Toaster } from "react-hot-toast";
 import { useAnalytics } from '@/hooks/useAnalytics';
 
 type PageProps = {
@@ -15,6 +16,7 @@ const AppLayout = ({ children }: PageProps) => {
   
   return (
     <>  
+      <Toaster/>
       <Header />
         <main id="main-content" role="main">
           {children}

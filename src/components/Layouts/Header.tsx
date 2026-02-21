@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
       <nav 
-        className={`text-dark font-medium bg-white sticky top-0 z-9999 ${
+        className={`text-dark font-medium bg-white sticky top-0 z-9 ${
           scrolled ? 'shadow-md' : ''
         }`}
         role="navigation" aria-label="Main navigation"
