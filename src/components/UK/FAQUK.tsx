@@ -128,7 +128,7 @@
  */
 
 import FAQSection from '@/components/shared/FAQSection';
-import { FAQItem } from '@/types';
+import { FAQItem } from '@/lib/types';
 
 const ukFAQs: FAQItem[] = [
   {
@@ -177,7 +177,7 @@ const ukFAQs: FAQItem[] = [
           <li>University of Bath</li>
           <li>University of East Anglia</li>
           <li>University of St Andrews</li>
-          <li>King's College London</li>
+          <li>King&apos;s College London</li>
           <li>University of Birmingham</li>
           <li>Queen Mary University of London</li>
           <li>University of York</li>
