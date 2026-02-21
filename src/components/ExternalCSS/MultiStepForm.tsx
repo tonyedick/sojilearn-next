@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, FileText, Loader2 } from 'lucide-react';
-import { FormData, FormErrors } from '../../integrations/types/form';
+import { FormData, FormErrors } from '@/lib/types/form';
 import { submitApplication } from '@/lib/applications/api';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import './main.css';
@@ -151,11 +151,10 @@ export default function MultiStepForm() {
       }
 
       // Track successful form submission
-      await trackConversion(
-        'application_form_submission',
-        null,
-        formData.email
-      );
+        await trackConversion({
+            conversion_type: 'application_form_submission',
+            conversion_goal: 'application_form_completion',
+        });
 
       // Track country-specific conversion
       await trackButtonClick(
