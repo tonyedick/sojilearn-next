@@ -20,7 +20,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServer } from '@/lib/supabase/server';
-import { BlogPost } from '@/integrations/types/blog';
+import { BlogPost } from '@/lib/types/blog';
 
 /**
  * Allowed country values for blog post filtering
