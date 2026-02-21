@@ -9,7 +9,7 @@ export default function Footer() {
     const { trackLinkClick } = useAnalytics();
 
     const handleFooterLink = (destination: string, category: string) => {
-        trackLinkClick(destination, `footer_${category}`, `Footer link: ${destination}`);
+        trackLinkClick(destination, `footer_${category}`);
     };
 
     return (
