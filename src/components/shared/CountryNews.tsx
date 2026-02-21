@@ -17,7 +17,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { BlogPost, Country } from '@/types';
+import { BlogPost, Country } from '@/lib/types';
 
 interface CountryNewsProps {
   /** Country name for display */
