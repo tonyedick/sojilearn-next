@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Jost, Mulish } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
+import { Suspense } from "react";
 import "./globals.css";
 import "./plugins.css";
 import { WebsiteAnalytics } from '@/lib/analytics/websiteAnalytics';
@@ -44,9 +45,11 @@ export default function RootLayout({
       </head>
       <body className={mulish.className}>
         <ScrollToTop />
-        <Providers>
-          {children}
-        </Providers>
+        <Suspense fallback={null}>
+          <Providers>
+            {children}
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );

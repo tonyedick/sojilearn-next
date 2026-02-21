@@ -12,7 +12,7 @@ type Props = {
 }
 
 // Generate dynamic metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export default async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
 
