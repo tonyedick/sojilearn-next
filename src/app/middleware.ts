@@ -15,7 +15,7 @@ import { CSP_DIRECTIVES } from '@/config/security';
 /**
  * Format CSP directives into a header string
  */
-function formatCSP(directives: Record<string, string[]>): string {
+function formatCSP(directives: Record<string, readonly string[]>): string {
   return Object.entries(directives)
     .map(([key, values]) => `${key} ${values.join(' ')}`)
     .join('; ');
