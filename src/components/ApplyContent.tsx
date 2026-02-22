@@ -3,9 +3,10 @@
 import MultiStepForm from "./ExternalCSS/MultiStepForm";
 import Hero from "./ExternalCSS/Hero";
 import { useRef } from "react";
-
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function AboutContent() {
+    usePageTracking('application');
     const formRef = useRef<HTMLDivElement>(null);
 
     const scrollToForm = () => {

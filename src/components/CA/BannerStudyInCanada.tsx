@@ -6,8 +6,10 @@ import Image from 'next/image';
 import bakImageLarge from "../../assets/img/canada_banner.jpeg";
 import bakImageSmall from "../../assets/img/canada-banner-small.jpeg"; 
 import flag from "../../assets/img/canada-flag.webp";
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function BannerStudyInCanada() {
+    usePageTracking('Study In Canada');
     const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
     const [isMobile, setIsMobile] = useState(false);
 

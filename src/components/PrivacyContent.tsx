@@ -1,9 +1,10 @@
 'use client';
 
 import Link from "next/link";
-
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function PageContent() {
+      usePageTracking('privacy');
     return (
       <>
           <section className="gray">

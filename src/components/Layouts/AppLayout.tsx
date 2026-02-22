@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { JSX } from "react";
 import { Toaster } from "react-hot-toast";
-import { useAnalytics } from '@/hooks/useAnalytics';
+import { usePageTracking } from "@/utils/websiteAnalytics";
 
 type PageProps = {
   children: JSX.Element;
@@ -12,7 +12,7 @@ type PageProps = {
 
 const AppLayout = ({ children }: PageProps) => {
   // Track page views automatically for all pages using this layout
-  useAnalytics();
+  usePageTracking();
   
   return (
     <>  

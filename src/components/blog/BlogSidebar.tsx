@@ -4,7 +4,7 @@ import { BlogPost } from '@/lib/types/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'moment';
-import { useAnalytics } from '@/hooks/useAnalytics';
+import { useSearchTracking } from '@/utils/websiteAnalytics';
 
 interface BlogSidebarProps {
   posts: BlogPost[];
@@ -28,7 +28,7 @@ export default function BlogSidebar({
   setSelectedCountry,
   countries,
 }: BlogSidebarProps) {
-  const { trackSearch, trackButtonClick, trackLinkClick } = useAnalytics();
+  const { trackSearch } = useSearchTracking();
   const recentPosts = posts.slice(0, 5);
 
   // Handle search with analytics tracking
@@ -40,7 +40,7 @@ export default function BlogSidebar({
         post.title.toLowerCase().includes(value.toLowerCase()) ||
         post.excerpt?.toLowerCase().includes(value.toLowerCase())
       ).length;
-      trackSearch(value, resultsCount);
+      await trackSearch(value, resultsCount);
     }
   };
 

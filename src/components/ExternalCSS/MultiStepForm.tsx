@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, FileText, Loader2 } from 'lucide-react';
 import { FormData, FormErrors } from '@/lib/types/form';
 import { submitApplication } from '@/lib/applications/api';
-import { useAnalytics } from '@/hooks/useAnalytics';
 import './main.css';
+import { useConversionTracking } from '@/utils/websiteAnalytics';
 
 const initialFormData: FormData = {
   firstName: '',
@@ -29,7 +29,7 @@ const initialFormData: FormData = {
 };
 
 export default function MultiStepForm() {
-  const { trackButtonClick, trackConversion } = useAnalytics();
+  const { trackConversion } = useConversionTracking();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -89,20 +89,6 @@ export default function MultiStepForm() {
     if (validateStep(currentStep)) {
       const nextStep = Math.min(currentStep + 1, 4);
       setCurrentStep(nextStep);
-
-      // Track step progression
-      await trackButtonClick(
-        `form_step_${nextStep}`,
-        'application_form',
-        `Advanced to step ${nextStep}`
-      );
-    } else {
-      // Track validation errors
-      await trackButtonClick(
-        `form_step_${currentStep}_error`,
-        'application_form',
-        `Validation failed on step ${currentStep}`
-      );
     }
   };
 
@@ -119,14 +105,8 @@ export default function MultiStepForm() {
 
   const handleSubmit = async () => {
     if (!validateStep(4)) {
-      await trackButtonClick(
-        'form_submission_failed',
-        'application_form',
-        'Final validation failed'
-      );
       return;
     }
-
     setIsSubmitting(true);
     setSubmitError('');
 
@@ -140,41 +120,14 @@ export default function MultiStepForm() {
           setErrors(response.errors);
         }
         setSubmitError(response.message);
-
-        // Track submission error
-        await trackButtonClick(
-          'form_submission_error',
-          'application_form',
-          response.message
-        );
         return;
       }
 
-      // Track successful form submission
-        await trackConversion({
-            conversion_type: 'application_form_submission',
-            conversion_goal: 'application_form_completion',
-        });
-
-      // Track country-specific conversion
-      await trackButtonClick(
-        `application_submitted_${formData.preferredCountry}`,
-        'application_form',
-        `Application submitted for ${formData.preferredCountry}`
-      );
-
       setIsSubmitted(true);
+      trackConversion('application_submitted');
     } catch (error) {
-      console.error('Error submitting form:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.log('Error submitting form:', error);
       setSubmitError('An unexpected error occurred. Please try again later.');
-
-      // Track general submission error
-      await trackButtonClick(
-        'form_submission_failed',
-        'application_form',
-        errorMessage
-      );
     } finally {
       setIsSubmitting(false);
     }

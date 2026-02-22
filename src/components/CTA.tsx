@@ -2,18 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link'
-import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function CTA() {
-    const { trackButtonClick, trackConversion } = useAnalytics();
-
-    const handleCTAClick = async () => {
-        trackButtonClick('contact_cta', 'cta_section', 'Contact us CTA clicked');
-        await trackConversion({
-            conversion_type: 'cta_click',
-            conversion_goal: 'contact_us_cta',
-        });
-    };
 
   return (
     <div>

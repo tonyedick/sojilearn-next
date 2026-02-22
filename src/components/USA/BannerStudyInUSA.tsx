@@ -6,8 +6,11 @@ import React, { useState, useEffect } from 'react';
 import bakImageLarge from "../../assets/img/usa_banner.png";
 import bakImageSmall from "../../assets/img/usa-banner-small.png"; 
 import flag from "../../assets/img/usa-flag.webp";
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function BannerStudyInUSA() {
+    usePageTracking('Study In USA');
+
     const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
     const [isMobile, setIsMobile] = useState(false);
 

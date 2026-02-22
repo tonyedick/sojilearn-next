@@ -1,9 +1,11 @@
 'use client';
 
 import Link from "next/link";
-
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function TCContent() {   
+    usePageTracking('terms_of_use');
+
     return (
       <>
         <section className="gray">

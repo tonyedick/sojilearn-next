@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON as string;
+
 type VisitorInfo = {
   userAgent: string;
   referrer: string | null;
@@ -9,6 +12,8 @@ type VisitorInfo = {
   screen: string;
   timezone: string;
 };
+
+type SupabaseInsertPayload = Record<string, unknown>;
 
 const getSessionId = (): string => {
   if (typeof window === 'undefined') return '';
@@ -21,16 +26,24 @@ const getSessionId = (): string => {
   return sessionId;
 };
 
-// Use internal API instead of direct Supabase access
-const makeRequest = async (type: string, data: Record<string, unknown>): Promise<void> => {
+const makeRequest = async (endpoint: string, data: SupabaseInsertPayload): Promise<Response | undefined> => {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.warn('Supabase credentials not configured');
+    return;
+  }
+
   try {
-    await fetch('/api/analytics', {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Prefer: 'return=minimal'
       },
-      body: JSON.stringify({ type, data })
+      body: JSON.stringify(data)
     });
+    return response;
   } catch (error) {
     console.warn('Analytics error:', error);
   }
@@ -46,7 +59,7 @@ const getVisitorInfo = (): VisitorInfo => {
       timezone: 'UTC'
     };
   }
-  
+
   return {
     userAgent: navigator.userAgent,
     referrer: document.referrer || null,
@@ -57,7 +70,7 @@ const getVisitorInfo = (): VisitorInfo => {
 };
 
 // ============================================================================
-// HOOK-BASED API (Original React App)
+// REACT HOOKS API
 // ============================================================================
 
 export const usePageTracking = (blogPostId: string | null = null): void => {
@@ -70,53 +83,36 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
     
     startTime.current = Date.now();
     sessionId.current = getSessionId();
-    
+
     const initializeSession = async (): Promise<void> => {
       const visitorInfo = getVisitorInfo();
 
       try {
-        // Check if session exists via API
-        const checkResponse = await fetch('/api/analytics/session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: sessionId.current,
-            action: 'check'
-          })
-        });
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/user_sessions?session_id=eq.${sessionId.current}`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          }
+        );
 
-        const { exists, session } = await checkResponse.json();
+        const sessions = await response.json();
 
-        if (exists) {
-          // Update existing session
-          await fetch('/api/analytics/session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sessionId: sessionId.current,
-              action: 'update',
-              data: {
-                last_visit: new Date().toISOString(),
-                total_page_views: (session.total_page_views || 0) + 1,
-              }
-            })
+        if (sessions && sessions.length > 0) {
+          await makeRequest('user_sessions', {
+            session_id: sessionId.current,
+            last_visit: new Date().toISOString(),
+            total_page_views: (sessions[0].total_page_views || 0) + 1,
+            is_returning_visitor: true
           });
         } else {
-          // Create new session
-          await fetch('/api/analytics/session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sessionId: sessionId.current,
-              action: 'create',
-              data: {
-                session_id: sessionId.current,
-                user_agent: visitorInfo.userAgent,
-                referrer: visitorInfo.referrer,
-                is_returning_visitor: false,
-                total_page_views: 1
-              }
-            })
+          await makeRequest('user_sessions', {
+            session_id: sessionId.current,
+            user_agent: visitorInfo.userAgent,
+            referrer: visitorInfo.referrer,
+            is_returning_visitor: false
           });
         }
       } catch (error) {
@@ -126,7 +122,7 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
 
     const trackPageView = async (): Promise<void> => {
       const visitorInfo = getVisitorInfo();
-      await makeRequest('page_view', {
+      await makeRequest('page_views', {
         page_path: window.location.pathname,
         blog_post_id: blogPostId,
         user_session_id: sessionId.current,
@@ -138,18 +134,15 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
     const handleBeforeUnload = (): void => {
       const timeOnPage = Math.round((Date.now() - startTime.current) / 1000);
 
-      // Use sendBeacon for reliable tracking
-      const payload = JSON.stringify({
-        type: 'page_view',
-        data: {
+      navigator.sendBeacon(
+        `${SUPABASE_URL}/rest/v1/page_views`,
+        JSON.stringify({
           page_path: window.location.pathname,
           blog_post_id: blogPostId,
           user_session_id: sessionId.current,
           time_on_page: timeOnPage
-        }
-      });
-
-      navigator.sendBeacon('/api/analytics', payload);
+        })
+      );
     };
 
     initializeSession();
@@ -169,7 +162,7 @@ export const useSearchTracking = () => {
     resultsCount: number,
     clickedPostId: string | null = null
   ): Promise<void> => {
-    await makeRequest('search', {
+    await makeRequest('search_analytics', {
       search_query: searchQuery,
       results_count: resultsCount,
       clicked_post_id: clickedPostId,
@@ -188,7 +181,7 @@ export const useConversionTracking = () => {
     blogPostId: string | null = null,
     subscriberEmail: string | null = null
   ): Promise<void> => {
-    await makeRequest('conversion', {
+    await makeRequest('conversion_events', {
       event_type: eventType,
       blog_post_id: blogPostId,
       user_session_id: sessionId.current,
@@ -198,97 +191,3 @@ export const useConversionTracking = () => {
 
   return { trackConversion };
 };
-
-// ============================================================================
-// STATIC API (For useAnalytics hook compatibility)
-// ============================================================================
-
-export class WebsiteAnalytics {
-  static async trackPageView(blogPostId: string | null = null): Promise<void> {
-    if (typeof window === 'undefined') return;
-
-    const sessionId = getSessionId();
-    const visitorInfo = getVisitorInfo();
-
-    await makeRequest('page_view', {
-      page_path: window.location.pathname,
-      blog_post_id: blogPostId,
-      user_session_id: sessionId,
-      user_agent: visitorInfo.userAgent,
-      referrer: visitorInfo.referrer
-    });
-  }
-
-  static async trackEvent(
-    eventName: string,
-    eventCategory?: string,
-    eventLabel?: string,
-    eventValue?: number,
-    metadata?: Record<string, unknown>
-  ): Promise<void> {
-    if (typeof window === 'undefined') return;
-
-    await makeRequest('event', {
-      event_type: 'custom_event',
-      event_name: eventName,
-      event_category: eventCategory,
-      event_label: eventLabel,
-      event_value: eventValue,
-      page_path: window.location.pathname,
-      user_session_id: getSessionId(),
-      metadata: metadata ? JSON.stringify(metadata) : null
-    });
-  }
-
-  static async trackConversion(data: {
-    event_type?: string;
-    blog_post_id?: string | null;
-    subscriber_email?: string | null;
-    conversion_value?: number;
-  }): Promise<void> {
-    if (typeof window === 'undefined') return;
-
-    await makeRequest('conversion', {
-      event_type: data.event_type || 'conversion',
-      blog_post_id: data.blog_post_id || null,
-      user_session_id: getSessionId(),
-      subscriber_email: data.subscriber_email || null,
-      conversion_value: data.conversion_value
-    });
-  }
-
-  static async trackSearch(
-    searchQuery: string,
-    resultsCount: number,
-    clickedPostId?: string | null
-  ): Promise<void> {
-    if (typeof window === 'undefined') return;
-
-    await makeRequest('search', {
-      search_query: searchQuery,
-      results_count: resultsCount,
-      clicked_post_id: clickedPostId,
-      user_session_id: getSessionId()
-    });
-  }
-
-  static async trackFormSubmission(formName: string, formData?: Record<string, unknown>): Promise<void> {
-    await this.trackConversion({ event_type: 'form_submission' });
-    await this.trackEvent('form_submit', 'form', formName, undefined, formData);
-  }
-
-  static async trackButtonClick(buttonName: string, buttonCategory?: string): Promise<void> {
-    await this.trackEvent('button_click', buttonCategory || 'button', buttonName);
-  }
-
-  static async trackLinkClick(linkUrl: string, linkText?: string): Promise<void> {
-    await this.trackEvent('link_click', 'navigation', linkText || linkUrl, undefined, { url: linkUrl });
-  }
-
-  static async trackDownload(fileName: string, fileUrl: string): Promise<void> {
-    await this.trackEvent('download', 'file', fileName, undefined, { url: fileUrl });
-  }
-}
-
-export const analytics = WebsiteAnalytics;
-export default WebsiteAnalytics;

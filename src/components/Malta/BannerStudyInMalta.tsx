@@ -6,8 +6,10 @@ import React, { useState, useEffect } from 'react';
 import bakImageLarge from "../../assets/img/malta_banner.png";
 import bakImageSmall from "../../assets/img/malta_banner_small.png"; 
 import flag from "../../assets/img/uk_icon.webp";
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function BannerStudyInMalta() {
+    usePageTracking('Study In Malta');
     const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
     const [isMobile, setIsMobile] = useState(false);
 

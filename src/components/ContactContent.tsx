@@ -1,9 +1,11 @@
 'use client';
 
 import Link from "next/link";
-
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function ContactContent() {
+    usePageTracking('contact');
+
     return (
       <>
             <section className="page-title gray">

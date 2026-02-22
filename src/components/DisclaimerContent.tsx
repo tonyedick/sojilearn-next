@@ -1,9 +1,10 @@
 'use client';
 
 import Link from "next/link";
-
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function DisclaimerContent() {
+    usePageTracking('disclaimer');
     return (
       <>
         <section className="gray">

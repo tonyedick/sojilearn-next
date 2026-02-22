@@ -3,14 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import canada from "../assets/img/news.png";
-import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function SimplifyAdmit() {
-    const { trackButtonClick } = useAnalytics();
-
-    const handleApplyClick = () => {
-        trackButtonClick('start_application', 'simplify_admit_section', 'Start application clicked');
-    };
 
   return (
     <div>

@@ -3,7 +3,6 @@
 import Footer from "./Footer";
 import BlogHeader from "./BlogHeader";
 import { JSX } from 'react';
-import { useAnalytics } from '@/hooks/useAnalytics';
 import { Toaster } from "react-hot-toast";
 
 type PageProps = {
@@ -11,8 +10,6 @@ type PageProps = {
 };
 
 const BlogLayout = ({ children }: PageProps) => {
-  // Track page views automatically for all blog pages using this layout
-  useAnalytics();
   
   return (
     <>  

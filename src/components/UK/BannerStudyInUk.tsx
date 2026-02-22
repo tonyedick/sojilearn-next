@@ -6,8 +6,11 @@ import Image from 'next/image';
 import bakImageLarge from "../../assets/img/uk_banner.jpg";
 import bakImageSmall from "../../assets/img/uk-banner-small.jpeg"; 
 import flag from "../../assets/img/uk_icon.webp";
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 export default function BannerStudyInUk() {
+    usePageTracking('Study In UK');
+
     const [backgroundImage, SetBackgroundImage] = useState(bakImageLarge.src);
     const [isMobile, setIsMobile] = useState(false);
     

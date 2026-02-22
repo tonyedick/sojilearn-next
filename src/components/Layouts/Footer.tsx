@@ -3,14 +3,8 @@
 import Link from 'next/link';
 import Image from "next/image";
 import footerLogo from "../../assets/img/logo-dark.png";
-import { useAnalytics } from '@/hooks/useAnalytics';
 
 export default function Footer() {
-    const { trackLinkClick } = useAnalytics();
-
-    const handleFooterLink = (destination: string, category: string) => {
-        trackLinkClick(destination, `footer_${category}`);
-    };
 
     return (
         <footer role="contentinfo" className="light-footer skin-light-footer style-2">
@@ -46,12 +40,11 @@ export default function Footer() {
                                             <li>
                                                 <Link 
                                                 href="/"
-                                                    onClick={() => handleFooterLink('home', 'sojilearn')}
                                                 >Home
                                                 </Link></li>
-                                            <li><Link href="/about" onClick={() => handleFooterLink('about', 'sojilearn')}>About US</Link></li>
-                                            <li><Link href="/contact" onClick={() => handleFooterLink('contact', 'sojilearn')}>Contact Page</Link></li>
-                                            <li><Link href="/blog" target="_blank" onClick={() => handleFooterLink('blog', 'sojilearn')}>News & Articles</Link></li>
+                                            <li><Link href="/about" >About US</Link></li>
+                                            <li><Link href="/contact" >Contact Page</Link></li>
+                                            <li><Link href="/blog" target="_blank" >News & Articles</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -60,11 +53,11 @@ export default function Footer() {
                                     <div className="footer_widget">
                                         <h4 className="widget_title">Destinations</h4>
                                         <ul className="footer-menu">
-                                            <li><Link href="/study-in-uk" onClick={() => handleFooterLink('study-in-uk', 'destinations')}>Study in UK</Link></li>
-                                            <li><Link href="/study-in-canada" onClick={() => handleFooterLink('study-in-canada', 'destinations')}>Study in Canada</Link></li>
-                                            <li><Link href="/study-in-usa" onClick={() => handleFooterLink('study-in-usa', 'destinations')}>Study in USA<span className="new">New</span></Link></li>
-                                            <li><Link href="/study-in-germany" onClick={() => handleFooterLink('study-in-germany', 'destinations')}>Study in Germany</Link></li>
-                                            <li><Link href="/study-in-malta" onClick={() => handleFooterLink('study-in-malta', 'destinations')}>Study in Malta<span className="new">New</span></Link></li>
+                                            <li><Link href="/study-in-uk" >Study in UK</Link></li>
+                                            <li><Link href="/study-in-canada" >Study in Canada</Link></li>
+                                            <li><Link href="/study-in-usa" >Study in USA<span className="new">New</span></Link></li>
+                                            <li><Link href="/study-in-germany" >Study in Germany</Link></li>
+                                            <li><Link href="/study-in-malta" >Study in Malta<span className="new">New</span></Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -73,8 +66,8 @@ export default function Footer() {
                                     <div className="footer_widget">
                                         <h4 className="widget_title">Company</h4>
                                         <ul className="footer-menu">
-                                            <li><Link href="/blog" target="_blank" onClick={() => handleFooterLink('blog', 'company')}>Blog</Link></li>
-                                            <li className="font-weight-bold"><Link href="/apply" rel="noopener noreferrer" onClick={() => handleFooterLink('apply', 'company')}>START NOW</Link></li>
+                                            <li><Link href="/blog" target="_blank" >Blog</Link></li>
+                                            <li className="font-weight-bold"><Link href="/apply" rel="noopener noreferrer" >START NOW</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -95,18 +88,18 @@ export default function Footer() {
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-md-12 col-sm-12 text-center">
                              <ul className="nav-menu nav-menu-social">
-                                <li><Link href="/privacy-policy" onClick={() => handleFooterLink('privacy-policy', 'legal')}>Privacy Policy</Link></li>
-                                <li><Link href="/terms-of-use" onClick={() => handleFooterLink('terms-of-use', 'legal')}>Terms of Use</Link></li>
-                                <li><Link href="/disclaimer" onClick={() => handleFooterLink('disclaimer', 'legal')}>Disclaimer</Link></li>
+                                <li><Link href="/privacy-policy" >Privacy Policy</Link></li>
+                                <li><Link href="/terms-of-use" >Terms of Use</Link></li>
+                                <li><Link href="/disclaimer" >Disclaimer</Link></li>
                             </ul>
                         </div>
                         <div className="col-lg-6 col-md-12 sol-sm-12 text-center">
                             <ul className="social-links">
                                 <li><Link href="https://facebook.com/sojilearn" 
-                                target="_blank" rel="noopener noreferrer" onClick={() => handleFooterLink('facebook', 'social')}><i className="fab fa-facebook-f"></i></Link></li>
-                                <li><Link href="https://x.com/sojilearn" target="_blank" rel="noopener noreferrer" onClick={() => handleFooterLink('twitter', 'social')}><i className="fab fa-twitter"></i></Link></li>
-                                <li><Link href="https://instagram.com/sojilearn" target="_blank" rel="noopener noreferrer" onClick={() => handleFooterLink('instagram', 'social')}><i className="fab fa-instagram"></i></Link></li>
-                                <li><Link href="https://www.linkedin.com/company/sojilearn/" target="_blank" rel="noopener noreferrer" onClick={() => handleFooterLink('linkedin', 'social')}><i className="fab fa-linkedin-in"></i></Link></li>
+                                target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></Link></li>
+                                <li><Link href="https://x.com/sojilearn" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></Link></li>
+                                <li><Link href="https://instagram.com/sojilearn" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></Link></li>
+                                <li><Link href="https://www.linkedin.com/company/sojilearn/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></Link></li>
                             </ul>
                         </div>
                     </div>

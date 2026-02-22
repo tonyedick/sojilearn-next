@@ -5,7 +5,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Suspense } from "react";
 import "./globals.css";
 import "./plugins.css";
-import { usePageTracking } from '@/utils/websiteAnalytics';
 
 const jost = Jost({
   subsets: ['latin'],
@@ -33,7 +32,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  usePageTracking();
 
   return (
     <html lang="en">

@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { BlogPost as BlogPostType } from '@/lib/types/blog';
 import BlogArticle from './BlogArticle';
 import BlogSidebar from './BlogSidebar';
+import { usePageTracking } from '@/utils/websiteAnalytics';
 
 interface BlogDetailContentProps {
   post: BlogPostType;
@@ -12,6 +13,7 @@ interface BlogDetailContentProps {
 
 export default function BlogDetailContent({ post, allPosts }: BlogDetailContentProps) {
   const [filteredPosts, setFilteredPosts] = useState<BlogPostType[]>(allPosts);
+  usePageTracking(post?.id || null);
 
   const handleSearch = useCallback((searchTerm: string) => {
     if (!searchTerm) {
