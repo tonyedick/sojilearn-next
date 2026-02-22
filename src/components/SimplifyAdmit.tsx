@@ -24,7 +24,6 @@ export default function SimplifyAdmit() {
                                     href="/apply" 
                                     className="btn-apply btn theme-bg text-white font-medium pulse-zoom" 
                                     rel="noopener noreferrer"
-                                    onClick={handleApplyClick}
                                 >START NOW</Link>
 							</div>
                         </div>

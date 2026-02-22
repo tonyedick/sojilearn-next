@@ -20,7 +20,6 @@ export default function CTA() {
                                 <span>We help you to grow your career and empower your dreams.</span>
                             </div>
                             <Link href="mailto:sojilearn@gmail.com" className="btn btn-call_action_wrap" rel="noopener noreferrer"
-                                onClick={handleCTAClick}
                             >Contact Us Today</Link>
                         </div>
                     </div>
