@@ -35,7 +35,7 @@ export default function BlogHeader() {
 
   return (
     <nav
-      className={`text-dark font-medium bg-white text-gray-900 sticky top-0 z-9 ${
+      className={`text-dark font-medium bg-white text-gray-900 sticky top-0 z-999 ${
         scrolled ? "shadow-md" : ""
       }`}
     >

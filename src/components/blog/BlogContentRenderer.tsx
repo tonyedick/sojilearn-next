@@ -3,7 +3,7 @@ import React, { JSX, useEffect, useRef } from 'react';
 interface ContentBlock {
   id: string;
   type: 'heading' | 'paragraph' | 'image' | 'table' | 'list' | 'quote' | 'code';
-  content: any;
+  content: unknown;
   order: number;
 }
 
@@ -345,6 +345,7 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
       imageElement.setAttribute('data-processed', 'true');
       imageElement.style.maxWidth = '100%';
       imageElement.style.height = 'auto';
+      imageElement.style.width = 'auto'; 
       imageElement.style.borderRadius = '8px';
       imageElement.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
       imageElement.style.margin = '1rem 0';

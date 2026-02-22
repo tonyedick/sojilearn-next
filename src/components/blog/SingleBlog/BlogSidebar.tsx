@@ -80,7 +80,11 @@ export default function BlogSidebar({
                     alt={post.title}
                     width={80}
                     height={80}
-                    style={{ objectFit: 'cover' }}
+                    style={{ 
+                      objectFit: 'cover',
+                      width: '100%',      // CSS override
+                      height: 'auto'  
+                    }}
                   />
                 </span>
                 <span className="right">

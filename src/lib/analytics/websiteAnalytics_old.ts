@@ -75,48 +75,41 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
       const visitorInfo = getVisitorInfo();
 
       try {
-        // Check if session exists via API
-        const checkResponse = await fetch('/api/analytics/session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: sessionId.current,
-            action: 'check'
-          })
-        });
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/user_sessions?session_id=eq.${sessionId.current}&select=*`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          }
+        );
 
-        const { exists, session } = await checkResponse.json();
+        if (!response.ok) {
+          console.warn('Analytics: Could not fetch session');
+          return;
+        }
 
-        if (exists) {
+        const sessions = await response.json();
+
+        if (sessions && Array.isArray(sessions) && sessions.length > 0) {
           // Update existing session
-          await fetch('/api/analytics/session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sessionId: sessionId.current,
-              action: 'update',
-              data: {
-                last_visit: new Date().toISOString(),
-                total_page_views: (session.total_page_views || 0) + 1,
-              }
-            })
-          });
+          await updateRequest(
+            'user_sessions',
+            `session_id=eq.${sessionId.current}`,
+            {
+              last_visit: new Date().toISOString(),
+              total_page_views: (sessions[0].total_page_views || 0) + 1,
+            }
+          );
         } else {
           // Create new session
-          await fetch('/api/analytics/session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sessionId: sessionId.current,
-              action: 'create',
-              data: {
-                session_id: sessionId.current,
-                user_agent: visitorInfo.userAgent,
-                referrer: visitorInfo.referrer,
-                is_returning_visitor: false,
-                total_page_views: 1
-              }
-            })
+          await makeRequest('user_sessions', {
+            session_id: sessionId.current,
+            user_agent: visitorInfo.userAgent,
+            referrer: visitorInfo.referrer,
+            is_returning_visitor: false,
+            total_page_views: 1
           });
         }
       } catch (error) {
@@ -126,7 +119,7 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
 
     const trackPageView = async (): Promise<void> => {
       const visitorInfo = getVisitorInfo();
-      await makeRequest('page_view', {
+      await makeRequest('page_views', {
         page_path: window.location.pathname,
         blog_post_id: blogPostId,
         user_session_id: sessionId.current,
@@ -138,18 +131,17 @@ export const usePageTracking = (blogPostId: string | null = null): void => {
     const handleBeforeUnload = (): void => {
       const timeOnPage = Math.round((Date.now() - startTime.current) / 1000);
 
-      // Use sendBeacon for reliable tracking
       const payload = JSON.stringify({
-        type: 'page_view',
-        data: {
-          page_path: window.location.pathname,
-          blog_post_id: blogPostId,
-          user_session_id: sessionId.current,
-          time_on_page: timeOnPage
-        }
+        page_path: window.location.pathname,
+        blog_post_id: blogPostId,
+        user_session_id: sessionId.current,
+        time_on_page: timeOnPage
       });
 
-      navigator.sendBeacon('/api/analytics', payload);
+      navigator.sendBeacon(
+        `${SUPABASE_URL}/rest/v1/page_views`,
+        new Blob([payload], { type: 'application/json' })
+      );
     };
 
     initializeSession();
@@ -169,7 +161,7 @@ export const useSearchTracking = () => {
     resultsCount: number,
     clickedPostId: string | null = null
   ): Promise<void> => {
-    await makeRequest('search', {
+    await makeRequest('search_analytics', {
       search_query: searchQuery,
       results_count: resultsCount,
       clicked_post_id: clickedPostId,
@@ -188,7 +180,7 @@ export const useConversionTracking = () => {
     blogPostId: string | null = null,
     subscriberEmail: string | null = null
   ): Promise<void> => {
-    await makeRequest('conversion', {
+    await makeRequest('conversion_events', {
       event_type: eventType,
       blog_post_id: blogPostId,
       user_session_id: sessionId.current,
@@ -210,7 +202,7 @@ export class WebsiteAnalytics {
     const sessionId = getSessionId();
     const visitorInfo = getVisitorInfo();
 
-    await makeRequest('page_view', {
+    await makeRequest('page_views', {
       page_path: window.location.pathname,
       blog_post_id: blogPostId,
       user_session_id: sessionId,
@@ -228,7 +220,7 @@ export class WebsiteAnalytics {
   ): Promise<void> {
     if (typeof window === 'undefined') return;
 
-    await makeRequest('event', {
+    await makeRequest('conversion_events', {
       event_type: 'custom_event',
       event_name: eventName,
       event_category: eventCategory,
@@ -248,7 +240,7 @@ export class WebsiteAnalytics {
   }): Promise<void> {
     if (typeof window === 'undefined') return;
 
-    await makeRequest('conversion', {
+    await makeRequest('conversion_events', {
       event_type: data.event_type || 'conversion',
       blog_post_id: data.blog_post_id || null,
       user_session_id: getSessionId(),
@@ -264,7 +256,7 @@ export class WebsiteAnalytics {
   ): Promise<void> {
     if (typeof window === 'undefined') return;
 
-    await makeRequest('search', {
+    await makeRequest('search_analytics', {
       search_query: searchQuery,
       results_count: resultsCount,
       clicked_post_id: clickedPostId,

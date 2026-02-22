@@ -33,7 +33,7 @@ export const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
         if (error) throw error;
         setRelatedPosts((data as BlogPost[]) || []);
       } catch (error) {
-        console.error('Error fetching related posts:', error);
+        console.log('Error fetching related posts:', error);
       } finally {
         setLoading(false);
       }
