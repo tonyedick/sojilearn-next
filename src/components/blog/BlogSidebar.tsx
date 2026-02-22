@@ -47,20 +47,6 @@ export default function BlogSidebar({
   // Handle country filter with analytics tracking
   const handleCountryChange = (country: string) => {
     setSelectedCountry(country);
-    trackButtonClick(
-      `filter_${country}`,
-      'blog_filters',
-      `Blog filtered by ${country}`
-    );
-  };
-
-  // Handle recent post click with analytics tracking
-  const handleRecentPostClick = (post: BlogPost) => {
-    trackLinkClick(
-      `/blog/${post.slug}`,
-      post.title,
-      false
-    );
   };
 
   return (
@@ -144,7 +130,6 @@ export default function BlogSidebar({
                   <Link 
                     className="feed-title" 
                     href={`/blog/${item.slug}`}
-                    onClick={() => handleRecentPostClick(item)}
                   >
                     {item.title.slice(0, 40)}...
                   </Link> 
