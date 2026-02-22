@@ -53,9 +53,8 @@ export default function Banner() {
                               >The Most Comprehensive & Personalised Study Abroad Plan. <br />Obsessed with Student Success.</p>
                               <div className="inline_btn">
                                   <Link 
-                                        href="/apply" 
-                                        className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer"
-                                      onClick={handleCTAClick}
+                                    href="/apply" 
+                                    className="btn-apply btn theme-bg text-white font-medium pulse-zoom" rel="noopener noreferrer"
                                   >
                                     START NOW
                                 </Link>
