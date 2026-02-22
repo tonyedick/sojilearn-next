@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     if (action === 'check') {
       // Check if session exists
       const { data, error } = await supabase
-        .from('user_sessions')
+        .from('profiles')
         .select('*')
         .eq('session_id', sessionId)
         .single();
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
       // Create new session
       const { data: sessionData } = body;
       const { error } = await supabase
-        .from('user_sessions')
+        .from('profiles')
         .insert(sessionData);
 
       if (error) {
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       // Update existing session
       const { data: updateData } = body;
       const { error } = await supabase
-        .from('user_sessions')
+        .from('profiles')
         .update(updateData)
         .eq('session_id', sessionId);
 
