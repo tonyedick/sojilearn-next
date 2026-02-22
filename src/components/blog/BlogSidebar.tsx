@@ -4,7 +4,7 @@ import { BlogPost } from '@/lib/types/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'moment';
-import { useSearchTracking } from '@/utils/websiteAnalytics';
+import { useSearchTracking } from '@/lib/analytics/websiteAnalytics';
 
 interface BlogSidebarProps {
   posts: BlogPost[];
@@ -40,7 +40,7 @@ export default function BlogSidebar({
         post.title.toLowerCase().includes(value.toLowerCase()) ||
         post.excerpt?.toLowerCase().includes(value.toLowerCase())
       ).length;
-      await trackSearch(value, resultsCount);
+      trackSearch(value, resultsCount);
     }
   };
 

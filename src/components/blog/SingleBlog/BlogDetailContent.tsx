@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { BlogPost as BlogPostType } from '@/lib/types/blog';
 import BlogArticle from './BlogArticle';
 import BlogSidebar from './BlogSidebar';
-import { usePageTracking } from '@/utils/websiteAnalytics';
+import { usePageTracking } from '@/lib/analytics/websiteAnalytics';
 
 interface BlogDetailContentProps {
   post: BlogPostType;

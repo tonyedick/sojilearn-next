@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import bakImageLarge from "../../assets/img/malta_banner.png";
 import bakImageSmall from "../../assets/img/malta_banner_small.png"; 
 import flag from "../../assets/img/uk_icon.webp";
-import { usePageTracking } from '@/utils/websiteAnalytics';
+import { usePageTracking } from '@/lib/analytics/websiteAnalytics';
 
 export default function BannerStudyInMalta() {
     usePageTracking('Study In Malta');

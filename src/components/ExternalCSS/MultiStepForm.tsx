@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, CheckCircle, User, GraduationCap, Target, Fi
 import { FormData, FormErrors } from '@/lib/types/form';
 import { submitApplication } from '@/lib/applications/api';
 import './main.css';
-import { useConversionTracking } from '@/utils/websiteAnalytics';
+import { useConversionTracking } from '@/lib/analytics/websiteAnalytics';
 
 const initialFormData: FormData = {
   firstName: '',

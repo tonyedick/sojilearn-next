@@ -3,7 +3,7 @@
 import MultiStepForm from "./ExternalCSS/MultiStepForm";
 import Hero from "./ExternalCSS/Hero";
 import { useRef } from "react";
-import { usePageTracking } from '@/utils/websiteAnalytics';
+import { usePageTracking } from '@/lib/analytics/websiteAnalytics';
 
 export default function AboutContent() {
     usePageTracking('application');
