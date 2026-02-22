@@ -28,14 +28,6 @@ export default function FAQ() {
     }
   ];
 
-  const handleFAQClick = (question: string) => {
-    trackButtonClick(
-      'faq_expand',
-      'faq_section',
-      `FAQ clicked: ${question.substring(0, 50)}`
-    );
-  };
-
   return (
     <section>
       <div className="container">
