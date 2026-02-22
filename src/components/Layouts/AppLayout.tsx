@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { JSX } from "react";
 import { Toaster } from "react-hot-toast";
-import { usePageTracking } from "@/utils/websiteAnalytics";
+import { usePageTracking } from "@/lib/analytics/websiteAnalytics";
 
 type PageProps = {
   children: JSX.Element;

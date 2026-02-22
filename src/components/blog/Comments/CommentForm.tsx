@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { CommentFormData } from '@/lib/types/comment';
 import toast from 'react-hot-toast';
-import { WebsiteAnalytics } from '@/lib/analytics/websiteAnalytics';
 
 interface CommentFormProps {
   onSubmit: (data: CommentFormData) => Promise<boolean>;
@@ -42,8 +41,6 @@ export const CommentForm: React.FC<CommentFormProps> = ({
       return;
     }
 
-    // Track before submission
-    WebsiteAnalytics.trackFormSubmission('blog_comment', formData as unknown as Record<string, unknown>);
     const success = await onSubmit(formData);
 
     if (success) {
