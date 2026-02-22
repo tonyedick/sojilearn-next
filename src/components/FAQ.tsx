@@ -45,7 +45,7 @@ export default function FAQ() {
                 <Disclosure key={index}>
                   {({ open }) => (
                     <div className="card mb-2">
-                      <DisclosureButton className="card-header bg-white shadow-sm border-0 w-full" onClick={() => handleFAQClick(faq.question)}>
+                      <DisclosureButton className="card-header bg-white shadow-sm border-0 w-full">
                         <h6 className="mb-0 accordion_title d-flex justify-content-between align-items-center">
                           <span className="text-dark py-2">{faq.question}</span>
                           <ChevronDownIcon
