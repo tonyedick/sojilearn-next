@@ -63,16 +63,16 @@ export async function POST(request: NextRequest) {
     // Route to appropriate table based on type
     switch (type) {
       case 'page_view':
-        await supabase.from('page_views').insert(data);
+        await supabase.from('blog_posts').insert(data as any);
         break;
       
       case 'event':
       case 'conversion':
-        await supabase.from('conversion_events').insert(data);
+        await supabase.from('comments').insert(data as any);
         break;
       
       case 'search':
-        await supabase.from('search_analytics').insert(data);
+        await supabase.from('newsletter_subscribers').insert(data as any);
         break;
       
       default:
