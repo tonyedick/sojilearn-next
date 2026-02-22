@@ -1,9 +1,45 @@
 import React, { JSX, useEffect, useRef } from 'react';
 
+// Type definitions for different content blocks
+interface HeadingContent {
+  level: number;
+  text: string;
+}
+
+interface ParagraphContent {
+  text: string;
+}
+
+interface ImageContent {
+  url: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface TableContent {
+  headers: string[];
+  rows: string[][];
+}
+
+interface ListContent {
+  type: 'ordered' | 'unordered';
+  items: string[];
+}
+
+interface QuoteContent {
+  text: string; 
+  author?: string;
+}
+
+interface CodeContent {
+  code: string;
+  language?: string;
+}
+
 interface ContentBlock {
   id: string;
   type: 'heading' | 'paragraph' | 'image' | 'table' | 'list' | 'quote' | 'code';
-  content: unknown;
+  content: HeadingContent | ParagraphContent | ImageContent | TableContent | ListContent | QuoteContent | CodeContent;
   order: number;
 }
 
