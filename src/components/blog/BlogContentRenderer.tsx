@@ -135,17 +135,27 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
   };
 
   const renderBlock = (block: ContentBlock, index: number): JSX.Element => {
+    // Helper function to get heading level safely
+    const getHeadingLevel = (): number => {
+      if (block.type === 'heading' && 'level' in block.content) {
+        return (block.content as HeadingContent).level;
+      }
+      return 1;
+    };
+
+    const headingLevel = block.type === 'heading' ? getHeadingLevel() : 1;
+
     const styles = {
       heading: {
         scrollMarginTop: '80px',
-        marginTop: block.content.level === 1 ? '2rem' : block.content.level === 2 ? '2rem' : '1.5rem',
-        marginBottom: block.content.level === 1 ? '1rem' : block.content.level === 2 ? '1rem' : '0.75rem',
+        marginTop: headingLevel === 1 ? '2rem' : headingLevel === 2 ? '2rem' : '1.5rem',
+        marginBottom: headingLevel === 1 ? '1rem' : headingLevel === 2 ? '1rem' : '0.75rem',
         fontWeight: 'bold',
-        fontSize: block.content.level === 1 ? '1.875rem' : 
-                  block.content.level === 2 ? '1.5rem' : 
-                  block.content.level === 3 ? '1.25rem' : 
-                  block.content.level === 4 ? '1.125rem' : 
-                  block.content.level === 5 ? '1rem' : '0.875rem'
+        fontSize: headingLevel === 1 ? '1.875rem' : 
+                  headingLevel === 2 ? '1.5rem' : 
+                  headingLevel === 3 ? '1.25rem' : 
+                  headingLevel === 4 ? '1.125rem' : 
+                  headingLevel === 5 ? '1rem' : '0.875rem'
       },
       paragraph: {
         marginBottom: '1rem',
@@ -234,9 +244,10 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
     };
 
     switch (block.type) {
-      case 'heading':
-        const HeadingTag = `h${block.content.level}` as keyof JSX.IntrinsicElements;
-        const headingId = block.content.text.toLowerCase()
+      case 'heading': {
+        const headingContent = block.content as HeadingContent;
+        const HeadingTag = `h${headingContent.level}` as keyof JSX.IntrinsicElements;
+        const headingId = headingContent.text.toLowerCase()
           .replace(/[^\w\s-]/g, '')
           .replace(/\s+/g, '-')
           .trim() + '-' + index;
@@ -245,45 +256,51 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
           key: block.id,
           id: headingId,
           style: styles.heading
-        }, block.content.text);
+        }, headingContent.text);
+      }
 
-      case 'paragraph':
+      case 'paragraph': {
+        const paragraphContent = block.content as ParagraphContent;
         return (
           <p key={block.id} style={styles.paragraph}>
-            {block.content.text}
+            {paragraphContent.text}
           </p>
         );
+      }
 
-      case 'image':
+      case 'image': {
+        const imageContent = block.content as ImageContent;
         return (
           <figure key={block.id} style={styles.figure}>
             <img
-              src={block.content.url}
-              alt={block.content.alt || ''}
+              src={imageContent.url}
+              alt={imageContent.alt || ''}
               style={styles.image}
               loading="lazy"
             />
-            {block.content.caption && (
+            {imageContent.caption && (
               <figcaption style={styles.figcaption}>
-                {block.content.caption}
+                {imageContent.caption}
               </figcaption>
             )}
           </figure>
         );
+      }
 
-      case 'table':
+      case 'table': {
+        const tableContent = block.content as TableContent;
         return (
           <div key={block.id} style={{ overflowX: 'auto', margin: '1.5rem 0' }}>
             <table style={styles.table}>
               <thead>
                 <tr>
-                  {(block.content.headers || []).map((header: string, headerIndex: number) => (
+                  {(tableContent.headers || []).map((header: string, headerIndex: number) => (
                     <th key={headerIndex} style={styles.tableHeader}>{header}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {(block.content.rows || []).map((row: string[], rowIndex: number) => (
+                {(tableContent.rows || []).map((row: string[], rowIndex: number) => (
                   <tr key={rowIndex}>
                     {row.map((cell: string, cellIndex: number) => (
                       <td key={cellIndex} style={styles.tableCell}>{cell}</td>
@@ -294,9 +311,11 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
             </table>
           </div>
         );
+      }
 
-      case 'list':
-        const isOrdered = block.content.type === 'ordered';
+      case 'list': {
+        const listContent = block.content as ListContent;
+        const isOrdered = listContent.type === 'ordered';
         const ListTag = isOrdered ? 'ol' : 'ul';
         return (
           <ListTag key={block.id} 
@@ -305,39 +324,44 @@ const BlogContentRenderer: React.FC<BlogContentRendererProps> = ({ content, clas
               listStyleType: isOrdered ? 'decimal' : 'disc'
             }}
           >
-            {block.content.items.map((item: string, itemIndex: number) => (
+            {listContent.items.map((item: string, itemIndex: number) => (
               <li key={itemIndex} style={styles.listItem}>
                 {item}
               </li>
             ))}
           </ListTag>
         );
+      }
 
-      case 'quote':
+      case 'quote': {
+        const quoteContent = block.content as QuoteContent;
         return (
           <blockquote key={block.id} style={styles.quote}>
-            <p style={{ margin: 0 }}>{block.content.text}</p>
-            {block.content.author && (
+            <p style={{ margin: 0 }}>{quoteContent.text}</p>
+            {quoteContent.author && (
               <cite style={styles.citeAuthor}>
-                — {block.content.author}
+                — {quoteContent.author}
               </cite>
             )}
           </blockquote>
         );
+      }
 
-      case 'code':
+      case 'code': {
+        const codeContent = block.content as CodeContent;
         return (
           <div key={block.id} style={styles.codeContainer}>
-            {block.content.language && (
+            {codeContent.language && (
               <div style={styles.codeLanguage}>
-                {block.content.language}
+                {codeContent.language}
               </div>
             )}
             <pre style={styles.codeBlock}>
-              <code>{block.content.code}</code>
+              <code>{codeContent.code}</code>
             </pre>
           </div>
         );
+      }
 
       default:
         return <div key={block.id}>Unsupported content type</div>;
