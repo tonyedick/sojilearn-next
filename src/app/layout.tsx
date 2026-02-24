@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Mulish } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Suspense } from "react";
@@ -45,6 +46,7 @@ export default function RootLayout({
             {children}
           </Providers>
         </Suspense>
+        <Analytics />
       </body>
     </html>
   );
