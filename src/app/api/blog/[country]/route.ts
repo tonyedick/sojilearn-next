@@ -84,7 +84,7 @@ export async function GET(
       .limit(3);
 
     if (error) {
-      console.error('[Blog API] Database error:', error);
+      console.log('[Blog API] Database error:', error);
       return NextResponse.json(
         { error: 'Failed to fetch blog posts' },
         { status: 500 }
@@ -101,7 +101,7 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error('[Blog API] Unexpected error:', error);
+    console.log('[Blog API] Unexpected error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
