@@ -37,8 +37,7 @@ export default function Banner() {
             minHeight: "600px", 
             height: "400px",   
             maxHeight: "50vh",  
-            overflow: "hidden", 
-            placeholder: "blur"
+            overflow: "hidden"
             }}
         >
           <div className="container">
