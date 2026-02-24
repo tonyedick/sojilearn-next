@@ -16,12 +16,17 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
+if (!supabaseUrl) {
   console.log(
-    'Missing public Supabase environment variables. Please check your .env.local file.'
+    'Missing NEXT_PUBLIC_SUPABASE_URL.'
   );
 }
 
+if (!supabaseAnonKey) {
+  console.log(
+    'Missing NEXT_PUBLIC_SUPABASE_ANON_KEY.'
+  );
+}
 /**
  * Client-side Supabase instance
  * This uses the anon key which has restricted permissions

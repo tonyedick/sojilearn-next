@@ -15,11 +15,11 @@ function getSupabaseServerEnv() {
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl) {
-    throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL');
+    console.log('Missing NEXT_PUBLIC_SUPABASE_URL');
   }
 
   if (!supabaseServiceKey) {
-    throw new Error(
+    console.log(
       'Missing SUPABASE_SERVICE_ROLE_KEY. Set it in your deployment environment (without NEXT_PUBLIC_ prefix).'
     );
   }
