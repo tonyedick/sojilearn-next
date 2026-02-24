@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Mulish } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/components/Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
           <ScrollToTop />
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
